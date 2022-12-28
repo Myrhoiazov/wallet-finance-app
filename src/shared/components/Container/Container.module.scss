@@ -1,0 +1,34 @@
+@import 'src/shared/styles/variables.scss';
+@import 'src/shared/styles/mixin.scss';
+
+.container {
+  margin: 0 auto;
+  max-width: 100%;
+
+  @include media(mobile-only) {
+    max-width: $mobile;
+  }
+
+  @include media(tablet) {
+    max-width: $tablet;
+  }
+
+  @include media(desktop) {
+    max-width: 100%;
+  }
+}
+
+.containerPadding {
+  padding-left: 20px;
+  padding-right: 20px;
+
+  @include media(tablet) {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  @include media(desktop) {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
