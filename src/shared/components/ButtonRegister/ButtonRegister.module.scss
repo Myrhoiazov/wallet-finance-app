@@ -1,0 +1,27 @@
+@import '../../styles/mixin' ;
+@import '../../styles/variables';
+
+.button {
+  height: 50px;
+  width: 300px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 13px 55px 13px 61px;
+  border: none;
+  border-radius: 20px;
+  background-color: var(earnings-green-color);
+  box-shadow: (0px 2px 4px rgba(0, 0, 0, 0.15));
+  font-family: 'Circe';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+  text-align: center;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color:var(text-white-color);
+  cursor: pointer;
+
+
+}

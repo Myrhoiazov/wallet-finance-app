@@ -1,0 +1,59 @@
+ @import '../../styles/mixin';
+ @import '../../styles/variables';
+ @import '../../styles//fonts';
+
+.auth_form{
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  max-width: 320px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: var(secondary-bg-color);
+
+  @include media(tablet) {
+    max-width: 533px;
+    padding: 40px 59px 62px 65px;
+    border-radius: 20px;
+}
+
+  &_inner_logo{
+
+  }
+  &_title{
+
+  }
+  &_logo{
+
+  }
+  &_label{
+
+  }
+  &_span{
+
+  }
+  &_input{
+
+  }
+  &_validation{
+
+  }
+  &_inner_btn{
+
+  }
+  &_btn{
+
+  }
+  &_btn_login{
+
+  }
+  &_btn_register{
+
+  }
+  &_google_button{
+
+  }
+  &_icon_google{
+
+  }
+}
