@@ -77,20 +77,22 @@ const AuthForm = () => {
         <Container>
         <form onSubmit={formik.handleSubmit} className={s.auth_form}>
           <div className={s.auth_form_inner_logo}>
+          <GroupLogoIcon className={s.auth_form_logo} />
           <h1 className={s.auth_form_title}>
             Wallet
           </h1>
-          <GroupLogoIcon className={s.auth_form_logo} />
+          
          </div>
                 <label className={s.auth_form_label}>
                     <span className={s.auth_form_span}><EmailIcon/></span>
-                    E-Mail:
+                    E-Mail
                     <input
                         className={s.auth_form_input}
                         name="email"
                         type="text"
                         onChange={formik.handleChange}
                         value={formik.values.email}
+                        // placeholder="E-Mail"
                     
                     />
                     <span className={s.auth_form_validation}>
@@ -99,7 +101,7 @@ const AuthForm = () => {
                 </label>
                 <label className={s.auth_form_label}>
                     <span className={s.auth_form_span}><PasswordIcon/></span>
-                    Password:
+                    Password
                     <input
                         className={s.auth_form_input}
                         name="password"
@@ -115,18 +117,18 @@ const AuthForm = () => {
                 <ul className={s.auth_form_inner_btn}>
                     <li className={s.item}>
                         <button 
-                            className={s.auth_form_btn}
+                            className={s.auth_form_btn_login}
                             isLoading={
                                 isLoading && buttonRef.current === 'login'
                             }
                             type="submit"
                         >
-                            Login
+                            Log in
                         </button>
                     </li>
                     <li className={s.item}>
                         <button
-                            className={s.auth_form_btn}
+                            className={s.auth_form_btn_register}
                             isLoading={
                                 isLoading && buttonRef.current === 'register'
                             }
