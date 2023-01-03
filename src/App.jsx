@@ -7,6 +7,7 @@ import SharedLayoutPage from './pages/SharedLayoutPage/SharedLayoutPage';
 import { Route, Routes, useSearchParams } from 'react-router-dom';
 import PrivateRoute from 'shared/components/PrivateRoute';
 import PublicRoute from 'shared/components/PublicRoute';
+import StatisticsPage from 'pages/StatisticsPage/StatisticsPage';
 // import { authActions } from 'redux/auth/auth.slice';
 // import authSelectors from 'redux/auth/selector.auth';
 
@@ -15,7 +16,7 @@ import PublicRoute from 'shared/components/PublicRoute';
 const App = () => {
   return (
     <Routes>
-      <Route path="/" element={<SharedLayoutPage />}>
+      <Route path="/" element={<StatisticsPage />}>
         <Route path="/" element={<PrivateRoute />}>
           {/* <Route path="" element={<HomePage />} /> */}
           {/* <Route path="planning" element={<PlanningPage />} /> */}
