@@ -4,9 +4,10 @@ import SharedLayoutPage from './pages/SharedLayoutPage/SharedLayoutPage';
 
 // import { lazy, useEffect } from 'react';
 // import { useDispatch, useSelector } from 'react-redux';
-import { Route, Routes, useSearchParams } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import PrivateRoute from 'shared/components/PrivateRoute';
 import PublicRoute from 'shared/components/PublicRoute';
+import DashboardPage from 'pages/DashboardPage';
 // import { authActions } from 'redux/auth/auth.slice';
 // import authSelectors from 'redux/auth/selector.auth';
 
@@ -17,10 +18,11 @@ const App = () => {
     <Routes>
       <Route path="/" element={<SharedLayoutPage />}>
         <Route path="/" element={<PrivateRoute />}>
-          {/* <Route path="" element={<HomePage />} /> */}
+          {/* <Route index element={<HomeTab />} /> */}
           {/* <Route path="planning" element={<PlanningPage />} /> */}
           {/* <Route path="awards" element={<AwardsPage />} /> */}
         </Route>
+        <Route path="/home" element={<DashboardPage />} />
         <Route path="/" element={<PublicRoute restricted />}>
           <Route path="auth" element={<AuthPage />} />
         </Route>
