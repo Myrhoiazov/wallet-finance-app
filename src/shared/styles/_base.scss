@@ -5,9 +5,16 @@
 }
 
 body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--main-font);
+  font-size: var(--font-size-body);
+  font-style: normal;
+  font-weight: 400;
+
+  color: var(--title-black-color);
+
+  background-color: var(--primary-bg-color);
+
   margin: 0;
-  overflow: auto;
 }
 
 html {
@@ -34,11 +41,13 @@ img {
 button {
   cursor: pointer;
 }
+
 ul {
   margin: 0;
   padding: 0;
   list-style: none;
 }
+
 .active {
   color: black;
 }
