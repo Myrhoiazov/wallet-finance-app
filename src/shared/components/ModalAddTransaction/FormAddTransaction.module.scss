@@ -73,7 +73,7 @@ li {
     z-index: 1;
   }
 
-  @include media(tabletlet) {
+  @include media(tablet) {
     width: 394px;
   }
 }
