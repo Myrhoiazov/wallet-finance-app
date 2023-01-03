@@ -1,5 +1,79 @@
+:root {
+  /* font */
+  --main-font: 'Circe', sans-serif;
+  --title-font: 'Poppins', sans-serif;
+  --font-size-body: 16px;
 
+  /* Text Colors */
+  --title-black-color: #000000;
+  --text-white-color: #ffffff;
+  --header-grey-color: #bdbdbd;
+  --balance-grey-color: #a6a6a6;
+  --earnings-green-color: #24cca7;
+  --expenditure-red-color: #ff6596;
+  --subscription-green-color: #24cca7;
 
-$desktop: 1280px;
-$tablet: 768px;
-$mobile: 320px;
+  /* Modal Text Colors */
+  --main-grey-color: #bdbdbd;
+  --grey-color: #e0e0e0;
+
+  /* Backgroung Color */
+  --primary-bg-color: #e7eaf2;
+  --secondary-bg-color: #ffffff;
+  --desktop-bg-color: rgba(255, 255, 255, 0.4);
+  --main-currency-bg-color: #4a56e2;
+  --header-currency-bg-color: #6e78e8;
+  --modal-list-bg-color: rgba(255, 255, 255, 0.7);
+  --hometab-title-bg-color: #6e78e8;
+  --hometab-primary-bg-color: #ffffff;
+  --hometab-bg-color: transparent;
+  --line-bg-low: #de6c64;
+  --line-bg-middle: #eac77c;
+  --line-bg-strong: #24cca7;
+
+  /* Btn Color */
+  --btn-primary-color: #ffffff;
+  --btn-primary-bg-color: #24cca7;
+  --btn-secondary-color: #4a56e2;
+  --btn-secondary-bg-color: transparent;
+  --btn-tetriary-color: #ff5862;
+
+  /* Statistics Color */
+  --stat-main-color: #fed057;
+  --stat-food-color: #ffd8d0;
+  --stat-car-color: #fd9498;
+  --stat-self-color: #c5baff;
+  --stat-children-color: #6e78e8;
+  --stat-home-color: #4a56e2;
+  --stat-education-color: #81e1ff;
+  --stat-leisure-color: #24cca7;
+  --stat-other-color: #00ad84;
+
+  /* Border */
+  --btn-primary-border: 1px solid currentColor;
+  --btn-secondary-border: 1px solid #4a56e2;
+  --model-border: 1px solid #e0e0e0;
+  --hometab-border-income: 5px solid #24cca7;
+  --hometab-border-expense: 5px solid #ff6596;
+  --hometab-border-hr: 1px solid #dcdcdf;
+  --protection-line-low: 3px solid #de6c64;
+  --protection-line-middle: 3px solid #eac77c;
+  --protection-line-strong: 3px solid #24cca7;
+  --hometab-border-hr-section: 1px solid #e7e5f2;
+  --input-border: 0.5px solid #e7eaf2;
+
+  /* Shadows */
+  --modal-list-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+  --hometab-hr-shadow: 0px 1px 0px rgba(255, 255, 255, 0.6);
+  --hometab-hr-section-shadow: 1px 0px 0px rgba(0, 0, 0, 0.05),
+    2px 0px 0px rgba(255, 255, 255, 0.6);
+
+  /* Animations */
+  --animation: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --modal-animation: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Breakpoints */
+  --mobile: 320px;
+  --tablet: 768px;
+  --desktop: 1280px;
+}

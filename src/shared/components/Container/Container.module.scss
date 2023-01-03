@@ -6,11 +6,11 @@
   max-width: 100%;
 
   @include media(mobile-only) {
-    max-width: $mobile;
+    max-width: var(--mobile);
   }
 
   @include media(tablet) {
-    max-width: $tablet;
+    max-width: var(--tablet);
   }
 
   @include media(desktop) {
