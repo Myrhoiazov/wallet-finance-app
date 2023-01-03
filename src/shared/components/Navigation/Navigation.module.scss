@@ -1,4 +1,13 @@
+@import 'src/shared/styles/variables.scss';
+@import 'src/shared/styles/mixin.scss';
+
 .navigation{
+  @include media(mobile-only) {
+    display: flex;
+    flex-direction: row;
+    padding: 0 42px;
+  }
+
   margin-bottom: 28px;
   display: flex;
   flex-direction: column;
@@ -6,6 +15,12 @@
 }
 
 .link{
+
+  @include media(mobile-only) {
+    max-width: 44px;
+    max-height: 44px;
+  }
+
   display: flex;
   align-items: center;
   max-width: 130px;
@@ -25,6 +40,11 @@
   }
 
 }
+.link:not(:last-child){
+  @include media(mobile-only) {
+    margin-right: 32px;
+  }
+}
 
 .active{
   font-weight: 700;
@@ -32,5 +52,8 @@
 }
 
 .icon{
-  margin-right: 20px;
+  @include media(tablet) {
+    margin-right: 20px;
 }
+  }
+
