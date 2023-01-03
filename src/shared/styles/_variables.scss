@@ -11,6 +11,7 @@
   --balance-grey-color: #a6a6a6;
   --earnings-green-color: #24cca7;
   --expenditure-red-color: #ff6596;
+  --expenditure-red-accent-color: #ffb2cb;
   --subscription-green-color: #24cca7;
 
   /* Modal Text Colors */
@@ -30,6 +31,7 @@
   --line-bg-low: #de6c64;
   --line-bg-middle: #eac77c;
   --line-bg-strong: #24cca7;
+  --line-bg-strong-accent: #92e6d3;
 
   /* Btn Color */
   --btn-primary-color: #ffffff;
@@ -71,9 +73,9 @@
   /* Animations */
   --animation: 250ms cubic-bezier(0.4, 0, 0.2, 1);
   --modal-animation: 400ms cubic-bezier(0.4, 0, 0.2, 1);
-
-  /* Breakpoints */
-  --mobile: 320px;
-  --tablet: 768px;
-  --desktop: 1280px;
 }
+
+/* Breakpoints */
+$desktop: 1280px;
+$tablet: 768px;
+$mobile: 320px;

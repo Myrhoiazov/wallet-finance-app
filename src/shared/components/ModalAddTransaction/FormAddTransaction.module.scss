@@ -1,0 +1,306 @@
+@import 'src/shared/styles/variables.scss';
+@import 'src/shared/styles/mixin.scss';
+
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  appearance: none;
+  margin: 0;
+}
+input {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-color: #e7eaf2;
+}
+
+:active,
+:hover,
+:focus {
+  outline: 0;
+  outline-offset: 0;
+}
+
+li {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+//-----------------------SELECT-----------------------
+.selectType {
+  padding-left: 8px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  width: 394px;
+  height: 32px;
+
+  font-size: 18px;
+  line-height: 1.5;
+
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: var(--model-border);
+  background: transparent;
+}
+
+//---------------SELECT-------------------
+
+.selectWraper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 280px;
+  margin-bottom: 40px;
+  margin-right: auto;
+  margin-left: auto;
+
+  cursor: pointer;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    right: 5px;
+
+    width: 13px;
+    height: 13px;
+
+    background-image: url('../../../assets/icons/arrow.svg');
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 1;
+  }
+
+  @include media(tabletlet) {
+    width: 394px;
+  }
+}
+
+.selectCustom {
+  position: relative;
+  padding-left: 8px;
+  width: 280px;
+  height: 32px;
+
+  font-size: 18px;
+  line-height: 1.5;
+
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: var(--model-border);
+
+  cursor: pointer;
+
+  @include media(tablet) {
+    width: 394px;
+  }
+}
+
+.optionCustomWriper {
+  position: absolute;
+  width: 280px;
+
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(25px);
+  border-radius: 20px;
+
+  z-index: 1000;
+
+  @include media(tablet) {
+    width: 394px;
+  }
+}
+
+.selectLabel {
+  display: flex;
+  margin: 0;
+  margin-bottom: 3px;
+  margin-top: 5px;
+  padding-left: 20px;
+
+  font-size: 18px;
+  line-height: 1.5;
+
+  cursor: pointer;
+
+  @include media(tablet) {
+    width: 394px;
+  }
+}
+
+.selectLabel:hover,
+.selectLabel:focus {
+  color: var(--expenditure-red-color);
+  background-color: var(--secondary-bg-color);
+}
+
+.selectOptionItem {
+  opacity: 0;
+  width: 20px;
+}
+
+//--------------------AMOUNT---------------------------
+.wraperAmountDate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 32px;
+
+  margin-bottom: 40px;
+  margin-left: auto;
+  margin-right: auto;
+
+  @include media(tablet) {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 32px;
+  }
+}
+
+.inputAmount {
+  width: 280px;
+  text-align: left;
+  padding-left: 20px;
+  font-size: 18px;
+  border: none;
+
+  border-bottom: var(--model-border);
+  border-color: var(--primary-bg-color);
+
+  @include media(tablet) {
+    text-align: center;
+    width: 181px;
+  }
+}
+
+::placeholder {
+  color: var(--main-grey-color);
+}
+
+//-----------------DATETIME-------------
+.inputDate {
+  position: relative;
+  width: 280px;
+
+  text-align: left;
+  cursor: pointer;
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 280px;
+    border-bottom: var(--model-border);
+    bottom: 1px;
+    left: 0px;
+  }
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0px;
+    right: 14px;
+
+    width: 22px;
+    height: 20px;
+    background-image: url('../../../assets/icons/date.svg');
+
+    background-repeat: no-repeat;
+    background-position: right;
+  }
+
+  @include media(tablet) {
+    width: 181px;
+    &::before {
+      width: 181px;
+      text-align: center;
+    }
+  }
+}
+
+//----------------------------COMMENT----------------
+.commentLabel {
+  display: flex;
+  justify-content: center;
+}
+.inputComment {
+  display: flex;
+  width: 280px;
+  margin-bottom: 40px;
+  padding-left: 8px;
+
+  font-size: 18px;
+  border: none;
+  border-bottom: var(--model-border);
+  border-color: var(--primary-bg-color);
+
+  @include media(tablet) {
+    width: 394px;
+  }
+}
+
+//-------------------BUTTONS----
+.btnWraper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+
+  padding-bottom: 20px;
+
+  @include media(tablet) {
+    padding-bottom: 0px;
+  }
+}
+.btnAdd {
+  width: 300px;
+  height: 50px;
+  background: var(--line-bg-strong);
+  border-radius: 20px;
+  border: none;
+
+  font-size: 18px;
+  line-height: 1.5;
+  text-align: center;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+
+  color: var(--text-white-color);
+}
+
+.btnAdd:hover,
+.btnAdd:focus {
+  background-color: var(--btn-secondary-color);
+  color: var(--btn-primary-color);
+  transform: scale(1.04);
+}
+
+.btnCancel {
+  width: 300px;
+  height: 50px;
+  background: var(--secondary-bg-color);
+  border: 1px solid var(--main-currency-bg-color);
+  border-radius: 20px;
+
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+  text-align: center;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+
+  color: var(--btn-secondary-color);
+  cursor: pointer;
+}
+
+.btnCancel:hover,
+.btnCancel:focus {
+  color: var(--btn-primary-color);
+  background-color: var(--btn-secondary-color);
+  transform: scale(1.04);
+}
