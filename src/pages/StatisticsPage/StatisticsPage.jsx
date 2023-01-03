@@ -1,7 +1,8 @@
 import React from 'react';
+import Table from 'shared/components/Table/Table';
 
 const StatisticsPage = () => {
-  return <div></div>;
+  return <Table></Table>;
 };
 
 export default StatisticsPage;
