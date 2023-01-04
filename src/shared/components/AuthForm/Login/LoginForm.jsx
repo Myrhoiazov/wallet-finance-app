@@ -35,8 +35,6 @@ const LoginForm = () => {
         initialValues: {
             email: '',
             password: '',
-            confirmPassword: '',
-            name:'',
         },
         validationSchema,
         onSubmit: values => {
@@ -50,7 +48,6 @@ const LoginForm = () => {
                 );
         },
     });
-
     return (
        <>
         <form onSubmit={formik.handleSubmit} className={s.auth_form}>
