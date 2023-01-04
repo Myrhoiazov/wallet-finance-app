@@ -1,5 +1,6 @@
 export const initialState = {
-  token: null,
+  id: '',
+  email: '',
   isLoading: false,
   error: null,
 };
