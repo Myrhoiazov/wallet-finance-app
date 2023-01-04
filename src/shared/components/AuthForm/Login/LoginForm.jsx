@@ -1,18 +1,17 @@
 import { useFormik } from 'formik';
 import React, { useRef } from 'react';
 import * as yup from 'yup';
-import s from '../AuthForm/AuthForm.module.scss';
+import s from '../Login/LoginForm.module.scss';
 import { toast } from 'react-toastify';
-import Container from '../Container';
-import { ReactComponent as GroupLogoIcon } from '../../../assets/icons/groupLogo.svg';
-import { ReactComponent as EmailIcon } from '../../../assets/icons/email.svg';
-import { ReactComponent as PasswordIcon } from '../../../assets/icons/password.svg';
-import { ReactComponent as GoogleIcon } from '../../../assets/icons/google.svg';
+import Container from '../../Container';
+import { ReactComponent as GroupLogoIcon } from '../../../../assets/icons/groupLogo.svg';
+import { ReactComponent as EmailIcon } from '../../../../assets/icons/email.svg';
+import { ReactComponent as PasswordIcon } from '../../../../assets/icons/password.svg';
+import { ReactComponent as GoogleIcon } from '../../../../assets/icons/google.svg';
 import authSelectors from 'redux/Auth/SelectorAuth';
 import authOperations from 'redux/Auth/OperationsAuth';
 import { useDispatch, useSelector } from 'react-redux';
-
-// import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 
 const validationSchema = yup.object({
@@ -25,21 +24,11 @@ const validationSchema = yup.object({
         .string('Enter password')
         .min(6, 'Too Short!')
         .required('Password is required'), 
-    confirmPassword: yup
-        .string('Enter password')
-        .min(6, 'Too Short!')
-        .required('Password is required'), 
-    name: yup
-        .string('Enter your first name')
-        .min(1, 'Too Short!')
-        .max(12, 'Too Long!')
-        .required('First name is required'),
     
 })
 
-const AuthForm = () => {
+const LoginForm = () => {
     const buttonRef = useRef();
-    // const { t } = useTranslation();
     const dispatch = useDispatch();
     const isLoading = useSelector(authSelectors.getIsLoading);
     const formik = useFormik({
@@ -62,19 +51,8 @@ const AuthForm = () => {
         },
     });
 
-    const handleRegister = () => {
-        buttonRef.current = 'register';
-        dispatch(authOperations.register(formik.values))
-            .unwrap()
-            .catch(error =>
-                toast.error(
-                    (`Register is failed with message:`) + " " + error.message    
-                )
-            );
-    };
-
     return (
-        <Container>
+       <>
         <form onSubmit={formik.handleSubmit} className={s.auth_form}>
           <div className={s.auth_form_inner_logo}>
           <GroupLogoIcon className={s.auth_form_logo} />
@@ -84,35 +62,38 @@ const AuthForm = () => {
           
          </div>
                 <label className={s.auth_form_label}>
-                    <span className={s.auth_form_span}><EmailIcon/></span>
-                    E-Mail
+            <span className={s.auth_form_span}><EmailIcon />
+                
                     <input
                         className={s.auth_form_input}
                         name="email"
                         type="text"
                         onChange={formik.handleChange}
                         value={formik.values.email}
-                        // placeholder="E-Mail"
+                        placeholder="E-Mail"
                     
-                    />
-                    <span className={s.auth_form_validation}>
+              />
+              </span>
+                    {/* <span className={s.auth_form_validation}>
                         {formik.errors.email}
-                    </span>
+                    </span> */}
                 </label>
                 <label className={s.auth_form_label}>
-                    <span className={s.auth_form_span}><PasswordIcon/></span>
-                    Password
+                    <span className={s.auth_form_span}><PasswordIcon/>
+                  
                     <input
                         className={s.auth_form_input}
                         name="password"
                         type="password"
                         onChange={formik.handleChange}
                         value={formik.values.password}
+                        placeholder="Password"
                      
-                    />
-                    <span className={s.auth_form_validation}>
+              />
+              </span>
+                    {/* <span className={s.auth_form_validation}>
                         {formik.errors.password}
-                    </span>
+                    </span> */}
                 </label>
                 <ul className={s.auth_form_inner_btn}>
                     <li className={s.item}>
@@ -127,20 +108,15 @@ const AuthForm = () => {
                         </button>
                     </li>
                     <li className={s.item}>
-                        <button
+                        <Link to="/register"
                             className={s.auth_form_btn_register}
-                            isLoading={
-                                isLoading && buttonRef.current === 'register'
-                            }
-                            type="button"
-                            onClick={handleRegister}
                         >
                             Register
-                        </button>
+                        </Link>
                     </li>
                  </ul>
                    <a
-                    href="https://kidslike-v1-backend.goit.global/auth/google"
+                    href="https://wallet-api-kaqj.onrender.com/auth/google"
                     className={s.auth_form_google_button}
                     aria-label="google button"
                 >
@@ -148,9 +124,9 @@ const AuthForm = () => {
                     Google
                 </a>
                 </form>
-                </Container>
+                </>
     );
 };
 
 
-export default AuthForm;
+export default LoginForm;

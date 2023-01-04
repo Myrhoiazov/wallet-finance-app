@@ -1,5 +1,6 @@
 
-import AuthPage from './pages/AuthPage/AuthPage';
+import LoginPage from './pages/AuthPage/LoginPage/LoginPage';
+import RegisterPage from './pages/AuthPage/RegisterPage/RegisterPage';
 import SharedLayoutPage from './pages/SharedLayoutPage/SharedLayoutPage';
 
 // import { lazy, useEffect } from 'react';
@@ -39,7 +40,8 @@ const App = () => {
           {/* <Route path="awards" element={<AwardsPage />} /> */}
         {/* </Route> */}
         <Route path="/" element={<PublicRoute restricted />}>
-          <Route path="auth" element={<AuthPage />} />
+          <Route path="login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
         </Route>
 
         {/* <Route path="/contacts" element={<ContactsPage />} /> */}

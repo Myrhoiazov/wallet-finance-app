@@ -1,13 +1,13 @@
-import AuthForm from '../../shared/components/AuthForm';
+import LoginForm from '../../../shared/components/AuthForm/Login/LoginForm';
 // import { MediaQuery } from '../../hooks/useMediaQuery';
-import s from '../../pages/AuthPage/AuthPage.module.scss';
+import s from '../LoginPage/LoginPage.module.scss';
 
-const AuthPage = () => {
+const LoginPage = () => {
   
     return (
       <section className={s.section_auth_page}>
         
-          <AuthForm></AuthForm>
+          <LoginForm></LoginForm>
           {/* <MediaQuery.Desktop>
               <div className={s.inner_images_bp1280px}>
                   <div className={s.inner_images_bp1280px__family}></div>
@@ -30,4 +30,4 @@ const AuthPage = () => {
 
   )
 }
-export default AuthPage;
+export default LoginPage;
