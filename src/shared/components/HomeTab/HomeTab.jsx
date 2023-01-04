@@ -1,0 +1,98 @@
+import { useMediaQuery } from 'react-responsive';
+import { Table, Column, HeaderCell, Cell, ColumnGroup } from 'rsuite-table';
+import 'rsuite-table/dist/css/rsuite-table.css';
+
+import s from './HomeTab.module.scss';
+const dataList = [
+  {
+    date: '04.01.19',
+    type: '-',
+    category: 'Other',
+    comment: 'Gift for your wife',
+    sum: 300,
+    balance: 6000,
+  },
+  {
+    date: '05.01.19',
+    type: '+',
+    category: 'Income',
+    comment: 'January bonus',
+    sum: 300,
+    balance: 6000,
+  },
+  {
+    date: '07.01.19',
+    type: '-',
+    category: 'Car',
+    comment: 'Oil',
+    sum: 1100,
+    balance: 68000,
+  },
+  {
+    date: '07.01.19',
+    type: '-',
+    category: 'Products',
+    comment: 'Vegetables for the week',
+    sum: 300,
+    balance: 6000,
+  },
+  {
+    date: '07.01.19',
+    type: '+',
+    category: 'Income',
+    comment: 'Gift',
+    sum: 3009,
+    balance: 6000,
+  },
+];
+
+const HomeTab = () => {
+  const isMobile = useMediaQuery({ maxWidth: 767 });
+  return (
+    <>
+    {!isMobile &&
+      <div className={s.tableWrap}>
+      <div className={s.scrollTable}>
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Type</th>
+              <th>Category</th>
+              <th>Comment</th>
+              <th>Sum</th>
+              <th>Balance</th>
+            </tr>
+          </thead>
+        </table>
+
+        <div className={s.scrollTableBody}>
+          <table>
+            <tbody>
+              {
+                  dataList.map(el => (
+                    <tr key={el.comment}>
+                      <td>{el.date}</td>
+                      <td>{el.type}</td>
+                      <td>
+                        {el.category}
+                      </td>
+                      <td>{el.comment}</td>
+                      <td>
+                        {el.sum}
+                      </td>
+                      <td>{el.balance}</td>
+                    </tr>
+                  ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+                  }
+    </>
+
+  );
+};
+
+export default HomeTab;

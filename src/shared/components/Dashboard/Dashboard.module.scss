@@ -46,8 +46,11 @@
   @include media(tablet-only) {
     padding-top: 0px;
   }
-  margin-left: 69px;
+  @include media(desktop) {
+    width: calc(100% - 480px);
+    margin-left: 69px;
   padding-top: 6px;
+  }
 }
 
 // .decorFirst{

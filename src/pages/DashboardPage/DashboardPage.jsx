@@ -6,9 +6,7 @@ const DashboardPage = () =>{
   return (
     <Container>
       <div className={s.wrapper}>
-this is DashboardPage
         <DashBoard/>
-
     </div>
     </Container>
 
