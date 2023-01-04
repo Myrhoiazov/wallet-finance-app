@@ -1,6 +1,4 @@
 import { useMediaQuery } from 'react-responsive';
-import { Table, Column, HeaderCell, Cell, ColumnGroup } from 'rsuite-table';
-import 'rsuite-table/dist/css/rsuite-table.css';
 
 import s from './HomeTab.module.scss';
 const dataList = [
