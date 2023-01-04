@@ -17,7 +17,17 @@ const Table = () => {
     'December',
   ];
 
-  const colorPalette = [];
+  const colorPalette = [
+    '#FED057',
+    '#FFD8D0',
+    '#FD9498',
+    '#C5BAFF',
+    '#6E78E8',
+    '#4A56E2',
+    '#81E1FF',
+    '#24CCA7',
+    '#00AD84',
+  ];
 
   const yearsList = [2023, 2022, 2021];
 
