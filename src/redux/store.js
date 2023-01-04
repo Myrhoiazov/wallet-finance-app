@@ -11,6 +11,7 @@ import {
 import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
 import { configureStore } from '@reduxjs/toolkit';
 import authReducer from './Auth/AuthSlice';
+import userReducer from './User/UserSlice';
 import authErrorLogger from './Auth/MiddlewareAuth';
 
 const persistConfig = {
@@ -21,7 +22,8 @@ const persistConfig = {
 
 export const store = configureStore({
   reducer: {
-      auth: persistReducer(persistConfig, authReducer),
+    auth: persistReducer(persistConfig, authReducer),
+    user: userReducer,
   },
   middleware(getDefaultMiddleware) {
       return getDefaultMiddleware({

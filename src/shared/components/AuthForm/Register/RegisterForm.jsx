@@ -96,9 +96,11 @@ const RegisterForm = () => {
         },
     });
 
-    const handleRegister = () => {
+  const handleRegister = () => {
+    const { name, email, password } = formik.values;
+    const body = { name, email, password };
         buttonRef.current = 'register';
-        dispatch(authOperations.register(formik.values))
+        dispatch(authOperations.register(body))
             .unwrap()
             .catch(error =>
                 toast.error(
@@ -106,7 +108,6 @@ const RegisterForm = () => {
                 )
             );
     };
-
     return (
         <Container>
         <form onSubmit={formik.handleSubmit} className={s.auth_form}>
@@ -168,7 +169,7 @@ const RegisterForm = () => {
                         {formik.errors.confirmPassword}
                     </span>
           </label>
-          <div className={protectionLine.password}></div>
+          <div className={protectionLine(formik.values.password)}></div>
           <label className={s.auth_form_label}>
                     <span className={s.auth_form_span}><NameIcon/>
                 
