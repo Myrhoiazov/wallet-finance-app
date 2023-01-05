@@ -1,18 +1,15 @@
 import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import moment from 'moment';
-import Datetime from 'react-datetime';
 import { toast } from 'react-toastify';
+import Datetime from 'react-datetime';
+import moment from 'moment';
 
-// import { useDispatch, useSelector } from 'react-redux';
-
-// import { addTransaction } from 'redux/transactions/transactionsOperations';
-// import { selectBalance } from 'redux/auth/auth-selectors';
-// import { selectError } from 'redux/transactionSumController/transactionSumControllerSelectors';
-// import { changeBalance } from 'redux/auth/auth-slice';
-
-import { formatDate } from 'helpers/formatDate';
 import { useToggle } from '../../../hooks/modalAddTransaction';
+
+import { selectTransactionCategories } from 'redux/Categories/categoriesSelectors';
+import { fetchCategories } from 'redux/Categories/categoriesOperations';
+import { updateTransaction } from 'redux/Transaction/transactionsOperations';
 
 import css from './ModalAddTransaction.module.scss';
 import cssForm from './FormAddTransaction.module.scss';
@@ -20,39 +17,25 @@ import cssForm from './FormAddTransaction.module.scss';
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-datetime/css/react-datetime.css';
 
-const categoriesInitial = [
-  { id: '0', name: 'Main expenses' },
-  { id: '1', name: 'Products' },
-  { id: '2', name: 'Car' },
-  { id: '3', name: 'Self care' },
-  { id: '4', name: 'Child care' },
-  { id: '5', name: 'Household products' },
-  { id: '6', name: 'Leisure' },
-  { id: '7', name: 'Other expenses' },
-  { id: '8', name: 'Entertainment' },
-];
-
 export const ModalAddTransaction = ({ closeModal }) => {
-  // const dispatch = useDispatch();
-  const categories = categoriesInitial;
+  const dispatch = useDispatch();
 
-  // const error = useSelector(selectError);
-  const error = 'Якась там еррор!';
-  // const balance = useSelector(selectBalance);
-  const balance = 1000;
+  const categories = useSelector(selectTransactionCategories);
 
   const { isShowSelect, toggleHook } = useToggle();
 
   const [amount, setAmount] = useState('');
-  const [valueDate, onChange] = useState(new Date());
-  const [transactionDate, setTransactionDate] = useState(
-    formatDate(moment(valueDate).format())
-  );
+  const [valueDate, setValueDate] = useState(new Date());
+  const [date, setDate] = useState(valueDate);
   const [comment, setComment] = useState('');
-  const [type, setType] = useState('INCOME');
-  const [categoryId, setCategoryId] = useState('0');
+  const [type, setType] = useState('income');
+  const [categoryId, setCategoryId] = useState(null);
   const [categoryTitle, setCategoryTitle] = useState('');
   const [isShowSelectList, setIsShowSelectList] = useState('false');
+
+  useEffect(() => {
+    dispatch(fetchCategories());
+  }, [dispatch]);
 
   useEffect(() => {
     const closeByEscape = ({ code }) => {
@@ -66,7 +49,6 @@ export const ModalAddTransaction = ({ closeModal }) => {
       window.removeEventListener('keydown', closeByEscape);
     };
   }, [closeModal]);
-  // }, [closeModal, dispatch]);
 
   const closeByBackdrop = event => {
     if (event.currentTarget === event.target) {
@@ -75,8 +57,7 @@ export const ModalAddTransaction = ({ closeModal }) => {
   };
 
   const onAddTransaction = transaction => {
-    // dispatch(addTransaction({ ...transaction }));
-    console.log('dispatch - addTransaction');
+    dispatch(updateTransaction({ ...transaction }));
   };
 
   const handleChange = e => {
@@ -84,10 +65,9 @@ export const ModalAddTransaction = ({ closeModal }) => {
     switch (name) {
       case 'amount':
         setAmount(value);
-
         break;
-      case 'transactionDate':
-        setTransactionDate(value);
+      case 'date':
+        setDate(value);
         break;
       case 'comment':
         setComment(value);
@@ -104,6 +84,7 @@ export const ModalAddTransaction = ({ closeModal }) => {
   const resetForm = () => {
     setAmount('');
     setComment('');
+    setValueDate(new Date());
   };
 
   const handleSubmit = e => {
@@ -113,32 +94,25 @@ export const ModalAddTransaction = ({ closeModal }) => {
       toast.warning('Amount must be only positive');
       return;
     }
-    const amountNegative = -amount;
 
     if (isShowSelect) {
       if (!amount || !categoryId) {
-        toast.error('Please, enter an amount and select category !');
+        toast.error('Please, enter an amount and select category!');
         return;
       }
-      if (amount > balance) {
-        toast.error('Sorry, your amount exceeds the balance!');
+
+      if (!comment) {
+        toast.error('Please, enter a comments!');
         return;
       }
 
       onAddTransaction({
         type,
-        categoryId,
-        amount: amountNegative,
-        transactionDate,
-        comment,
+        category: categories.find(({ id }) => id === Number(categoryId))?.value,
+        amount: Number(amount),
+        date: moment(date).unix(),
+        comments: comment,
       });
-      // dispatch(changeBalance(amount));
-      console.log('dispatch - changeBalance');
-
-      if (error) {
-        toast.error(`Sorry, ${error} `);
-        return;
-      }
 
       toast.success('Succes! Your amount has been successfully added!');
       resetForm();
@@ -149,21 +123,19 @@ export const ModalAddTransaction = ({ closeModal }) => {
       toast.error('Please, enter an amount!');
       return;
     }
-    onAddTransaction({
-      type,
-      categoryId,
-      amount,
-      transactionDate,
-      comment,
-    });
 
-    // dispatch(changeBalance(amountNegative));
-    console.log('dispatch - changeBalance');
-
-    if (error) {
-      toast.error(`Sorry, ${error} `);
+    if (!comment) {
+      toast.error('Please, enter a comments!');
       return;
     }
+
+    onAddTransaction({
+      type,
+      category: categories.find(({ id }) => id === Number(categoryId))?.value,
+      amount: Number(amount),
+      date: moment(date).unix(),
+      comments: comment,
+    });
 
     toast.success('Succes! Your amount has been successfully added!');
     resetForm();
@@ -171,14 +143,18 @@ export const ModalAddTransaction = ({ closeModal }) => {
 
   const handleCheckBox = e => {
     if (isShowSelect) {
-      setType('INCOME');
+      setType('income');
       setCategoryId('0');
     }
 
     if (!isShowSelect) {
-      setType('EXPENSE');
+      setType('expense');
     }
     toggleHook();
+  };
+
+  const handleSetDateChange = date => {
+    setValueDate(date);
   };
 
   const handleClickOption = e => {
@@ -186,8 +162,9 @@ export const ModalAddTransaction = ({ closeModal }) => {
     setIsShowSelectList(true);
   };
 
-  const toggleShowSelectList = () =>
+  const toggleShowSelectList = () => {
     setIsShowSelectList(isShowSelectList => !isShowSelectList);
+  };
 
   return (
     <>
@@ -203,7 +180,7 @@ export const ModalAddTransaction = ({ closeModal }) => {
           <form autoComplete="off" onSubmit={handleSubmit}>
             <div className={css.wraperBtnSpan}>
               <span className={isShowSelect ? css.spanText : css.spanTextGreen}>
-                Income
+                income
               </span>
               <div className={css.wraperSwitch}>
                 <label className={css.container}>
@@ -223,7 +200,7 @@ export const ModalAddTransaction = ({ closeModal }) => {
               <span
                 className={!isShowSelect ? css.spanText : css.spanTextActive}
               >
-                Expense
+                expense
               </span>
             </div>
 
@@ -238,25 +215,27 @@ export const ModalAddTransaction = ({ closeModal }) => {
                       placeholder="Select a category"
                       onClick={toggleShowSelectList}
                       defaultValue={categoryTitle}
+                      required
                     />
                   </label>
                   {!isShowSelectList && (
                     <div className={cssForm.optionCustomWriper}>
                       {categories
-                        .filter(category => category.type !== 'INCOME')
+                        .filter(category => category.type !== 'income')
                         .map(category => (
                           <li
                             key={`${category.id}`}
-                            onClick={() => setCategoryTitle(category.name)}
+                            onClick={() => setCategoryTitle(category.value)}
                           >
                             <label className={cssForm.selectLabel}>
-                              {`${category.name}`}
+                              {`${category.value}`}
                               <input
                                 className={cssForm.selectOptionItem}
                                 name="categoryId"
                                 onClick={handleClickOption}
                                 onChange={handleChange}
                                 defaultValue={`${category.id}`}
+                                required
                               />
                             </label>
                           </li>
@@ -275,7 +254,7 @@ export const ModalAddTransaction = ({ closeModal }) => {
                   type="number"
                   min="0.01"
                   placeholder="0.00"
-                  defaultValue={amount}
+                  value={amount}
                   onChange={handleChange}
                 />
               </label>
@@ -283,14 +262,12 @@ export const ModalAddTransaction = ({ closeModal }) => {
               <div className={cssForm.dateTimeWriper}>
                 <Datetime
                   className={cssForm.inputDate}
-                  name="transactionDate"
+                  name="date"
                   value={valueDate}
-                  onChange={onChange}
+                  onChange={handleSetDateChange}
                   dateFormat="YYYY-MM-DD"
                   timeFormat={false}
-                  onClose={value =>
-                    setTransactionDate(formatDate(moment(value).format()))
-                  }
+                  onClose={value => setDate(moment(value).format())}
                   closeOnSelect={true}
                 />
               </div>
@@ -304,7 +281,7 @@ export const ModalAddTransaction = ({ closeModal }) => {
                 type="text"
                 name="comment"
                 placeholder="Comment"
-                defaultValue={comment}
+                value={comment}
                 onChange={handleChange}
               />
             </label>
