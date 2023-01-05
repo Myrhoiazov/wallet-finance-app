@@ -1,0 +1,9 @@
+@import '../../../shared/styles/mixin';
+@import '../../../shared/styles/variables';
+.section_auth_page{
+background-color: var(--secondary-bg-color);
+
+@include media(tablet){
+  background-color: #E5E5E5;
+}
+}

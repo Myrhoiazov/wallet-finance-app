@@ -1,6 +1,8 @@
+
 import s from './Balance.module.scss';
 
 const Balance = () => {
+
   return (
     <div className={s.wrapper}>
       <p className={s.title}>Your balance</p>

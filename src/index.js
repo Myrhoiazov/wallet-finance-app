@@ -12,12 +12,12 @@ import App from './App';
 import 'shared/styles/index.scss';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  // <Provider store={store}>
-  // <PersistGate persistor={persistor}>
+  <Provider store={store}>
+  <PersistGate persistor={persistor}>
   <BrowserRouter>
     <App />
     <ToastContainer />
   </BrowserRouter>
-  //  </PersistGate>
-  // </Provider>
+    </PersistGate>
+   </Provider>
 );

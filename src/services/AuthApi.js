@@ -1,21 +1,21 @@
-// import { privateAPI, publicAPI } from './http';
+import { privateAPI, publicAPI } from './http';
 
-// const registerUser = async profile => {
-//     const { data } = await publicAPI.post('/auth/register', profile);
-//     return data;
-// };
+const registerUser = async profile => {
+    const { data } = await publicAPI.post('/users/register', profile);
+    return data;
+};
 
-// const loginUser = async loginData => {
-//     const { data } = await publicAPI.post('/auth/login', loginData);
-//     return data;
-// };
+const loginUser = async loginData => {
+    const { data } = await publicAPI.post('/users/login', loginData);
+    return data;
+};
 
-// const logoutUser = async () => {
-//     await privateAPI.post(`/auth/logout`);
-// };
+const logoutUser = async () => {
+    await privateAPI.post(`/users/logout`);
+};
 
-// export const authAPI = {
-//     registerUser,
-//     loginUser,
-//     logoutUser,
-// };
+export const authAPI = {
+    registerUser,
+    loginUser,
+    logoutUser,
+};
