@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-const BASE_URL = 'https://wallet-project-m5us.onrender.com';
+const BASE_URL = 'https://wallet-api-kaqj.onrender.com';
 
 export const authApi = createApi({
   reducerPath: 'authApi',
