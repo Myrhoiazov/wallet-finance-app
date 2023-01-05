@@ -1,9 +1,21 @@
 @import '../../../shared/styles/mixin';
 @import '../../../shared/styles/variables';
-.section_auth_page{
+.section_login_page{
 background-color: var(--secondary-bg-color);
-
+height: 100vh;
 @include media(tablet){
   background-color: #E5E5E5;
+
+}
+&_title{
+font-family: 'Poppins';
+font-weight: 400;
+font-size: 30px;
+line-height: 45px;
+display: flex;
+align-items: center;
+text-align: center;
+
+color:var(--title-black-color)
 }
 }

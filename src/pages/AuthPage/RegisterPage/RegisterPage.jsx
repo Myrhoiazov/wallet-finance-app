@@ -5,7 +5,7 @@ import s from '../RegisterPage/RegisterPage.module.scss';
 const RegisterPage = () => {
   
     return (
-      <section className={s.section_auth_page}>
+      <section className={s.section_register_page}>
         
           <RegisterForm></RegisterForm>
           {/* <MediaQuery.Desktop>
