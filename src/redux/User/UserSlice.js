@@ -23,6 +23,7 @@ const userSlice = createSlice({
         [userOperations.getUserInfo.fulfilled]: (state, { payload }) => {
             state.id = payload.user.id;
             state.email = payload.user.email;
+            state.balance = payload.user.balance;
             state.isLoading = false;
         },
         [userOperations.getUserInfo.rejected]: setError,

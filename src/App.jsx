@@ -11,6 +11,7 @@ import PublicRoute from 'shared/components/PublicRoute';
 import authSelectors from 'redux/Auth/SelectorAuth';
 import { authActions } from 'redux/Auth/AuthSlice';
 import userOperations from 'redux/User/OperationsUser';
+import DashboardPage from 'pages/DashboardPage';
 
 
 // const AuthPage = lazy(() => import('./pages/AuthPage'));
@@ -34,6 +35,7 @@ const App = () => {
   return (
     <Routes>
       <Route path="/" element={<SharedLayoutPage />}>
+
         {/* <Route path="/" element={<PrivateRoute />}> */}
           {/* <Route path="" element={<HomePage />} /> */}
           {/* <Route path="planning" element={<PlanningPage />} /> */}
@@ -43,6 +45,10 @@ const App = () => {
           <Route path="login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
         </Route>
+        {/* <Route path="/home" element={<PrivateRoute />}> */}
+          {/* <Route index element={<DashboardPage />} /> */}
+        {/* </Route> */}
+        <Route path="/home" element={<DashboardPage />} />
 
         {/* <Route path="/contacts" element={<ContactsPage />} /> */}
         {/* <Route path="*" element={<Navigate to="/" />} /> */}
