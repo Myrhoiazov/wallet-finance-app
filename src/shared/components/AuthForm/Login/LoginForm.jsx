@@ -3,7 +3,6 @@ import React, { useRef } from 'react';
 import * as yup from 'yup';
 import s from '../Login/LoginForm.module.scss';
 import { toast } from 'react-toastify';
-import Container from '../../Container';
 import { ReactComponent as GroupLogoIcon } from '../../../../assets/icons/groupLogo.svg';
 import { ReactComponent as EmailIcon } from '../../../../assets/icons/email.svg';
 import { ReactComponent as PasswordIcon } from '../../../../assets/icons/password.svg';
@@ -23,8 +22,8 @@ const validationSchema = yup.object({
     password: yup
         .string('Enter password')
         .min(6, 'Too Short!')
-        .required('Password is required'), 
-    
+        .required('Password is required'),
+
 })
 
 const LoginForm = () => {
@@ -43,24 +42,25 @@ const LoginForm = () => {
                 .unwrap()
                 .catch(error =>
                     toast.error(
+                      // eslint-disable-next-line no-useless-concat
                       (`Login is failed with message:`) + " " + error.message
                     )
                 );
         },
     });
     return (
-       <>
+      <>
         <form onSubmit={formik.handleSubmit} className={s.auth_form}>
           <div className={s.auth_form_inner_logo}>
           <GroupLogoIcon className={s.auth_form_logo} />
           <h1 className={s.auth_form_title}>
             Wallet
           </h1>
-          
+
          </div>
                 <label className={s.auth_form_label}>
             <span className={s.auth_form_span}><EmailIcon />
-                
+
                     <input
                         className={s.auth_form_input}
                         name="email"
@@ -68,7 +68,7 @@ const LoginForm = () => {
                         onChange={formik.handleChange}
                         value={formik.values.email}
                         placeholder="E-Mail"
-                    
+
               />
               </span>
                     {/* <span className={s.auth_form_validation}>
@@ -77,7 +77,7 @@ const LoginForm = () => {
                 </label>
                 <label className={s.auth_form_label}>
                     <span className={s.auth_form_span}><PasswordIcon/>
-                  
+
                     <input
                         className={s.auth_form_input}
                         name="password"
@@ -85,7 +85,7 @@ const LoginForm = () => {
                         onChange={formik.handleChange}
                         value={formik.values.password}
                         placeholder="Password"
-                     
+
               />
               </span>
                     {/* <span className={s.auth_form_validation}>
@@ -94,7 +94,7 @@ const LoginForm = () => {
                 </label>
                 <ul className={s.auth_form_inner_btn}>
                     <li className={s.item}>
-                        <button 
+                        <button
                             className={s.auth_form_btn_login}
                             isLoading={
                                 isLoading && buttonRef.current === 'login'

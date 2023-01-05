@@ -44,7 +44,7 @@ import { Link } from 'react-router-dom';
 //         .min(1, 'Too Short!')
 //         .max(12,'To Long!')
 //         .required('First name is required'),
-    
+
 // })
 
 const validationSchema = Yup.object().shape({
@@ -90,6 +90,7 @@ const RegisterForm = () => {
                 .unwrap()
                 .catch(error =>
                     toast.error(
+                      // eslint-disable-next-line no-useless-concat
                       (`Login is failed with message:`) + " " + error.message
                     )
                 );
@@ -104,7 +105,8 @@ const RegisterForm = () => {
             .unwrap()
             .catch(error =>
                 toast.error(
-                    (`Register is failed with message:`) + " " + error.message    
+                    // eslint-disable-next-line no-useless-concat
+                    (`Register is failed with message:`) + " " + error.message
                 )
             );
     };
@@ -116,11 +118,11 @@ const RegisterForm = () => {
           <h1 className={s.auth_form_title}>
             Wallet
           </h1>
-          
+
          </div>
                 <label className={s.auth_form_label}>
             <span className={s.auth_form_span}><EmailIcon />
-                 
+
                     <input
                         className={s.auth_form_input}
                         name="email"
@@ -128,7 +130,7 @@ const RegisterForm = () => {
                         onChange={formik.handleChange}
                         value={formik.values.email}
                         placeholder="E-Mail"
-                    
+
               />
               </span>
                     {/* <span className={s.auth_form_validation}>
@@ -145,7 +147,7 @@ const RegisterForm = () => {
                         onChange={formik.handleChange}
                         value={formik.values.password}
                         placeholder="Password"
-                     
+
               />
               </span>
                     <span className={s.auth_form_validation}>
@@ -162,7 +164,7 @@ const RegisterForm = () => {
                         onChange={formik.handleChange}
                         value={formik.values.confirmPassword}
                         placeholder="Confirm password"
-                     
+
               />
             </span>
             <span className={s.auth_form_validation}>
@@ -172,7 +174,7 @@ const RegisterForm = () => {
           <div className={protectionLine(formik.values.password)}></div>
           <label className={s.auth_form_label}>
                     <span className={s.auth_form_span}><NameIcon/>
-                
+
                     <input
                         className={s.auth_form_input}
                         name="name"
@@ -180,7 +182,7 @@ const RegisterForm = () => {
                         onChange={formik.handleChange}
                         value={formik.values.name}
                         placeholder="First Name"
-                     
+
               />
             </span>
             </label>
@@ -193,7 +195,7 @@ const RegisterForm = () => {
                         </Link>
                     </li>
                     <li className={s.item}>
-                        <button 
+                        <button
                             className={s.auth_form_btn_register}
                             isLoading={
                                 isLoading && buttonRef.current === 'register'

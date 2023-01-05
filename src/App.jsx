@@ -3,7 +3,7 @@ import LoginPage from './pages/AuthPage/LoginPage/LoginPage';
 import RegisterPage from './pages/AuthPage/RegisterPage/RegisterPage';
 import SharedLayoutPage from './pages/SharedLayoutPage/SharedLayoutPage';
 
-import { lazy, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes, useSearchParams } from 'react-router-dom';
 // import PrivateRoute from 'shared/components/PrivateRoute';
