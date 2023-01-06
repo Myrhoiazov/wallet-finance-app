@@ -1,4 +1,5 @@
 import React from 'react';
+
 import s from './Table.module.scss';
 
 const Table = ({ data, income }) => {

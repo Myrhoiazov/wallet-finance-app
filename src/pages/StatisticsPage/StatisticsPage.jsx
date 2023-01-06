@@ -1,5 +1,8 @@
 import React from 'react';
+
+import DoughnutChart from 'shared/components/DoughnutChart/DoughnutChart';
 import Table from 'shared/components/Table/Table';
+import s from './StatisticsPage.module.scss';
 
 const StatisticsPage = () => {
   const monthsList = [
@@ -54,6 +57,9 @@ const StatisticsPage = () => {
 
   return (
     <>
+      <div className={s.doughnutChart}>
+        <DoughnutChart data={mockData}></DoughnutChart>
+      </div>
       <div>
         <select name="month" onChange={monthChangeHandle}>
           {monthsList.map(month => (
