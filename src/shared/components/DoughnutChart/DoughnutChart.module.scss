@@ -1,0 +1,19 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 288px;
+  height: 288px;
+}
+
+.doughnutChart {
+  position: absolute;
+  width: 288px;
+  height: 288px;
+}
+
+p {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.5;
+}

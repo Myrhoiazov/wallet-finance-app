@@ -2,9 +2,11 @@ import React from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 
+import s from './DoughnutChart.module.scss';
+
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const DoughnutChart = ({ data }) => {
+const DoughnutChart = ({ data, income }) => {
   const chartData = {
     datasets: [
       {
@@ -15,7 +17,16 @@ const DoughnutChart = ({ data }) => {
     ],
   };
 
-  return <Doughnut data={chartData} />;
+  return (
+    <div className={s.wrapper}>
+      <Doughnut
+        data={chartData}
+        options={{ cutout: '70%' }}
+        className={s.doughnutChart}
+      />
+      <p>₴ {income.toFixed(2)}</p>
+    </div>
+  );
 };
 
 export default DoughnutChart;

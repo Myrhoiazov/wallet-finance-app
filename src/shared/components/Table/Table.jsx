@@ -29,7 +29,7 @@ const Table = ({ data, income }) => {
           </div>
           <div className={s.tableTotalDataIncome}>
             <p>Income:</p>
-            <p>{income}</p>
+            <p>{income.toFixed(2)}</p>
           </div>
         </div>
       </div>
