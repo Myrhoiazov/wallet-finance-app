@@ -1,4 +1,4 @@
-// import Header from '../../../shared/components/Header';
+
 
 import React, { Suspense, useState } from 'react';
 
@@ -30,8 +30,8 @@ const SharedLayoutPage = () => {
           </p>
           <p> This is text and I inherit base font (main-font (Circe) )</p> */}
 
-          {/* <ButtonAddTransactions onModalOpen={openModal} />
-          {isModalOpen && <ModalAddTransaction closeModal={closeModal} />} */}
+          <ButtonAddTransactions onModalOpen={openModal} />
+          {isModalOpen && <ModalAddTransaction closeModal={closeModal} />} 
         </Container>
         {/* <Header /> */}
         <Suspense fallback={null}>
