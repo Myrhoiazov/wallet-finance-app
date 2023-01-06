@@ -6,8 +6,6 @@ const LoginPage = () => {
   
     return (
       <section className={s.section_login_page}>
-       
-          {/* <LoginForm></LoginForm> */}
             <MediaQuery.Desktop>
                 <h2 className={s.section_login_page_title}>Finance App</h2>
                 <LoginForm></LoginForm>
@@ -18,11 +16,11 @@ const LoginPage = () => {
               </div>
           </MediaQuery.Desktop>
             <MediaQuery.Tablet>
-                <h2>Finance App</h2>
+            <h2 className={s.section_login_page_title}>Finance App</h2>
                 <LoginForm></LoginForm>
               <div className={s.inner_images_bp768px}>
                   <div className={s.inner_images_bp768px__boyLogo}></div>
-                  <div className={s.inner_images_bp768px__ellipsePingLogo}></div>
+                  <div width="618px" className={s.inner_images_bp768px__ellipsePingLogo}></div>
                   <div className={s.inner_images_bp768px__ellipseLogo}></div>
               </div>
           </MediaQuery.Tablet>
