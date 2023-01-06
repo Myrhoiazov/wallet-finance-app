@@ -6,8 +6,6 @@ const LoginPage = () => {
   
     return (
       <section className={s.section_login_page}>
-       
-          {/* <LoginForm></LoginForm> */}
             <MediaQuery.Desktop>
                 <h2 className={s.section_login_page_title}>Finance App</h2>
                 <LoginForm></LoginForm>

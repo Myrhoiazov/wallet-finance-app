@@ -6,10 +6,8 @@ const RegisterPage = () => {
   
     return (
       <section className={s.section_register_page}>
-        
-    
         <MediaQuery.Desktop>
-        <h2 className={s.section_login_page_title}>Finance App</h2>
+        <h2 className={s.section_register_page_title}>Finance App</h2>
         <RegisterForm></RegisterForm>
               <div className={s.inner_images_bp1280px}>
                   <div className={s.inner_images_bp1280px__family}></div>
@@ -19,12 +17,12 @@ const RegisterPage = () => {
               </div>
           </MediaQuery.Desktop>
         <MediaQuery.Tablet>
-        <h2 className={s.section_login_page_title}>Finance App</h2>
+        <h2 className={s.section_register_page_title}>Finance App</h2>
         <RegisterForm></RegisterForm>
               <div className={s.inner_images_bp768px}>
-                  <div className={s.inner_images_bp768px__family}></div>
-                  <div className={s.inner_images_bp768px__bulb}></div>
-                  <div className={s.inner_images_bp768px__family2}></div>
+              <div className={s.inner_images_bp768px__girlLogo}></div>
+                  <div width="618px" className={s.inner_images_bp768px__ellipsePingLogo}></div>
+                  <div className={s.inner_images_bp768px__ellipseLogo}></div>
               </div>
           </MediaQuery.Tablet>
         <MediaQuery.Mobile>

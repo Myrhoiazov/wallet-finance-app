@@ -110,8 +110,8 @@ const RegisterForm = () => {
                 )
             );
     };
-    return (
-        <Container>
+  return (
+    <>
         <form onSubmit={formik.handleSubmit} className={s.auth_form}>
           <div className={s.auth_form_inner_logo}>
           <GroupLogoIcon className={s.auth_form_logo} />
@@ -216,7 +216,7 @@ const RegisterForm = () => {
                     Google
                 </a>
                 </form>
-                </Container>
+        </>
     );
 };
 
