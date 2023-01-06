@@ -3,7 +3,6 @@ import React, { useRef } from 'react';
 import * as Yup from 'yup';
 import s from '../Register/RegisterForm.module.scss';
 import { toast } from 'react-toastify';
-import Container from '../../Container';
 import { ReactComponent as GroupLogoIcon } from '../../../../assets/icons/groupLogo.svg';
 import { ReactComponent as EmailIcon } from '../../../../assets/icons/email.svg';
 import { ReactComponent as PasswordIcon } from '../../../../assets/icons/password.svg';
