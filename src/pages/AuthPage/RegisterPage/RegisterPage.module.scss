@@ -8,6 +8,14 @@ height: 100vh;
 
 }
 &_title{
-
+  font-family: 'Poppins';
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 45px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  
+  color:var(--title-black-color)
 }
 }

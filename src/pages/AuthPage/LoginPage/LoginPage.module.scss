@@ -4,7 +4,7 @@
 background-color: var(--secondary-bg-color);
 height: 100vh;
 @include media(tablet){
-  background-color: #E5E5E5;
+  background-color:inherit;
 
 }
 &_title{
@@ -15,7 +15,56 @@ line-height: 45px;
 display: flex;
 align-items: center;
 text-align: center;
+color:var(--title-black-color);
+position: absolute;
+right: 167px;
+top: 167px;
+z-index: 1;
 
-color:var(--title-black-color)
+// display: block;
+// margin-top: 107px;
+// margin-left: 280px;
+// font-family: var(--title-font);
+// font-weight: 400;
+// font-size: 30px;
+// line-height: 45px;
 }
+}
+.inner_images_bp768px{
+  // position: relative;
+  &__boyLogo{
+//  position: absolute;
+ background-image: url(../../../assets/images/tablet/1x/boyLogo1x.png);
+ background-repeat: no-repeat;
+ background-size: contain;
+ position: absolute;
+ margin-right: 265px;
+ width: 250px;
+ height: 260.26px;
+ top: 60px;
+ left: 114px;
+  }
+  &__ellipsePingLogo{
+    position: absolute;
+    background-image: url(../../../assets//images/tablet/1x/ellipsePingLogo1x.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-right: 265px;
+    width: 618px;
+    height: 547px;
+    left: 49%;
+    top: -13%;
+    transform: rotate(-0.06deg);
+  }
+  &__ellipseLogo{
+    position: absolute;
+    background-image: url(../../../assets//images/tablet/1x/ellipseLogo1x.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 618px;
+    height: 547px;
+    left: -136px;
+    top: 702px;
+    transform: rotate(-0.14deg);
+  }
 }
