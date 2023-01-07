@@ -1,7 +1,9 @@
 import React from 'react';
 
+import CustomSelect from 'shared/components/CustomSelect/CustomSelect';
 import DoughnutChart from 'shared/components/DoughnutChart/DoughnutChart';
 import Table from 'shared/components/Table/Table';
+import s from './StatisticsPage.module.scss';
 
 const StatisticsPage = () => {
   const monthsList = [
@@ -47,34 +49,48 @@ const StatisticsPage = () => {
   ];
 
   const monthChangeHandle = event => {
-    console.log(event.target.value);
+    console.log(event);
   };
 
   const yearChangeHandle = event => {
-    console.log(event.target.value);
+    console.log(event);
   };
 
   return (
-    <>
-      <DoughnutChart data={mockData} income={100}></DoughnutChart>
-      <div>
-        <select name="month" onChange={monthChangeHandle}>
-          {monthsList.map(month => (
-            <option key={month} value={month}>
-              {month}
-            </option>
-          ))}
-        </select>
-        <select name="year" onChange={yearChangeHandle}>
-          {yearsList.map(year => (
-            <option key={year} value={year}>
-              {year}
-            </option>
-          ))}
-        </select>
+    <div className={s.mainWrapper}>
+      <DoughnutChart data={mockData} income={100} />
+      <div className={s.tableWrapper}>
+        <div className={s.selectWrapper}>
+          <CustomSelect
+            options={monthsList}
+            changeHandler={monthChangeHandle}
+            name={'month'}
+          />
+          <CustomSelect
+            options={yearsList}
+            changeHandler={yearChangeHandle}
+            name={'year'}
+          />
+        </div>
+        {/* <div className={s.selectWrapper}>
+          <select name="month" onChange={monthChangeHandle}>
+            {monthsList.map(month => (
+              <option key={month} value={month}>
+                {month}
+              </option>
+            ))}
+          </select>
+          <select name="year" onChange={yearChangeHandle}>
+            {yearsList.map(year => (
+              <option key={year} value={year}>
+                {year}
+              </option>
+            ))}
+          </select>
+        </div> */}
+        <Table data={mockData} income={100} />
       </div>
-      <Table data={mockData} income={100}></Table>
-    </>
+    </div>
   );
 };
 
