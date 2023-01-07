@@ -1,25 +1,30 @@
+import { formatDate } from 'helpers/formatDate';
 import { useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import { selectTransactions } from 'redux/Transaction/transactionsSelectors';
 
 import s from './HomeTab.module.scss';
 
+
 const HomeTab = () => {
   const isMobile = useMediaQuery({ maxWidth: 767 });
   const transactions = useSelector(selectTransactions);
-  console.log(transactions, 'transactions')
+
+  const sortedtransactions = [...transactions].sort((lhs,rhs)=>rhs.date - lhs.date);
+
   return (
     <>
       {isMobile && (
         <div className={s.tableWrapMob}>
           <div className={s.scrollTableMob}>
             <div className={s.scrollTableBodyMob}>
-              {transactions.map(el => (
-                <table style={{}}>
+              {sortedtransactions
+                .map(el => (
+                <table style={{}} key={el._id}>
                   <tbody>
                     <tr style={{backgroundColor: "white"}}>
                       <td>Date</td>
-                      <td>{el.date}</td>
+                      <td>{formatDate(el.date)}</td>
                     </tr>
                     <tr style={{backgroundColor: "white", borderRadius: "10px"}}>
                       <td>Type</td>
@@ -70,9 +75,9 @@ const HomeTab = () => {
             <div className={s.scrollTableBody}>
               <table>
                 <tbody>
-                  {transactions?.map(el => (
+                  {sortedtransactions?.map(el => (
                     <tr key={el._id}>
-                      <td>{el.date}</td>
+                      <td>{formatDate(el.date)}</td>
                       <td>{el.type === "income" ? "+" : "-"}</td>
                       <td>{el.category}</td>
                       <td>{el.comments}</td>

@@ -12,7 +12,6 @@ const Dashboard = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log('before useeffect')
     dispatch(fetchTransactions());
   }, [dispatch]);
 
