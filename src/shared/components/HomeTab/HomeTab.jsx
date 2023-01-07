@@ -1,58 +1,20 @@
+import { useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
+import { selectTransactions } from 'redux/Transaction/transactionsSelectors';
 
 import s from './HomeTab.module.scss';
-const dataList = [
-  {
-    date: '04.01.19',
-    type: '-',
-    category: 'Other',
-    comment: 'Gift for your wife',
-    sum: 300,
-    balance: 6000,
-  },
-  {
-    date: '05.01.19',
-    type: '+',
-    category: 'Income',
-    comment: 'January bonus',
-    sum: 300,
-    balance: 6000,
-  },
-  {
-    date: '07.01.19',
-    type: '-',
-    category: 'Car',
-    comment: 'Oil',
-    sum: 1100,
-    balance: 68000,
-  },
-  {
-    date: '07.01.19',
-    type: '-',
-    category: 'Products',
-    comment: 'Vegetables for the week',
-    sum: 300,
-    balance: 6000,
-  },
-  {
-    date: '07.01.19',
-    type: '+',
-    category: 'Income',
-    comment: 'Gift',
-    sum: 3009,
-    balance: 6000,
-  },
-];
 
 const HomeTab = () => {
   const isMobile = useMediaQuery({ maxWidth: 767 });
+  const transactions = useSelector(selectTransactions);
+  console.log(transactions, 'transactions')
   return (
     <>
       {isMobile && (
         <div className={s.tableWrapMob}>
           <div className={s.scrollTableMob}>
             <div className={s.scrollTableBodyMob}>
-              {dataList.map(el => (
+              {transactions.map(el => (
                 <table style={{}}>
                   <tbody>
                     <tr style={{backgroundColor: "white"}}>
@@ -61,7 +23,7 @@ const HomeTab = () => {
                     </tr>
                     <tr style={{backgroundColor: "white", borderRadius: "10px"}}>
                       <td>Type</td>
-                      <td>{el.type}</td>
+                      <td>{el.type === "income" ? "+" : "-"}</td>
                     </tr>
 
                     <tr style={{backgroundColor: "white"}}>
@@ -70,15 +32,15 @@ const HomeTab = () => {
                     </tr>
                     <tr style={{backgroundColor: "white"}}>
                       <td>Comment</td>
-                      <td>{el.comment}</td>
+                      <td>{el.comments}</td>
                     </tr>
                     <tr style={{backgroundColor: "white"}}>
                       <td>Sum</td>
-                      <td>{el.sum}</td>
+                      <td>{el.amount}</td>
                     </tr>
                     <tr style={{backgroundColor: "white"}}>
                       <td>Balance</td>
-                      <td>{el.balance}</td>
+                      <td>{el.actualBalance}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -87,6 +49,7 @@ const HomeTab = () => {
           </div>
         </div>
       )}
+
       {/* desktop and tablet */}
       {!isMobile && (
         <div className={s.tableWrap}>
@@ -107,14 +70,14 @@ const HomeTab = () => {
             <div className={s.scrollTableBody}>
               <table>
                 <tbody>
-                  {dataList.map(el => (
-                    <tr key={el.comment}>
+                  {transactions?.map(el => (
+                    <tr key={el._id}>
                       <td>{el.date}</td>
-                      <td>{el.type}</td>
+                      <td>{el.type === "income" ? "+" : "-"}</td>
                       <td>{el.category}</td>
-                      <td>{el.comment}</td>
-                      <td>{el.sum}</td>
-                      <td>{el.balance}</td>
+                      <td>{el.comments}</td>
+                      <td>{el.amount}</td>
+                      <td>{el.actualBalance}</td>
                     </tr>
                   ))}
                 </tbody>

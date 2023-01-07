@@ -10,7 +10,7 @@ import { ReactComponent as GoogleIcon } from '../../../../assets/icons/google.sv
 import authSelectors from 'redux/Auth/SelectorAuth';
 import authOperations from 'redux/Auth/OperationsAuth';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 const validationSchema = yup.object({
@@ -29,6 +29,7 @@ const validationSchema = yup.object({
 const LoginForm = () => {
     const buttonRef = useRef();
     const dispatch = useDispatch();
+    const navigate = useNavigate()
     const isLoading = useSelector(authSelectors.getIsLoading);
     const formik = useFormik({
         initialValues: {
@@ -40,11 +41,17 @@ const LoginForm = () => {
             buttonRef.current = 'login';
             dispatch(authOperations.login(values))
                 .unwrap()
-                .catch(error =>
+                .then(() => {
+                  console.log("I'm here")
+                  toast.success('Glad to see you again!');
+                  navigate('/home', { replace: true });
+                })
+                .catch(error =>{
+                  console.log('error');
                     toast.error(
                       // eslint-disable-next-line no-useless-concat
                       (`Login is failed with message:`) + " " + error.message
-                    )
+                    )}
                 );
         },
     });
