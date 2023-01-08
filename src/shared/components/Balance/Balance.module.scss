@@ -1,0 +1,43 @@
+@import 'src/shared/styles/variables.scss';
+@import 'src/shared/styles/mixin.scss';
+
+.wrapper {
+  @include media(mobile-only) {
+    max-width: 280px;
+    padding-left: 32px;
+  }
+
+  @include media(tablet-only) {
+    max-width: 336px;
+  }
+
+  max-width: 395px;
+  margin-bottom: 32px;
+  padding-left: 40px;
+  padding-top: 8px;
+  padding-bottom: 11px;
+  border-radius: 30px;
+  background-color: var(--secondary-bg-color);
+}
+.title{
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5;
+  text-transform: uppercase;
+  color: var(--balance-grey-color);
+}
+.balance{
+
+  margin-top: 12px;
+  font-family: var(--title-font);
+  font-style: normal;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 1.5;
+
+
+}
+.symbol{
+  font-weight: 400;
+}
