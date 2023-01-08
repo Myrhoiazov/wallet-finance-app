@@ -4,29 +4,9 @@
   gap: 32px;
 }
 
-.tableWrapper {
-  
-}
-
 .selectWrapper {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   margin-bottom: 20px;
-}
-
-.selectWrapper select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  width: 182px;
-  height: 50px;
-  border-radius: 25px;
-  background-color: rgba(255, 255, 255, 0.0);
-  font-size: 16px;
-  padding: 0 20px;
-}
-
-.selectWrapper select option {
- height: 28px;
- border-color: rgba(255, 255, 255, 0.7);
 }
