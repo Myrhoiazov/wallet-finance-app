@@ -1,4 +1,6 @@
+
 import { useMediaQuery } from 'react-responsive';
+
 import Balance from '../Balance';
 import HomeTab from '../HomeTab';
 import Navigation from '../Navigation';

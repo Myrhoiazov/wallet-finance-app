@@ -27,14 +27,14 @@ const authSlice = createSlice({
     extraReducers: {
         [authOperations.register.pending]: setPending,
         [authOperations.register.fulfilled]: (state, { payload }) => {
-            state.token = payload.token;
+            state.token = payload.data.token;
             state.isLoading = false;
         },
         [authOperations.register.rejected]: setError,
 
         [authOperations.login.pending]: setPending,
         [authOperations.login.fulfilled]: (state, { payload }) => {
-            state.token = payload.token;
+            state.token = payload.data.token;
             state.isLoading = false;
         },
         [authOperations.login.rejected]: setError,

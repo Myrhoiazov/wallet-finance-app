@@ -3,7 +3,8 @@
 
 .tableWrap {
   max-width: 715px;
-  @include media(tablet){
+
+  @include media(tablet) {
     margin-top: 30px;
   }
 }
@@ -13,26 +14,32 @@
   overflow-x: auto;
   margin-top: 0px;
   margin-bottom: 20px;
+
   @include media(tablet-only) {
     height: 40vh;
   }
+
   tr {
     width: 120px;
     border-bottom: var(--hometab-border-hr);
   }
-  tr > td:first-child {
+
+  tr>td:first-child {
     width: 100px;
   }
-  tr > td:nth-child(2) {
+
+  tr>td:nth-child(2) {
     width: 60px;
   }
+
   // tr > td:nth-child(3) {
   //   width: 140px;
   // }
-  tr > td:nth-child(4) {
+  tr>td:nth-child(4) {
     width: 160px;
     overflow: overlay;
   }
+
   // tr > td:nth-child(5) {
   //   width: 120px;
   // }
@@ -40,6 +47,7 @@
   //   width: 60px;
   // }
 }
+
 .scrollTable table {
   width: 100%;
 
@@ -52,26 +60,32 @@
 
     font-size: 18px;
     background-color: var(--secondary-bg-color);
+
     &:first-child {
       width: 100px;
       border-top-left-radius: 30px;
       border-bottom-left-radius: 30px;
 
     }
+
     &:last-child {
       width: 120px;
       border-top-right-radius: 30px;
       border-bottom-right-radius: 30px;
     }
+
     &:nth-child(2) {
       width: 60px;
     }
+
     &:nth-child(3) {
       width: 140px;
     }
+
     &:nth-child(4) {
       width: 160px;
     }
+
     // &:nth-child(5) {
     //   width: 120px;
     // }
@@ -81,20 +95,38 @@
     padding: 10px 15px;
     font-size: 16px;
 
-    &:first-child{
+    &:first-child {
       padding: 10px;
+    }
+
+    &:nth-child(3) {
+      text-transform: capitalize;
+    }
+
+    &:nth-child(5) {
+      font-weight: 700;
     }
   }
 
+}
+
+.positive {
+  color: var(--earnings-green-color);
+}
+
+.negative {
+  color: var(--expenditure-red-color);
 }
 
 /* Стили для скролла */
 ::-webkit-scrollbar {
   width: 3px;
 }
+
 ::-webkit-scrollbar-track {
   box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3);
 }
+
 ::-webkit-scrollbar-thumb {
   box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3);
 }
@@ -110,6 +142,7 @@
   margin-top: 0px;
   margin-bottom: 20px;
 }
+
 .scrollTableMob table {
   width: 280px;
   table-layout: fixed;
@@ -118,11 +151,13 @@
   margin-bottom: 5px;
 
   tr {
-    background-color:  var(--secondary-bg-color);
+    background-color: var(--secondary-bg-color);
+
     td:nth-child(2) {
       text-align: right;
       padding: 10px 15px;
     }
+
     td:not(:last-child) {
       padding: 10px 15px;
       font-size: 16px;
@@ -132,10 +167,12 @@
     &:not(:last-child) {
       border-bottom: 1px solid rgba(0, 0, 0, 0.308);
     }
+
     &:not(:first-child, :last-child) {
-      box-shadow: inset 4px 0px 0px var(--pink-accent-color);
+      box-shadow: inset 4px 0px 0px var(--expenditure-red-color);
     }
-    & > td:first-child {
+
+    &>td:first-child {
       text-align: left;
       font-weight: 700;
       z-index: -1;
@@ -144,21 +181,81 @@
   }
 
   tr:first-child {
-    & > td:first-child {
+    &>td:first-child {
       border-top-left-radius: 20px;
-      box-shadow: inset 4px 0px 0px var(--pink-accent-color);
+      box-shadow: inset 4px 0px 0px var(--expenditure-red-color);
     }
-    & > td:nth-child(2) {
+
+    &>td:nth-child(2) {
       border-top-right-radius: 20px;
     }
   }
-  tr:last-child {
-    & > td:first-child {
-      border-bottom-left-radius: 20px;
-      box-shadow: inset 4px 0px 0px var(--pink-accent-color);
+
+  tr:nth-child(3) {
+    &>td:last-child {
+      text-transform: capitalize;
     }
-    & > td:nth-child(2) {
+  }
+
+  tr:nth-child(5) {
+    &>td:last-child {
+      font-weight: 700;
+    }
+  }
+
+  tr:last-child {
+    &>td:first-child {
+      border-bottom-left-radius: 20px;
+      box-shadow: inset 4px 0px 0px var(--expenditure-red-color);
+    }
+
+    &>td:nth-child(2) {
       border-bottom-right-radius: 20px;
     }
   }
+}
+
+table.tablePositive {
+  tr {
+    &:not(:first-child, :last-child) {
+      box-shadow: inset 4px 0px 0px var(--earnings-green-color);
+    }
+  }
+
+  tr:first-child {
+    &>td:first-child {
+      box-shadow: inset 4px 0px 0px var(--earnings-green-color);
+    }
+  }
+
+  tr:last-child {
+    &>td:first-child {
+      box-shadow: inset 4px 0px 0px var(--earnings-green-color);
+    }
+  }
+}
+
+.tableNegative {
+  tr {
+    &:not(:first-child, :last-child) {
+      box-shadow: inset 4px 0px 0px var(--expenditure-red-color);
+    }
+  }
+
+  tr:first-child {
+    &>td:first-child {
+      box-shadow: inset 4px 0px 0px var(--expenditure-red-color);
+    }
+  }
+
+  tr:last-child {
+    &>td:first-child {
+      box-shadow: inset 4px 0px 0px var(--expenditure-red-color);
+    }
+  }
+}
+
+.noContent {
+  margin-top: 20px;
+  color: var(--expenditure-red-color);
 }

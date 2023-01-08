@@ -21,25 +21,25 @@ const userSlice = createSlice({
     extraReducers: {
         [userOperations.getUserInfo.pending]: setPending,
         [userOperations.getUserInfo.fulfilled]: (state, { payload }) => {
-            state.id = payload.user.id;
-            state.email = payload.user.email;
-            state.balance = payload.user.balance;
+            state.id = payload.data.id;
+            state.email = payload.data.email;
+            state.balance = payload.data.balance;
             state.isLoading = false;
         },
         [userOperations.getUserInfo.rejected]: setError,
 
         [authOperations.login.pending]: setPending,
         [authOperations.login.fulfilled]: (state, { payload }) => {
-            state.id = payload.user.id;
-            state.email = payload.user.email;
+            state.id = payload.data.id;
+            state.email = payload.data.email;
             state.isLoading = false;
         },
         [authOperations.login.rejected]: setError,
 
         [authOperations.register.pending]: setPending,
         [authOperations.register.fulfilled]: (state, { payload }) => {
-            state.id = payload.user.id;
-            state.email = payload.user.email;
+            state.id = payload.data.id;
+            state.email = payload.data.email;
             state.isLoading = false;
         },
         [authOperations.register.rejected]: setError,

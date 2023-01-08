@@ -9,7 +9,7 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
-import { configureStore } from '@reduxjs/toolkit';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import authReducer from './Auth/AuthSlice';
 import userReducer from './User/UserSlice';
 import authErrorLogger from './Auth/MiddlewareAuth';
@@ -22,13 +22,22 @@ const persistConfig = {
   whitelist: ['token'],
 };
 
+const rootReducer = combineReducers({
+  auth: persistReducer(persistConfig, authReducer),
+  user: userReducer,
+  transactions: transactionsReducer,
+  categories: categoriesReducer,
+});
+
+const rootPersistConfig = {
+  key: 'root',
+  storage,
+};
+
+const rootPersistedReducer = persistReducer(rootPersistConfig, rootReducer);
+
 export const store = configureStore({
-  reducer: {
-    auth: persistReducer(persistConfig, authReducer),
-    user: userReducer,
-    transactions: transactionsReducer,
-    categories: categoriesReducer,
-  },
+  reducer: rootPersistedReducer,
   middleware(getDefaultMiddleware) {
     return getDefaultMiddleware({
       serializableCheck: {
