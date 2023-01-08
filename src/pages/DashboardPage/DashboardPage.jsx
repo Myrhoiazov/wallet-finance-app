@@ -4,7 +4,7 @@ import DashBoard from 'shared/components/Dashboard';
 import Header from 'shared/components/Header';
 import s from './DashboardPage.module.scss';
 
-const DashboardPage = () =>{
+const DashboardPage = () => {
 
   return (
     <>
