@@ -4,15 +4,15 @@ import RegisterPage from './pages/AuthPage/RegisterPage/RegisterPage';
 
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Route, Routes, useSearchParams } from 'react-router-dom';
+import { Navigate, Route, Routes, useSearchParams } from 'react-router-dom';
 import PrivateRoute from 'shared/components/PrivateRoute';
 import PublicRoute from 'shared/components/PublicRoute';
 import authSelectors from 'redux/Auth/SelectorAuth';
 import { authActions } from 'redux/Auth/AuthSlice';
 import userOperations from 'redux/User/OperationsUser';
 import DashboardPage from 'pages/DashboardPage';
-import Header from 'shared/components/Header';
 import Container from 'shared/components/Container';
+import NotFoundPage from 'pages/NotFoundPage';
 
 // const AuthPage = lazy(() => import('./pages/AuthPage'));
 
@@ -35,21 +35,24 @@ const App = () => {
 
   return (
     <>
-      <Header />
       <Suspense fallback={null}>
         <Container>
           <Routes>
-            <Route
-              path="/"
-              element={<PublicRoute restricted redirectTo="/home" />}
-            >
-              <Route path="login" element={<LoginPage />} />
-              <Route path="/register" element={<RegisterPage />} />
+            <Route path="/" element={<Navigate to="/home" />}></Route>
+
+            <Route path="/login" element={<PublicRoute restricted />}>
+              <Route index element={<LoginPage />} />
+            </Route>
+
+            <Route path="/register" element={<PublicRoute restricted />}>
+              <Route index element={<RegisterPage />} />
             </Route>
 
             <Route path="/home" element={<PrivateRoute redirectTo="/login" />}>
               <Route index element={<DashboardPage />} />
             </Route>
+
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Container>
       </Suspense>
