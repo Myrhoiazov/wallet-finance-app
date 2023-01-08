@@ -43,11 +43,11 @@ const App = () => {
           {/* <Route path="planning" element={<PlanningPage />} /> */}
           {/* <Route path="awards" element={<AwardsPage />} /> */}
         {/* </Route> */}
-        <Route path="/" element={<PublicRoute restricted />}>
+        <Route path="/" element={<PublicRoute restricted redirectTo='/home' />}>
           <Route path="login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
         </Route>
-        <Route path="/home" element={<PrivateRoute />}>
+        <Route path="/home" element={<PrivateRoute  redirectTo='/login'/>}>
           <Route index element={<DashboardPage />} />
         </Route>
 

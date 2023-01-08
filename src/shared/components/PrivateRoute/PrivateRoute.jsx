@@ -3,9 +3,10 @@ import { useSelector } from 'react-redux';
 import authSelectors from 'redux/Auth/SelectorAuth';
 
 
-const PrivateRoute = () => {
+const PrivateRoute = ({ redirectTo = '/' }) => {
     const token = useSelector(authSelectors.getToken);
-    return token ? <Outlet /> : <Navigate to="/login" />;
+  return token ? <Outlet /> : <Navigate to={redirectTo} />;
+
 };
 
 

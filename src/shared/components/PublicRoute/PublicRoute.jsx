@@ -5,9 +5,11 @@ import { useSelector } from 'react-redux';
 import authSelectors from 'redux/Auth/SelectorAuth';
 
 
-const PublicRoute = ({ restricted = false }) => {
+const PublicRoute = ({ restricted = false, redirectTo = '/' }) => {
   const token = useSelector(authSelectors.getToken);
-  return token && restricted ? <Navigate to="/"></Navigate> : <Outlet />;
+  const shouldRedirect = token && restricted;
+
+  return shouldRedirect ? <Navigate to={redirectTo} /> : <Outlet />;
 };
 
 PublicRoute.propTypes = {

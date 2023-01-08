@@ -22,16 +22,9 @@ const SharedLayoutPage = () => {
       <Suspense fallback={null}>
         <Container>
           {/* <Header /> */}
-          {/* <h1 style={{ fontFamily: 'var(--title-font) (Poppins)' }}>
-            This is title and I use --title-font
-          </h1>
-          <p style={{ fontFamily: 'var(--main-font) (Circe) ' }}>
-            This is text and I use --main-font
-          </p>
-          <p> This is text and I inherit base font (main-font (Circe) )</p> */}
 
           <ButtonAddTransactions onModalOpen={openModal} />
-          {isModalOpen && <ModalAddTransaction closeModal={closeModal} />} 
+          {isModalOpen && <ModalAddTransaction closeModal={closeModal} />}
         </Container>
         {/* <Header /> */}
         <Suspense fallback={null}>
