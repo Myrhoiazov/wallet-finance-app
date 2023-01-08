@@ -72,22 +72,6 @@ const StatisticsPage = () => {
             name={'year'}
           />
         </div>
-        {/* <div className={s.selectWrapper}>
-          <select name="month" onChange={monthChangeHandle}>
-            {monthsList.map(month => (
-              <option key={month} value={month}>
-                {month}
-              </option>
-            ))}
-          </select>
-          <select name="year" onChange={yearChangeHandle}>
-            {yearsList.map(year => (
-              <option key={year} value={year}>
-                {year}
-              </option>
-            ))}
-          </select>
-        </div> */}
         <Table data={mockData} income={100} />
       </div>
     </div>
