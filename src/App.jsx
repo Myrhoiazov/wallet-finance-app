@@ -1,7 +1,6 @@
-
+import React, { Suspense } from 'react';
 import LoginPage from './pages/AuthPage/LoginPage/LoginPage';
 import RegisterPage from './pages/AuthPage/RegisterPage/RegisterPage';
-import SharedLayoutPage from './pages/SharedLayoutPage/SharedLayoutPage';
 
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,8 +11,8 @@ import authSelectors from 'redux/Auth/SelectorAuth';
 import { authActions } from 'redux/Auth/AuthSlice';
 import userOperations from 'redux/User/OperationsUser';
 import DashboardPage from 'pages/DashboardPage';
-
-
+import Header from 'shared/components/Header';
+import Container from 'shared/components/Container';
 
 // const AuthPage = lazy(() => import('./pages/AuthPage'));
 
@@ -23,41 +22,39 @@ const App = () => {
   const [searchParams] = useSearchParams();
   const tokenGoogle = searchParams.get('token');
   useEffect(() => {
-      if (token) {
-        dispatch(userOperations.getUserInfo());
-      }
+    if (token) {
+      dispatch(userOperations.getUserInfo());
+    }
   }, [dispatch, token]);
 
   useEffect(() => {
-      if (tokenGoogle) {
-          dispatch(authActions.setToken(tokenGoogle));
-      }
+    if (tokenGoogle) {
+      dispatch(authActions.setToken(tokenGoogle));
+    }
   }, [tokenGoogle, dispatch]);
 
   return (
-    <Routes>
-      <Route path="/" element={<SharedLayoutPage />}>
+    <>
+      <Header />
+      <Suspense fallback={null}>
+        <Container>
+          <Routes>
+            <Route
+              path="/"
+              element={<PublicRoute restricted redirectTo="/home" />}
+            >
+              <Route path="login" element={<LoginPage />} />
+              <Route path="/register" element={<RegisterPage />} />
+            </Route>
 
-        {/* <Route path="/" element={<PrivateRoute />}> */}
-          {/* <Route path="" element={<HomePage />} /> */}
-          {/* <Route path="planning" element={<PlanningPage />} /> */}
-          {/* <Route path="awards" element={<AwardsPage />} /> */}
-        {/* </Route> */}
-        <Route path="/" element={<PublicRoute restricted redirectTo='/home' />}>
-          <Route path="login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-        </Route>
-        <Route path="/home" element={<PrivateRoute  redirectTo='/login'/>}>
-          <Route index element={<DashboardPage />} />
-        </Route>
-
-
-        {/* <Route path="/contacts" element={<ContactsPage />} /> */}
-        {/* <Route path="*" element={<Navigate to="/" />} /> */}
-      </Route>
-    </Routes>
+            <Route path="/home" element={<PrivateRoute redirectTo="/login" />}>
+              <Route index element={<DashboardPage />} />
+            </Route>
+          </Routes>
+        </Container>
+      </Suspense>
+    </>
   );
-  // );
 };
 
 export default App;
