@@ -6,12 +6,13 @@ import SharedLayoutPage from './pages/SharedLayoutPage/SharedLayoutPage';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes, useSearchParams } from 'react-router-dom';
-// import PrivateRoute from 'shared/components/PrivateRoute';
+import PrivateRoute from 'shared/components/PrivateRoute';
 import PublicRoute from 'shared/components/PublicRoute';
 import authSelectors from 'redux/Auth/SelectorAuth';
 import { authActions } from 'redux/Auth/AuthSlice';
 import userOperations from 'redux/User/OperationsUser';
 import DashboardPage from 'pages/DashboardPage';
+
 
 
 // const AuthPage = lazy(() => import('./pages/AuthPage'));
@@ -23,7 +24,7 @@ const App = () => {
   const tokenGoogle = searchParams.get('token');
   useEffect(() => {
       if (token) {
-          dispatch(userOperations.getUserInfo());
+        dispatch(userOperations.getUserInfo());
       }
   }, [dispatch, token]);
 
@@ -32,6 +33,7 @@ const App = () => {
           dispatch(authActions.setToken(tokenGoogle));
       }
   }, [tokenGoogle, dispatch]);
+
   return (
     <Routes>
       <Route path="/" element={<SharedLayoutPage />}>
@@ -45,10 +47,10 @@ const App = () => {
           <Route path="login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
         </Route>
-        {/* <Route path="/home" element={<PrivateRoute />}> */}
-          {/* <Route index element={<DashboardPage />} /> */}
-        {/* </Route> */}
-        <Route path="/home" element={<DashboardPage />} />
+        <Route path="/home" element={<PrivateRoute />}>
+          <Route index element={<DashboardPage />} />
+        </Route>
+
 
         {/* <Route path="/contacts" element={<ContactsPage />} /> */}
         {/* <Route path="*" element={<Navigate to="/" />} /> */}

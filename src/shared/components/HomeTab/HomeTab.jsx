@@ -1,6 +1,8 @@
 import { formatDate } from 'helpers/formatDate';
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
+import { fetchTransactions } from 'redux/Transaction/transactionsOperations';
 import { selectTransactions } from 'redux/Transaction/transactionsSelectors';
 
 import s from './HomeTab.module.scss';
@@ -10,8 +12,11 @@ const HomeTab = () => {
   const isMobile = useMediaQuery({ maxWidth: 767 });
   const transactions = useSelector(selectTransactions);
 
-  const sortedTransactions = [...transactions].sort((lhs, rhs) => rhs.date - lhs.date);
-  console.log(sortedTransactions)
+  const dispatch = useDispatch();
+
+    useEffect(() => {
+      dispatch(fetchTransactions());
+    }, [dispatch]);
 
     return (
       <>
@@ -19,8 +24,9 @@ const HomeTab = () => {
           <div className={s.tableWrapMob}>
             <div className={s.scrollTableMob}>
               <div className={s.scrollTableBodyMob}>
-                {transactions.length !== 0 ?
-                  (sortedTransactions
+                {transactions?.length ?
+                  ([...transactions]
+                  .sort((lhs, rhs) => rhs.date - lhs.date)
                   .map(el => (
                     <table className={el.type === "income" ? s.tablePositive : s.tableNegative} key={el._id}>
                       <tbody>
@@ -81,8 +87,10 @@ const HomeTab = () => {
                 <table>
                   <tbody>
 
-                    {transactions.length !== 0 ?
-                      (sortedTransactions.map(el => (
+                    {transactions?.length ?
+                      ([...transactions]
+                        .sort((lhs, rhs) => rhs.date - lhs.date)
+                        .map(el => (
                       <tr key={el._id}>
                         <td>{formatDate(el.date)}</td>
                         <td>{el.type === "income" ? "+" : "-"}</td>

@@ -1,16 +1,10 @@
 import { transactionsAPI } from '../../services/TransactionsApi';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { token } from 'services/http';
 
 export const fetchTransactions = createAsyncThunk(
   'transactions/fetchAll',
   async (_, { rejectWithValue, getState }) => {
     try {
-      const { token: storedToken } = getState().auth;
-      if (!storedToken) {
-        return rejectWithValue();
-      }
-      token.set(storedToken);
       const { data } = await transactionsAPI.getTransactions();
       return data;
     } catch (error) {
