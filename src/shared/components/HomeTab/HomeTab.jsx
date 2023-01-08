@@ -59,7 +59,7 @@ const HomeTab = () => {
                     </table>
                   ))
                   ) :
-                  <div>We hove no information about your transaction yet. Please add a new one.</div>
+                  <div className={s.noContent}>We hove no information about your transaction yet. Please add a new one.</div>
                 }
               </div>
             </div>
@@ -100,7 +100,7 @@ const HomeTab = () => {
                         <td>{el.actualBalance}</td>
                       </tr>
                       ))) :
-                       <div>We hove no information about your transaction yet. Please add a new one.</div>
+                       <div className={s.noContent}>We hove no information about your transaction yet. Please add a new one.</div>
                     }
                   </tbody>
                 </table>

@@ -42,7 +42,6 @@ const LoginForm = () => {
             dispatch(authOperations.login(values))
                 .unwrap()
                 .then(() => {
-                  console.log("I'm here")
                   toast.success('Glad to see you again!');
                   navigate('/home', { replace: true });
                 })
