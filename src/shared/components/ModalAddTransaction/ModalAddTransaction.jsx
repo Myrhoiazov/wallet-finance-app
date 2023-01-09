@@ -110,7 +110,7 @@ export const ModalAddTransaction = ({ closeModal }) => {
         type,
         category: categories.find(({ id }) => id === Number(categoryId))?.value,
         amount: Number(amount),
-        date: moment(date).unix(),
+        date: moment(date).valueOf(),
         comments: comment,
       });
 
@@ -133,7 +133,7 @@ export const ModalAddTransaction = ({ closeModal }) => {
       type,
       category: categories.find(({ id }) => id === Number(categoryId))?.value,
       amount: Number(amount),
-      date: moment(date).unix(),
+      date: moment(date).valueOf(),
       comments: comment,
     });
 
