@@ -8,7 +8,7 @@ const getTransactions = async () => {
 
 const getTransactionsByDate = async date => {
   const { data } = await privateAPI.get(
-    `/transactions/:${date.month}/:${date.year}`
+    `/transactions/${date.month}/${date.year}`
   );
   return data;
 };
