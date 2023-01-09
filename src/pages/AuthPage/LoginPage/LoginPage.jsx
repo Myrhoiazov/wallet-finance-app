@@ -7,13 +7,17 @@ const LoginPage = () => {
     return (
       <section className={s.section_login_page}>
             <MediaQuery.Desktop>
-                <h2 className={s.section_login_page_title}>Finance App</h2>
+               
+                <div className={s.section_login_page_wrapper1}>
+                </div>
                 <LoginForm></LoginForm>
-              <div className={s.inner_images_bp1280px}>
-                  <div className={s.inner_images_bp1280px__boyLogo}></div>
-                  <div className={s.inner_images_bp1280px__ellipsePingLogo}></div>
+              
+                <div className={s.inner_images_bp1280px}>
+                    <div className={s.inner_images_bp1280px__boyLogo}></div>
+                    <h2 className={s.section_login_page_title}>Finance App</h2>
                   <div className={s.inner_images_bp1280px__ellipseLogo}></div>
-              </div>
+                    </div>
+                    
           </MediaQuery.Desktop>
             <MediaQuery.Tablet>
             <h2 className={s.section_login_page_title}>Finance App</h2>
