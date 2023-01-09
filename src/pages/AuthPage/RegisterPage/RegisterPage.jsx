@@ -7,14 +7,15 @@ const RegisterPage = () => {
     return (
       <section className={s.section_register_page}>
         <MediaQuery.Desktop>
-        <h2 className={s.section_register_page_title}>Finance App</h2>
-        <RegisterForm></RegisterForm>
-              <div className={s.inner_images_bp1280px}>
-                  <div className={s.inner_images_bp1280px__family}></div>
-                  <div className={s.inner_images_bp1280px__bulb}></div>
-                  <div className={s.inner_images_bp1280px__family2}></div>
-                  <div className={s.inner_images_bp1280px__robot}></div>
-              </div>
+        <div className={s.section_register_page_wrapper1}>
+                </div>
+                <RegisterForm></RegisterForm>
+              
+                <div className={s.inner_images_bp1280px}>
+                    <div className={s.inner_images_bp1280px__girlLogo}></div>
+                    <h2 className={s.section_register_page_title}>Finance App</h2>
+                  <div className={s.inner_images_bp1280px__ellipseLogo}></div>
+                    </div>
           </MediaQuery.Desktop>
         <MediaQuery.Tablet>
         <h2 className={s.section_register_page_title}>Finance App</h2>
