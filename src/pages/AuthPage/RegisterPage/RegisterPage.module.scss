@@ -7,6 +7,20 @@ height: 100vh;
   background-color:inherit;
 
 }
+
+&_wrapper1{
+ 
+  height: 100vh;
+  position: absolute;
+width: 731px;
+// height: 720px;
+left: 549px;
+top: 0px;
+  background-image: url(../../../assets//images//desktop/1x/bg1x.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
 &_title{
 font-family: 'Poppins';
 font-weight: 400;
@@ -20,12 +34,18 @@ position: absolute;
 right: 151px;
 top: 163px;
 z-index: 1;
+
+@include media(desktop){
+  position: absolute;
+  left: 200px;
+  top: 581px;
+}
 }
 }
 .inner_images_bp768px{
-  // position: relative;
+ 
   &__girlLogo{
-//  position: absolute;
+
  background-image: url(../../../assets/images/tablet/1x/girlLogo1x.png);
  background-repeat: no-repeat;
  background-size: contain;
@@ -59,4 +79,36 @@ z-index: 1;
     top: 702px;
     transform: rotate(-0.14deg);
   }
+}
+.inner_images_bp1280px{
+  display: flex;
+  justify-content: flex-start;
+  &__girlLogo{
+     background-image: url(../../../assets/images/desktop/1x/girlLogo1x.png);
+     background-repeat: no-repeat;
+     background-size: contain;
+     position: absolute;
+    
+     width: 435px;
+     height: 419px;
+     position: absolute;
+     left: 7%;
+     right: 0%;
+     top: 16%;
+     bottom: 0%;
+     z-index: 1;
+  
+      }
+    
+      &__ellipseLogo{
+        position: absolute;
+        background-image: url(../../../assets//images/tablet/1x/ellipseLogo1x.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 618px;
+        height: 547px;
+        left: -111.33px;
+        top: 348px;
+        transform: rotate(-3.14deg);
+}
 }

@@ -11,7 +11,7 @@ import authSelectors from 'redux/Auth/SelectorAuth';
 import { authActions } from 'redux/Auth/AuthSlice';
 import userOperations from 'redux/User/OperationsUser';
 import DashboardPage from 'pages/DashboardPage';
-import Container from 'shared/components/Container';
+// import Container from 'shared/components/Container';
 import NotFoundPage from 'pages/NotFoundPage';
 
 // const AuthPage = lazy(() => import('./pages/AuthPage'));
@@ -36,7 +36,7 @@ const App = () => {
   return (
     <>
       <Suspense fallback={null}>
-        <Container>
+        {/* <Container> */}
           <Routes>
             <Route path="/" element={<Navigate to="/home" />}></Route>
 
@@ -54,7 +54,7 @@ const App = () => {
 
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
-        </Container>
+        {/* </Container> */}
       </Suspense>
     </>
   );

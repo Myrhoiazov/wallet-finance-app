@@ -32,8 +32,11 @@
   // margin-bottom: 118px;
 }
 @include media(desktop){
- margin: auto;
-
+  position: absolute;
+  top: -43%;
+  left: 51%;
+  width:533px;
+ 
 }
 
  &_inner_logo{
