@@ -1,5 +1,5 @@
 export function formatDate(dateSeconds) {
-  let date = new Date(dateSeconds * 1000);
+  let date = new Date(dateSeconds);
 
   let month = '' + (date.getMonth() + 1),
     day = '' + date.getDate(),
