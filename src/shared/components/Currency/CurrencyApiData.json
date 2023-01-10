@@ -1,0 +1,26 @@
+[
+  {
+    "currencyCodeA": 840,
+    "currencyCodeB": 980,
+    "date": 1673301674,
+    "rateBuy": 36.65,
+    "rateCross": 0,
+    "rateSell": 37.4406
+  },
+  {
+    "currencyCodeA": 978,
+    "currencyCodeB": 980,
+    "date": 1673337374,
+    "rateBuy": 39.25,
+    "rateCross": 0,
+    "rateSell": 40.3502
+  },
+  {
+    "currencyCodeA": 978,
+    "currencyCodeB": 840,
+    "date": 1673337374,
+    "rateBuy": 1.062,
+    "rateCross": 0,
+    "rateSell": 1.077
+  }
+]
