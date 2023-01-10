@@ -19,6 +19,7 @@ import NotFoundPage from 'pages/NotFoundPage';
 const App = () => {
   const dispatch = useDispatch();
   const token = useSelector(authSelectors.getToken);
+  console.log('token',token);
   const [searchParams] = useSearchParams();
   const tokenGoogle = searchParams.get('token');
   useEffect(() => {
