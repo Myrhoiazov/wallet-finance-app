@@ -11,6 +11,7 @@ import s from './HomeTab.module.scss';
 const HomeTab = () => {
   const isMobile = useMediaQuery({ maxWidth: 767 });
   const transactions = useSelector(selectTransactions);
+  console.log(transactions, 'transactions')
 
   const dispatch = useDispatch();
 
