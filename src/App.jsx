@@ -13,6 +13,7 @@ import userOperations from 'redux/User/OperationsUser';
 import DashboardPage from 'pages/DashboardPage';
 // import Container from 'shared/components/Container';
 import NotFoundPage from 'pages/NotFoundPage';
+import StatisticsPage from 'pages/StatisticsPage/StatisticsPage';
 
 // const AuthPage = lazy(() => import('./pages/AuthPage'));
 
@@ -50,6 +51,13 @@ const App = () => {
 
             <Route path="/home" element={<PrivateRoute redirectTo="/login" />}>
               <Route index element={<DashboardPage />} />
+            </Route>
+
+            <Route
+              path="/diagram"
+              element={<PrivateRoute redirectTo="/login" />}
+            >
+              <Route index element={<StatisticsPage />} />
             </Route>
 
             <Route path="*" element={<NotFoundPage />} />
