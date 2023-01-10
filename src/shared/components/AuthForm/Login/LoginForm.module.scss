@@ -29,11 +29,12 @@
     border-radius: 20px;
     background-color: #fff;
     margin-top: 350px;
-    // margin-bottom: 118px;
 }
   @include media(desktop){
-   margin: auto;
-  
+   position: absolute;
+   top: -34%;
+   left: 51%;
+   width:533px;
 }
 
   &_inner_logo{
