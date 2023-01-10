@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useMediaQuery } from 'react-responsive';
 // import { useSelector } from 'react-redux';
 // import { selectIsLoading } from 'redux/Transaction/transactionsSelectors';
 import { ButtonAddTransactions } from 'shared/components/ButtonAddTransactions/ButtonAddTransactions';
@@ -11,6 +12,7 @@ import s from './DashboardPage.module.scss';
 
 const DashboardPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const isMobile = useMediaQuery({ maxWidth: 767 });
   // const isLoading = useSelector(selectIsLoading);
   const openModal = () => {
     setIsModalOpen(true);
@@ -23,8 +25,13 @@ const DashboardPage = () => {
       <Header />
       <Container>
         <div className={s.wrapper}>
-                            <div className={s.images__pink}></div>
-                  <div className={s.images__purple}></div>
+          {!isMobile && (
+            <>
+              <div className={s.images__pink}></div>
+              <div className={s.images__purple}></div>
+            </>
+          )}
+
           <DashBoard />
         </div>
       </Container>
@@ -32,7 +39,6 @@ const DashboardPage = () => {
       <ButtonAddTransactions onModalOpen={openModal} />
       {isModalOpen && <ModalAddTransaction closeModal={closeModal} />}
       {/* {isLoading && <Loader/>} */}
-
     </>
   );
 };

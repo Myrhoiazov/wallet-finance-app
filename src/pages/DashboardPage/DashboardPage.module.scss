@@ -39,40 +39,43 @@
 // }
 
 .images {
-  @include media(tablet) {
-    max-width: 336px;
-    margin-bottom: 0;
+  max-width: 336px;
+  margin-bottom: 0;
 
-    &__pink {
-      position: absolute;
-      background-image: url(../../assets/images/ellipse-pink.svg);
-      background-repeat: no-repeat;
-      background-size: contain;
-      margin-right: 265px;
-      width: 618px;
-      height: 547px;
-      left: 49%;
-      top: 9%;
-      filter: blur(25px);
-      -webkit-filter: blur(25px);
-
-      transform: rotate(-0.06deg);
+  &__pink {
+    @include media(tablet) {
+      right: 0px;
+      top: 0px;
     }
 
-    &__purple {
-      position: absolute;
-      background-image: url(../../assets/images/ellipse-purple.svg);
-      background-repeat: no-repeat;
-      background-size: contain;
-      width: 618px;
-      height: 547px;
-      left: -136px;
-      top: 508px;
-      filter: blur(25px);
-      -webkit-filter: blur(25px);
-      transform: rotate(-0.14deg);
-    }
+    position: absolute;
+    background-image: url(../../assets/images/ellipse-pink.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 618px;
+    height: 547px;
+    right: 0px;
+    top: 9%;
+    filter: blur(25px);
+    -webkit-filter: blur(25px);
+
+    transform: rotate(-0.06deg);
   }
 
+  &__purple {
+    @include media(tablet) {
+      left: 0px;
+      bottom: 0px;
+    }
 
+    position: absolute;
+    background-image: url(../../assets/images/ellipse-purple.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 618px;
+    top: 508px;
+    filter: blur(25px);
+    -webkit-filter: blur(25px);
+    transform: rotate(-0.14deg);
+  }
 }

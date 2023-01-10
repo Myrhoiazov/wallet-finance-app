@@ -6,6 +6,7 @@ import s from './Balance.module.scss';
 
 const Balance = () => {
   const balance = useSelector(userSelectors.getUserBalance);
+  console.log('balance', balance)
   const transactions = useSelector(selectTransactions);
 
   return (

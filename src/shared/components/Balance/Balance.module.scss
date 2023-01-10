@@ -5,11 +5,12 @@
   @include media(mobile-only) {
     max-width: 280px;
     padding-left: 32px;
+    margin-bottom: 0px;
   }
 
   @include media(tablet-only) {
     max-width: 336px;
-    margin-bottom: 0;
+    margin-bottom: 0px;
   }
 
   max-width: 395px;
