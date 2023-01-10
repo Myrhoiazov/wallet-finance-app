@@ -259,3 +259,9 @@ table.tablePositive {
   margin-top: 20px;
   color: var(--expenditure-red-color);
 }
+
+.row:hover,
+.row:focus {
+  background-color: var(--modal-list-bg-color);
+  cursor: pointer;
+}

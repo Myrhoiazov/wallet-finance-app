@@ -30,7 +30,10 @@ const transactionsSlice = createSlice({
       state.isLoading = true;
     },
     [updateTransaction.fulfilled]: (state, { payload }) => {
-      state.items = [...state.items, payload];
+      state.items.transactions = [
+        ...state.items.transactions,
+        payload.transaction,
+      ];
       state.isLoading = false;
       state.error = null;
     },

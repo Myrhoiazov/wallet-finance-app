@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { lazy, Suspense } from 'react';
 import LoginPage from './pages/AuthPage/LoginPage/LoginPage';
 import RegisterPage from './pages/AuthPage/RegisterPage/RegisterPage';
 
@@ -10,12 +10,13 @@ import PublicRoute from 'shared/components/PublicRoute';
 import authSelectors from 'redux/Auth/SelectorAuth';
 import { authActions } from 'redux/Auth/AuthSlice';
 import userOperations from 'redux/User/OperationsUser';
-import DashboardPage from 'pages/DashboardPage';
-// import Container from 'shared/components/Container';
-import NotFoundPage from 'pages/NotFoundPage';
+
 import StatisticsPage from 'pages/StatisticsPage/StatisticsPage';
 
 // const AuthPage = lazy(() => import('./pages/AuthPage'));
+const DashboardPage = lazy(() => import('pages/DashboardPage'));
+const NotFoundPage = lazy(() => import('pages/NotFoundPage'));
+
 
 const App = () => {
   const dispatch = useDispatch();
@@ -37,7 +38,6 @@ const App = () => {
   return (
     <>
       <Suspense fallback={null}>
-        {/* <Container> */}
           <Routes>
             <Route path="/" element={<Navigate to="/home" />}></Route>
 
@@ -62,7 +62,6 @@ const App = () => {
 
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
-        {/* </Container> */}
       </Suspense>
     </>
   );

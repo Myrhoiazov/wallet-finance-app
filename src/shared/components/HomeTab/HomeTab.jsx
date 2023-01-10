@@ -91,7 +91,7 @@ const HomeTab = () => {
                       ([...transactions]
                         .sort((lhs, rhs) => rhs.date - lhs.date)
                         .map(el => (
-                      <tr key={el._id}>
+                      <tr key={el._id} className={s.row}>
                         <td>{formatDate(el.date)}</td>
                         <td>{el.type === "income" ? "+" : "-"}</td>
                         <td>{el.category}</td>
