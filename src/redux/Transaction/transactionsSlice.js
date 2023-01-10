@@ -30,12 +30,10 @@ const transactionsSlice = createSlice({
       state.isLoading = true;
     },
     [updateTransaction.fulfilled]: (state, { payload }) => {
-      console.log('payload', payload);
       state.items.transactions = [
         ...state.items.transactions,
         payload.transaction,
       ];
-      console.log('state', state.items);
       state.isLoading = false;
       state.error = null;
     },
