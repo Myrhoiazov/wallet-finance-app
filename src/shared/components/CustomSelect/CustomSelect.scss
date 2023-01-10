@@ -1,0 +1,64 @@
+.mainWrapper {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #000;
+  width: 182px;
+  height: 50px;
+  border-radius: 25px;
+  padding: 0 20px;
+}
+
+.icon {
+  width: 18px;
+  height: 9px;
+  background-image: url('../../../assets/icons/select-arrow.svg');
+}
+
+.icon.open {
+  transform: rotate(180deg);
+}
+
+.dropOptions {
+  display: none;
+}
+
+.dropOptions.open {
+  position: absolute;
+  width: calc(100% + 2px);
+  max-height: 157px;
+  top: 50px;
+  left: -1px;
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+  overflow-y: scroll;
+  border-radius: 20px;
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+  background-color: var(--primary-bg-color);
+}
+
+.dropOptions.open::-webkit-scrollbar {
+  width: 0;
+}
+
+.dropOptions.open p {
+  cursor: pointer;
+  padding: 4px 20px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.dropOptions.open p:first-child {
+  padding: 14px 20px 4px 20px;
+}
+
+.dropOptions.open p:last-child {
+  padding: 4px 20px 14px 20px;
+}
+
+.dropOptions.open p:hover {
+  background-color: var(--secondary-bg-color);
+}

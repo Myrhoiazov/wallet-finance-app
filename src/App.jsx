@@ -11,9 +11,12 @@ import authSelectors from 'redux/Auth/SelectorAuth';
 import { authActions } from 'redux/Auth/AuthSlice';
 import userOperations from 'redux/User/OperationsUser';
 
+import StatisticsPage from 'pages/StatisticsPage/StatisticsPage';
+
 // const AuthPage = lazy(() => import('./pages/AuthPage'));
 const DashboardPage = lazy(() => import('pages/DashboardPage'));
 const NotFoundPage = lazy(() => import('pages/NotFoundPage'));
+
 
 const App = () => {
   const dispatch = useDispatch();
@@ -48,6 +51,13 @@ const App = () => {
 
             <Route path="/home" element={<PrivateRoute redirectTo="/login" />}>
               <Route index element={<DashboardPage />} />
+            </Route>
+
+            <Route
+              path="/diagram"
+              element={<PrivateRoute redirectTo="/login" />}
+            >
+              <Route index element={<StatisticsPage />} />
             </Route>
 
             <Route path="*" element={<NotFoundPage />} />
