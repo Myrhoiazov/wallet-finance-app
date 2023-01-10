@@ -1,4 +1,3 @@
-
 import { useMediaQuery } from 'react-responsive';
 
 import Balance from '../Balance';
@@ -14,15 +13,15 @@ const Dashboard = () => {
     <div className={s.wrapper}>
       <div className={s.inner}>
         <div className={s.dashboardInfo}>
-            <Navigation />
-            <Balance />
-            <Currency />
+          <Navigation />
+          <Balance />
+          <Currency />
         </div>
-        {!isMobile && <div className={s.currencyInfo}>  Currency</div>}
+        {!isMobile && <div className={s.currencyInfo}> Currency</div>}
       </div>
 
       <div className={s.content}>
-      <HomeTab/>
+        <HomeTab />
       </div>
 
       <div className={s.vector}></div>
