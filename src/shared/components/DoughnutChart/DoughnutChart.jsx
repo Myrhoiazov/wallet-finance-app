@@ -6,12 +6,12 @@ import s from './DoughnutChart.module.scss';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const DoughnutChart = ({ data, income }) => {
+const DoughnutChart = ({ data }) => {
   const chartData = {
     datasets: [
       {
-        data: data.map(item => item.value),
-        backgroundColor: data.map(item => item.color),
+        data: data.expenseTransactions.map(item => item.amount),
+        backgroundColor: data.expenseTransactions.map(item => item.color),
         borderWidth: 0,
       },
     ],
@@ -24,7 +24,7 @@ const DoughnutChart = ({ data, income }) => {
         options={{ cutout: '70%' }}
         className={s.doughnutChart}
       />
-      <p>₴ {income.toFixed(2)}</p>
+      <p>₴ {data.expense.toFixed(2)}</p>
     </div>
   );
 };
