@@ -32,9 +32,12 @@ const monthsList = [
 const yearss = [2023, 2022, 2021];
 
 const StatisticsPage = () => {
+  // eslint-disable-next-line no-unused-vars
   const [selectedMonth, setSelectedMonth] = useState(undefined);
+  // eslint-disable-next-line no-unused-vars
   const [selectedYear, setSelectedYear] = useState(undefined);
   const [viewData, setViewData] = useState(undefined);
+  // eslint-disable-next-line no-unused-vars
   const [yearsList, setYearsList] = useState(yearss);
   const isMobile = useMediaQuery({ maxWidth: 767 });
   const categories = useSelector(selectTransactionCategories);
@@ -49,6 +52,7 @@ const StatisticsPage = () => {
     transactionsAPI
       .getTransactionsByDate(lastTrDate)
       .then(resp => setViewData(generateViewData(resp.data)));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getMonthAndYear = time => {
