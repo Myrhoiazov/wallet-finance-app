@@ -9,15 +9,15 @@ import {
   LogoutCont,
   LogoutExitName,
   LogoutExit,
-  Avatar,
 } from '../HeaderContent/HeaderComponent';
 import LogoutIcon from '@mui/icons-material/Logout';
-// import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+
 import Media from 'react-media';
 
 export const HeaderContent = ({ toExit }) => {
-  //   const nameAll = useSelector(store => store.user.user.name);
-  //   const avatar = useSelector(store => store.user.user.avatar);
+  const nameAll = useSelector(store => store.user.name);
+
   return (
     <>
       <HeaderC>
@@ -30,17 +30,9 @@ export const HeaderContent = ({ toExit }) => {
             queries={{
               medium: '(min-width: 768px)',
             }}
-          >
-            {matches => (
-              <>
-                {matches.medium && (
-                  <Avatar>{/* <img src={avatar} alt="Avatar" /> */}</Avatar>
-                )}
-              </>
-            )}
-          </Media>
+          ></Media>
 
-          <LogoutExitName>{'nameAll'}</LogoutExitName>
+          <LogoutExitName>{nameAll}</LogoutExitName>
           <BtnLogout onClick={toExit} type="btn">
             <LogoutIcon
               sx={{
