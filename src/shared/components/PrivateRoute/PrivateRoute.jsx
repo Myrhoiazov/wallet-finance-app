@@ -4,7 +4,6 @@ import authSelectors from 'redux/Auth/SelectorAuth';
 
 const PrivateRoute = ({ redirectTo }) => {
   const token = useSelector(authSelectors.getToken);
-  console.log('token: ', token);
   return token ? <Outlet /> : <Navigate to={redirectTo} />;
 };
 

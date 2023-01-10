@@ -1,8 +1,49 @@
-// @import "src/styles/variables.scss";
-// @import 'src/shared/styles/variables.scss';
+@import 'src/shared/styles/variables.scss';
+@import 'src/shared/styles/mixin.scss';
 
-.wrapper{
-background-color: var(--primary-bg-color);
-// color: var(--title-black-color);
+.wrapper {
+  background-color: var(--primary-bg-color);
 }
 
+.images {
+  max-width: 336px;
+  margin-bottom: 0;
+
+  &__pink {
+    @include media(tablet) {
+      right: 0px;
+      top: 0px;
+    }
+
+    position: absolute;
+    background-image: url(../../assets/images/ellipse-pink.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 618px;
+    height: 547px;
+    right: 0px;
+    top: 9%;
+    filter: blur(30px);
+    -webkit-filter: blur(30px);
+
+    transform: rotate(-0.06deg);
+  }
+
+  &__purple {
+    @include media(tablet) {
+      left: 0px;
+      bottom: 0px;
+    }
+
+    position: absolute;
+    background-image: url(../../assets/images/ellipse-purple.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 618px;
+    height: 547px;
+    top: 508px;
+    filter: blur(30px);
+    -webkit-filter: blur(30px);
+    transform: rotate(-0.14deg);
+  }
+}

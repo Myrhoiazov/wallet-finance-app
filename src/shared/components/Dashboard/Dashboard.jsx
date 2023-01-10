@@ -26,8 +26,6 @@ const Dashboard = () => {
       </div>
 
       <div className={s.vector}></div>
-      <div className={s.decorFirst}></div>
-      <div className={s.decorSecond}></div>
     </div>
   );
 };

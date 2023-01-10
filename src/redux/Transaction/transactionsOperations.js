@@ -3,7 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 export const fetchTransactions = createAsyncThunk(
   'transactions/fetchAll',
-  async (_, { rejectWithValue, getState }) => {
+  async (_, { rejectWithValue }) => {
     try {
       const { data } = await transactionsAPI.getTransactions();
       return data;
@@ -18,6 +18,7 @@ export const updateTransaction = createAsyncThunk(
   async (transaction, { rejectWithValue }) => {
     try {
       const { data } = await transactionsAPI.postTransactions(transaction);
+      console.log(data, 'in transactions data:');
       return data;
     } catch (error) {
       return rejectWithValue(error.message);

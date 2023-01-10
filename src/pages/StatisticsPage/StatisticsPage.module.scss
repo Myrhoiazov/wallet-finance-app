@@ -1,0 +1,84 @@
+@import 'src/shared/styles/variables.scss';
+@import 'src/shared/styles/mixin.scss';
+
+.mainWrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 69px;
+}
+
+.dashboardWrapper {
+  @include media(mobile-only) {
+    display: flex;
+    flex-direction: column;
+  }
+
+  @include media(tablet-only) {
+    display: flex;
+    flex-direction: column;
+  }
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  &::after { 
+    @include media(desktop) {
+      position: absolute;
+      // bottom: 0;
+      right: 0;
+      content: '';
+      width: 3px;
+      height: 100%;
+      background: linear-gradient(to right, #DCDCDF 66%, #FFFFFF 33%);
+    }
+  }
+}
+
+.inner {
+  margin-top: 132px;
+
+  @include media(tablet-only) {
+    display: flex;
+    margin-bottom: 20px;
+  }
+}
+
+.dashboardInfo {
+  @include media(tablet-only) {
+    width: 336px;
+  }
+
+  width: 464px;
+}
+
+.dataWrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+  margin-top: 132px;
+}
+
+.doughnutWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.title {
+  font-family: 'Poppins';
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 1.5;
+}
+
+.tableWrapper {
+  margin-top: 65px;
+}
+
+.selectWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
