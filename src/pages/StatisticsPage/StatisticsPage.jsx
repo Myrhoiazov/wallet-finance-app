@@ -14,7 +14,7 @@ import { transactionsAPI } from '../../services/TransactionsApi';
 import { selectTransactions } from 'redux/Transaction/transactionsSelectors';
 import { selectTransactionCategories } from 'redux/Categories/categoriesSelectors';
 
-const monthsList = [
+const months = [
   'January',
   'February',
   'March',
@@ -29,16 +29,11 @@ const monthsList = [
   'December',
 ];
 
-const yearss = [2023, 2022, 2021];
-
 const StatisticsPage = () => {
-  // eslint-disable-next-line no-unused-vars
   const [selectedMonth, setSelectedMonth] = useState(undefined);
-  // eslint-disable-next-line no-unused-vars
   const [selectedYear, setSelectedYear] = useState(undefined);
   const [viewData, setViewData] = useState(undefined);
-  // eslint-disable-next-line no-unused-vars
-  const [yearsList, setYearsList] = useState(yearss);
+  const [yearsList, setYearsList] = useState(undefined);
   const isMobile = useMediaQuery({ maxWidth: 767 });
   const categories = useSelector(selectTransactionCategories);
   const transactions = useSelector(selectTransactions);
@@ -46,14 +41,32 @@ const StatisticsPage = () => {
   useEffect(() => {
     const lastTrTime = getLastTransactionTime(transactions);
     const lastTrDate = getMonthAndYear(lastTrTime);
-    setSelectedMonth(lastTrDate.month);
+    setSelectedMonth(months[lastTrDate.month - 1]);
     setSelectedYear(lastTrDate.year);
     getYearsList();
-    transactionsAPI
-      .getTransactionsByDate(lastTrDate)
-      .then(resp => setViewData(generateViewData(resp.data)));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    setViewData(undefined);
+    const currentTime = getMonthAndYear(Date.now());
+    if (
+      selectedMonth &&
+      selectedYear &&
+      !(
+        currentTime.month < months.indexOf(selectedMonth) + 1 &&
+        currentTime.year === +selectedYear
+      )
+    ) {
+      transactionsAPI
+        .getTransactionsByDate(months.indexOf(selectedMonth) + 1, selectedYear)
+        .then(resp => {
+          if (resp.data.transactions?.length > 0)
+            setViewData(generateViewData(resp.data));
+        });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedMonth, selectedYear]);
 
   const getMonthAndYear = time => {
     return {
@@ -67,11 +80,15 @@ const StatisticsPage = () => {
   };
 
   const getYearsList = () => {
-    transactionsAPI.getUnlimitedTransactions().then(({ data }) => {
-      const a = data.transactions.map(
-        transaction => getMonthAndYear(transaction.date).year
-      );
-      console.log(a);
+    transactionsAPI.getTransactionsTimes().then(({ data }) => {
+      const uniqueYears = [];
+      data.dates.forEach(item => {
+        const year = getMonthAndYear(item.date).year;
+        if (!uniqueYears.includes(year)) uniqueYears.push(year);
+      });
+      uniqueYears.sort((a, b) => b - a);
+      setYearsList(uniqueYears);
+      setSelectedYear(uniqueYears[0]);
     });
   };
 
@@ -107,9 +124,6 @@ const StatisticsPage = () => {
     };
   };
 
-  const monthChangeHandle = month => setSelectedMonth(month);
-  const yearChangeHandle = year => setSelectedYear(year);
-
   return (
     <>
       <Header />
@@ -126,8 +140,7 @@ const StatisticsPage = () => {
               <div className={s.currencyInfo}> Temporary Currency</div>
             )}
           </div>
-
-          {viewData && (
+          {yearsList && (
             <div className={s.dataWrapper}>
               <div className={s.doughnutWrapper}>
                 <p className={s.title}>Statistics</p>
@@ -136,13 +149,13 @@ const StatisticsPage = () => {
               <div className={s.tableWrapper}>
                 <div className={s.selectWrapper}>
                   <CustomSelect
-                    options={monthsList}
-                    changeHandler={monthChangeHandle}
+                    options={months}
+                    changeHandler={setSelectedMonth}
                     name={'month'}
                   />
                   <CustomSelect
                     options={yearsList}
-                    changeHandler={yearChangeHandle}
+                    changeHandler={setSelectedYear}
                     name={'year'}
                   />
                 </div>
@@ -150,7 +163,6 @@ const StatisticsPage = () => {
               </div>
             </div>
           )}
-
           <div className={s.vector}></div>
         </div>
       </Container>
