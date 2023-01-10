@@ -9,7 +9,7 @@ import { useToggle } from '../../../hooks/modalAddTransaction';
 
 import { selectTransactionCategories } from 'redux/Categories/categoriesSelectors';
 import { fetchCategories } from 'redux/Categories/categoriesOperations';
-import { updateTransaction } from 'redux/Transaction/transactionsOperations';
+import { fetchTransactions, updateTransaction } from 'redux/Transaction/transactionsOperations';
 
 import css from './ModalAddTransaction.module.scss';
 import cssForm from './FormAddTransaction.module.scss';
@@ -47,8 +47,9 @@ export const ModalAddTransaction = ({ closeModal }) => {
 
     return () => {
       window.removeEventListener('keydown', closeByEscape);
+      dispatch(fetchTransactions());
     };
-  }, [closeModal]);
+  }, [closeModal, dispatch]);
 
   const closeByBackdrop = event => {
     if (event.currentTarget === event.target) {

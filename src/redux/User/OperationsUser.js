@@ -13,7 +13,6 @@ const getUserInfo = createAsyncThunk(
       }
       token.set(storedToken);
       const data = await userAPI.getUserInfo();
-      console.log(data, 'data');
       return data;
     } catch (error) {
       token.unset();

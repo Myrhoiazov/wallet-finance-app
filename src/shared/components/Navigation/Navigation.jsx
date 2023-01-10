@@ -18,7 +18,6 @@ const Navigation = () => {
   };
   const location = useLocation();
   const { pathname } = location;
-  console.log('pathname', pathname)
 
   const isMobile = useMediaQuery({ maxWidth: 767 });
 
