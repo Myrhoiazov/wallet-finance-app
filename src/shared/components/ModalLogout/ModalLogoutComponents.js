@@ -6,8 +6,8 @@ export const Overlay = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 10vw;
+  height: 10vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -33,7 +33,7 @@ export const ModalLogoutText = styled.p`
 
 export const ModalLogoutButtonYes = styled.button`
   border-radius: 20px;
-  font-weight: 400;
+  font-weight: 300;
   font-size: 18px;
   line-height: 27px;
   padding: 5px 20px;

@@ -1,6 +1,9 @@
 import React, { useCallback, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { useDispatch } from 'react-redux';
+// import { useState } from 'react';
+
+// import { useMediaQuery } from 'react-responsive';
 import {
   ModalCont,
   ModalLogoutButtonNo,
@@ -9,9 +12,8 @@ import {
   Overlay,
 } from './ModalLogoutComponents';
 
-import { useLazyLogOutQuery } from './authApi';
-import { onLogOutAction } from './authSlice';
-import { unsetToken } from './tokenSlice';
+import { authAPI } from '../../../services/AuthApi';
+// import { logOut } from '../../../redux/Auth/OperationsAuth';
 
 const portal = document.querySelector('#portal');
 
@@ -43,13 +45,23 @@ const ModalLogout = ({ noExit }) => {
     [noExit]
   );
 
-  const [logOut] = useLazyLogOutQuery();
+  const [logOut] = authAPI.logoutUser();
 
   const onHandleLogOut = () => {
-    dispatch(onLogOutAction());
-    dispatch(unsetToken());
-    logOut();
+    dispatch(logOut());
+    // dispatch(unsetToken());
+    // logOut();
   };
+
+  // const [isModalOpen, setIsModalOpen] = useState(false);
+  // const isMobile = useMediaQuery({ maxWidth: 767 });
+  // // const isLoading = useSelector(selectIsLoading);
+  // const openModal = () => {
+  //   setIsModalOpen(true);
+  // };
+  // const closeModal = () => {
+  //   setIsModalOpen(false);
+  // };
 
   return createPortal(
     <Overlay onClick={onBackClick}>
