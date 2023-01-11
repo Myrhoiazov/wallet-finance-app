@@ -1,9 +1,8 @@
 import React, { useCallback, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 // import { useState } from 'react';
 
-// import { useMediaQuery } from 'react-responsive';
 import {
   ModalCont,
   ModalLogoutButtonNo,
@@ -12,13 +11,13 @@ import {
   Overlay,
 } from './ModalLogoutComponents';
 
-import { authAPI } from '../../../services/AuthApi';
+// import { authAPI } from '../../../services/AuthApi';
 // import { logOut } from '../../../redux/Auth/OperationsAuth';
 
 const portal = document.querySelector('#portal');
 
 const ModalLogout = ({ noExit }) => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const esc = useCallback(
     e => {
       if (e.code === `Escape`) {
@@ -45,10 +44,10 @@ const ModalLogout = ({ noExit }) => {
     [noExit]
   );
 
-  const [logOut] = authAPI.logoutUser();
+  // const [logOut] = logout();
 
   const onHandleLogOut = () => {
-    dispatch(logOut());
+    console.log('GGGSUHDOUSBDCUB');
     // dispatch(unsetToken());
     // logOut();
   };
@@ -65,8 +64,8 @@ const ModalLogout = ({ noExit }) => {
 
   return createPortal(
     <Overlay onClick={onBackClick}>
-      <ModalCont className={'modalLogout'}>
-        <ModalLogoutText className={'modalLogoutText'}>
+      <ModalCont>
+        <ModalLogoutText>
           Are you sure that you want to log out?
         </ModalLogoutText>
         <div>
