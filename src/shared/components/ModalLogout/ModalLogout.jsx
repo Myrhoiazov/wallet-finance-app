@@ -1,9 +1,7 @@
 import React, { useCallback, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { useDispatch } from 'react-redux';
-// import { useState } from 'react';
 
-// import { useMediaQuery } from 'react-responsive';
 import {
   ModalCont,
   ModalLogoutButtonNo,
@@ -12,8 +10,7 @@ import {
   Overlay,
 } from './ModalLogoutComponents';
 
-import { authAPI } from '../../../services/AuthApi';
-// import { logOut } from '../../../redux/Auth/OperationsAuth';
+import OperationsAuth from '../../../redux/Auth/OperationsAuth';
 
 const portal = document.querySelector('#portal');
 
@@ -38,41 +35,28 @@ const ModalLogout = ({ noExit }) => {
 
   const onBackClick = useCallback(
     e => {
-      if (e.currentTarget === e.target) {
+      if (!e.currentTarget.matches('.portal')) {
         noExit();
       }
     },
     [noExit]
   );
 
-  const [logOut] = authAPI.logoutUser();
+  const logOut = OperationsAuth.logout();
 
   const onHandleLogOut = () => {
-    dispatch(logOut());
-    // dispatch(unsetToken());
-    // logOut();
+    dispatch(logOut);
   };
-
-  // const [isModalOpen, setIsModalOpen] = useState(false);
-  // const isMobile = useMediaQuery({ maxWidth: 767 });
-  // // const isLoading = useSelector(selectIsLoading);
-  // const openModal = () => {
-  //   setIsModalOpen(true);
-  // };
-  // const closeModal = () => {
-  //   setIsModalOpen(false);
-  // };
 
   return createPortal(
     <Overlay onClick={onBackClick}>
-      <ModalCont className={'modalLogout'}>
-        <ModalLogoutText className={'modalLogoutText'}>
-          Are you sure that you want to log out?
-        </ModalLogoutText>
+      <ModalCont>
+        <ModalLogoutText>Are you sure that you want to exit?</ModalLogoutText>
         <div>
           <ModalLogoutButtonYes onClick={() => onHandleLogOut()}>
             YES
           </ModalLogoutButtonYes>
+
           <ModalLogoutButtonNo onClick={noExit}>NO</ModalLogoutButtonNo>
         </div>
       </ModalCont>

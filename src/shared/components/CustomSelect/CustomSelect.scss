@@ -51,12 +51,16 @@
   line-height: 1.5;
 }
 
-.dropOptions.open p:first-child {
+.dropOptions.open p.multiple:first-child {
   padding: 14px 20px 4px 20px;
 }
 
-.dropOptions.open p:last-child {
+.dropOptions.open p.multiple:last-child {
   padding: 4px 20px 14px 20px;
+}
+
+.dropOptions.open p.single:last-child {
+  padding: 9px 20px 9px 20px;
 }
 
 .dropOptions.open p:hover {

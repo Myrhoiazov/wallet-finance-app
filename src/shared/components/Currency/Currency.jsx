@@ -1,91 +1,99 @@
-import { useState, useEffect } from "react";
-import React from "react";
-import apiService from './CurrencyApi';
-// import getCurrencyRates from './CurrencyApi';
-import Loader from "../Loader";
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+// import Loader from '../Loader';
+import { CurrencyField } from './CurrencyField';
 import s from './Currency.module.scss';
-import { formatDate } from "helpers/formatDate";
 
-const Currency = () => {
-    const [currencyRates, setCurrencyRates] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [currentDate, setCurrentDate] = useState();
-  const HOUR = 3600000;
+
+  const Currency = () => {
+  const [rateUsd, setRateUsd] = useState(null);
+  const [rateEur, setRateEur] = useState(null);
+ 
+    // const [isLoading, setIsLoading] = useState(false);
+
+  const saveRates = data => {
+    data.forEach(el => {
+      if (el.currencyCodeA === 840 && el.currencyCodeB === 980) {
+        const dataToSave = {
+          rateBuy: el.rateBuy,
+          rateSell: el.rateSell,
+        };
+        setRateUsd(dataToSave);
+      }
+      if (el.currencyCodeA === 978 && el.currencyCodeB === 980) {
+        const dataToSave = {
+          rateBuy: el.rateBuy,
+          rateSell: el.rateSell,
+        };
+        setRateEur(dataToSave);
+      }
+
+    });
+  };
 
   useEffect(() => {
-    getRates();
-  
-    //  eslint-disable-next-line react-hooks/exhaustive-deps
+    const storageData = JSON.parse(localStorage.getItem('currencyRates'));
+    const storageUpdatedTime = storageData?.updatedDate;
+    const timeNow = new Date().getTime();
+    const notShouldFetch = storageUpdatedTime - timeNow <= 3600000;
+
+    if (!notShouldFetch) {
+      axios
+        .get('https://api.monobank.ua/bank/currency')
+        .then(res => res.data)
+        .then(res => {
+          const currencyRates = {
+            updatedDate: new Date().getTime(),
+            res,
+          };
+          localStorage.setItem('currencyRates', JSON.stringify(currencyRates));
+          saveRates(res);
+        })
+        .catch(error => console.log(error));
+      return;
+    }
+
+    saveRates(storageData.res);
   }, []);
 
-  const getRates = () => {
-    setIsLoading(true);
-
-    apiService
-      .getCurrencyRates()
-      .then(data => {
-        console.log(data)
-        setCurrencyRates(data);
-        setIsLoading(false);
-        setCurrentDate(formatDate('yyyy-mm-dd'));
-        setLocalStorage(currencyRates, currentDate);
-      })
-      .catch(err => {
-        const currencyFromLocalStorage = JSON.parse(
-          localStorage.getItem('currency'),
-        );
-        if (
-          !currencyFromLocalStorage ||
-          currentDate !== currencyFromLocalStorage.date
-        )
-          return setTimeout(getRates, HOUR);
-
-        setCurrencyRates(currencyFromLocalStorage.data);
-        console.log(err);
-      });
-  };
-  
-  const setLocalStorage = (currencyRates, currentDate) => {
-    const localStorageData = { 
-      rates: currencyRates,
-      date: currentDate };
-    localStorage.setItem('currency', JSON.stringify(localStorageData));
-  };
-
-  const round = number => {
-    return parseFloat(number).toFixed(2);
-  };
-
-
   return (
-    <div className={s.wrapper}>
-      {isLoading && <Loader />}
-      <table className={s.table}>
-        <thead className={s.thead}>
-          <tr>
-            <th className={s.left}>Currensy</th>
-            <th className={s.center}>Purchase</th>
-            <th className={s.right}>Sell</th>
-          </tr>
-        </thead>
-        <tbody className={s.tbody}>
-          {currencyRates?.map(
-            item =>
-              item.currencyCodeB === 'UAH' && (
-                <tr key={item.currencyCodeA} className={s.traw}>
-                  <td className={s.ccy}>{item.currencyCodeA}</td>
-                  <td className={s.ccy}>
-                    {round(item.rateBuy)}
-                  </td>
-                  <td className={s.td}>
-                    {round(item.rateCross)}
-                  </td>
-                </tr>
-              ),
-          )}
-        </tbody>
-      </table>
-    </div>
+    <>
+       {/* {isLoading && <Loader />} */}
+      < div className={s.CurrencyContainer}>
+        <div className={s.Head}>
+          <div className={s.TitleList}>
+            <div className={s.TitleItem}>
+              <div className={s.Title}>Currency</div>
+            </div>
+            <div className={s.TitleItem}>
+              <div className={s.Title}>Purchase</div>
+            </div>
+            <div className={s.TitleItem}>
+              <div className={s.Title}>Sale</div>
+            </div>
+          </div>
+        </div>
+          
+        {rateUsd?.rateBuy && (
+          <div>
+            <ul>
+              <CurrencyField
+                currency="USD"
+                purchaseValue={rateUsd?.rateBuy}
+                saleValue={rateUsd?.rateSell}
+              />
+              <CurrencyField
+                currency="EUR"
+                purchaseValue={rateEur?.rateBuy}
+                saleValue={rateEur?.rateSell}
+              />
+              
+            </ul>
+          </div>
+        )}
+        < div className={s.CurrencyBg}></div>
+      </div>
+    </>
   );
 };
 
