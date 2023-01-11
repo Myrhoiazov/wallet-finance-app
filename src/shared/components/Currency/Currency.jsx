@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import Loader from '../Loader';
+// import Loader from '../Loader';
 import { CurrencyField } from './CurrencyField';
 import s from './Currency.module.scss';
 
@@ -9,7 +9,7 @@ import s from './Currency.module.scss';
   const [rateUsd, setRateUsd] = useState(null);
   const [rateEur, setRateEur] = useState(null);
  
-    const [isLoading, setIsLoading] = useState(false);
+    // const [isLoading, setIsLoading] = useState(false);
 
   const saveRates = data => {
     data.forEach(el => {
@@ -58,7 +58,7 @@ import s from './Currency.module.scss';
 
   return (
     <>
-       {isLoading && <Loader />}
+       {/* {isLoading && <Loader />} */}
       < div className={s.CurrencyContainer}>
         <div className={s.Head}>
           <div className={s.TitleList}>
