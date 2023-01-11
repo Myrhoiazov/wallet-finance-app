@@ -6,14 +6,14 @@ const getTransactions = async () => {
   return data;
 };
 
-const getUnlimitedTransactions = async () => {
-  const { data } = await privateAPI.get('/transactions?pageParam=1&limitTParam=9999');
+const getTransactionsTimes = async () => {
+  const { data } = await privateAPI.get('/transactions/dates');
   return data;
 };
 
-const getTransactionsByDate = async date => {
+const getTransactionsByDate = async (month, year) => {
   const { data } = await privateAPI.get(
-    `/transactions/${date.month}/${date.year}`
+    `/transactions/${month}/${year}`
   );
   return data;
 };
@@ -25,7 +25,7 @@ const postTransactions = async transaction => {
 
 export const transactionsAPI = {
   getTransactions,
-  getUnlimitedTransactions,
+  getTransactionsTimes,
   getTransactionsByDate,
   postTransactions,
 };

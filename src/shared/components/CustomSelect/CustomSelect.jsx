@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import './CustomSelect.scss';
 
 const CustomSelect = ({ options, changeHandler, name }) => {
-  const [selectedOption, setSelectedOption] = useState(options[0]);
+  const [selectedOption, setSelectedOption] = useState(undefined);
+
+  useEffect(() => setSelectedOption(options[0]), [options]);
 
   const openToggle = () => {
     const selectIcon = document.getElementById('selectIcon' + name);
@@ -28,7 +30,11 @@ const CustomSelect = ({ options, changeHandler, name }) => {
       <span id={'selectIcon' + name} className="icon"></span>
       <div id={'dropOptions' + name} className="dropOptions">
         {options.map(option => (
-          <p onClick={optionHandle} key={option}>
+          <p
+            onClick={optionHandle}
+            key={option}
+            className={options.length > 1 ? 'multiple' : 'single'}
+          >
             {option}
           </p>
         ))}
