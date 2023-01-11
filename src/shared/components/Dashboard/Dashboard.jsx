@@ -1,7 +1,7 @@
 import { useMediaQuery } from 'react-responsive';
 
 import Balance from '../Balance';
-import Currency from '../Currency';
+// import Currency from '../Currency';
 import HomeTab from '../HomeTab';
 import Navigation from '../Navigation';
 import s from './Dashboard.module.scss';
@@ -15,7 +15,7 @@ const Dashboard = () => {
         <div className={s.dashboardInfo}>
           <Navigation />
           <Balance />
-          <Currency />
+          {/* <Currency /> */}
         </div>
         {!isMobile && <div className={s.currencyInfo}> Currency</div>}
       </div>
