@@ -1,13 +1,17 @@
 import { privateAPI } from './http';
 
 //(defaults - page:1, limit:5)
-const getTransactions = async () => {
-  const { data } = await privateAPI.get('/transactions');
+const getTransactions = async (page = 1, limit = 5) => {
+  const { data } = await privateAPI.get(
+    `/transactions?page=${page}&limit=${limit}`
+  );
   return data;
 };
 
 const getUnlimitedTransactions = async () => {
-  const { data } = await privateAPI.get('/transactions?pageParam=1&limitTParam=9999');
+  const { data } = await privateAPI.get(
+    '/transactions?pageParam=1&limitTParam=9999'
+  );
   return data;
 };
 

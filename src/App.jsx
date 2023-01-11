@@ -11,17 +11,14 @@ import authSelectors from 'redux/Auth/SelectorAuth';
 import { authActions } from 'redux/Auth/AuthSlice';
 import userOperations from 'redux/User/OperationsUser';
 
-import StatisticsPage from 'pages/StatisticsPage/StatisticsPage';
-
-// const AuthPage = lazy(() => import('./pages/AuthPage'));
 const DashboardPage = lazy(() => import('pages/DashboardPage'));
 const NotFoundPage = lazy(() => import('pages/NotFoundPage'));
+const StatisticsPage = lazy(() => import('pages/StatisticsPage/StatisticsPage'));
 
 
 const App = () => {
   const dispatch = useDispatch();
   const token = useSelector(authSelectors.getToken);
-  console.log('token',token);
   const [searchParams] = useSearchParams();
   const tokenGoogle = searchParams.get('token');
   useEffect(() => {
