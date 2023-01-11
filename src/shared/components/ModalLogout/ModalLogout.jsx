@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 // import { useState } from 'react';
 
 import {
@@ -12,12 +12,12 @@ import {
 } from './ModalLogoutComponents';
 
 // import { authAPI } from '../../../services/AuthApi';
-// import { logOut } from '../../../redux/Auth/OperationsAuth';
+import OperationsAuth from '../../../redux/Auth/OperationsAuth';
 
 const portal = document.querySelector('#portal');
 
 const ModalLogout = ({ noExit }) => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const esc = useCallback(
     e => {
       if (e.code === `Escape`) {
@@ -44,34 +44,32 @@ const ModalLogout = ({ noExit }) => {
     [noExit]
   );
 
-  // const [logOut] = logout();
+  const logOut = OperationsAuth.logout();
 
   const onHandleLogOut = () => {
-    console.log('GGGSUHDOUSBDCUB');
+    dispatch(logOut);
+    // window.open('/');
     // dispatch(unsetToken());
-    // logOut();
   };
 
-  // const [isModalOpen, setIsModalOpen] = useState(false);
-  // const isMobile = useMediaQuery({ maxWidth: 767 });
-  // // const isLoading = useSelector(selectIsLoading);
+  // // const isMobile = useMediaQuery({ maxWidth: 767 });
+  // // // const isLoading = useSelector(selectIsLoading);
   // const openModal = () => {
   //   setIsModalOpen(true);
   // };
-  // const closeModal = () => {
+  // // const closeModal = () => {
   //   setIsModalOpen(false);
   // };
 
   return createPortal(
     <Overlay onClick={onBackClick}>
       <ModalCont>
-        <ModalLogoutText>
-          Are you sure that you want to log out?
-        </ModalLogoutText>
+        <ModalLogoutText>Are you sure that you want to exit?</ModalLogoutText>
         <div>
           <ModalLogoutButtonYes onClick={() => onHandleLogOut()}>
             YES
           </ModalLogoutButtonYes>
+
           <ModalLogoutButtonNo onClick={noExit}>NO</ModalLogoutButtonNo>
         </div>
       </ModalCont>
