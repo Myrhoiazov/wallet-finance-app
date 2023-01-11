@@ -2,11 +2,12 @@ import styled from 'styled-components';
 import { respondTo } from '../../components/Header/HeaderContent/responedTo';
 
 export const Overlay = styled.div`
-  background-color: rgba(0, 0, 0, 0.25);
+  /* background-color: rgba(0, 0, 0, 0.25); */
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 10vw;
+  top: 20vw;
+  left: 20vw;
+
+  width: 40vw;
   height: 10vh;
   display: flex;
   justify-content: center;
@@ -28,6 +29,7 @@ export const ModalCont = styled.div`
 
 export const ModalLogoutText = styled.p`
   font-size: 18px;
+
   margin-bottom: 10px;
 `;
 
