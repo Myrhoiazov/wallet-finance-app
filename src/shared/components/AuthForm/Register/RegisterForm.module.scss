@@ -102,6 +102,8 @@
     font-size: 18px;
     line-height: 27px;
     background-color: #fff;
+    border:none;
+    outline: none;
   }
   ::placeholder {
     color: #bdbdbd;
@@ -115,7 +117,7 @@
   }
   &_inner_btn {
   }
-  &_btn_login {
+  &_btn_register  {
     height: 50px;
     width: 280px;
     margin-bottom: 20px;
@@ -134,11 +136,10 @@
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--text-white-color);
-    text-decoration: none;
     cursor: pointer;
   }
 
-  &_btn_register {
+  &_btn_login {
     height: 50px;
     width: 280px;
     margin-bottom: 20px;
@@ -158,6 +159,7 @@
     cursor: pointer;
     background: var(--btn-primary-color);
     border: 1px solid #4a56e2;
+    text-decoration: none;
   }
   &_google_button {
     width: 150px;
