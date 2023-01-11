@@ -2,13 +2,13 @@ import styled from 'styled-components';
 import { respondTo } from '../../components/Header/HeaderContent/responedTo';
 
 export const Overlay = styled.div`
-  /* background-color: rgba(0, 0, 0, 0.25); */
+  background-color: rgba(0, 0, 0, 0.25);
   position: fixed;
-  top: 20vw;
-  left: 20vw;
+  top: 0;
+  left: 0;
 
-  width: 40vw;
-  height: 10vh;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
