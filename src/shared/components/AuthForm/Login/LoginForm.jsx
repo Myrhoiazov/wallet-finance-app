@@ -44,10 +44,14 @@ const LoginForm = () => {
           navigate('/home', { replace: true });
         })
         .catch(error => {
-          const message =
-            typeof error.message === 'string'
-              ? error.message
-              : error.message[0].message;
+            let message = '';
+            if (typeof error.message === 'string') {
+              message = error.message
+            }
+            else {
+              const keyWord =error.message[0].path[0]
+              message = `"${keyWord}" does not meet requirements`
+            }
           toast.error(
             // eslint-disable-next-line no-useless-concat
             `Login is failed with message: ${message}`

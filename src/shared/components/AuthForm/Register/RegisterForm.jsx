@@ -18,11 +18,11 @@ const validationSchema = Yup.object().shape({
   name: Yup.string('Enter your first name')
     .min(1, 'Too Short!')
     .max(12, 'Too Long!')
-    .required('First name is required'),
+    .required('Enter your first name'),
   password: Yup.string('Required password: 1 character, 1 capital letter')
     .min(6, 'Too Short!')
     .max(12, 'Too Long!')
-    .required('Password is required'),
+    .required('Required password: char.:6-16, at least: 1 capital letter, 1 small letter, 1 number, 1 symbol'),
   confirmPassword: Yup.string('Confirm password is must mutch with password')
     .label('confirm password')
     .required()
@@ -83,10 +83,14 @@ const RegisterForm = () => {
         navigate('/login', { replace: true });
       })
       .catch(error => {
-        const message =
-          typeof error.message === 'string'
-            ? error.message
-            : error.message[0].message;
+        let message = '';
+        if (typeof error.message === 'string') {
+          message = error.message
+        }
+        else {
+          const keyWord =error.message[0].path[0]
+          message = `"${keyWord}" does not meet requirements`
+        }
         toast.error(
           // eslint-disable-next-line no-useless-concat
           `Register is failed with message: ${message}`
@@ -165,11 +169,7 @@ const RegisterForm = () => {
           </span>
         </label>
         <ul className={s.auth_form_inner_btn}>
-          <li className={s.item}>
-            <Link to="/login" className={s.auth_form_btn_login}>
-              Log in
-            </Link>
-          </li>
+         
           <li className={s.item}>
             <button
               className={s.auth_form_btn_register}
@@ -181,6 +181,11 @@ const RegisterForm = () => {
             >
               Register
             </button>
+          </li>
+          <li className={s.item}>
+            <Link to="/login" className={s.auth_form_btn_login}>
+              Log in
+            </Link>
           </li>
         </ul>
         {/* <a
