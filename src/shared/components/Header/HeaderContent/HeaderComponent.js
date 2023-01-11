@@ -26,20 +26,8 @@ export const LogoCont = styled(NavLink)`
   text-decoration: none;
   color: #000000;
   overflow: hidden;
-  /* background: linear-gradient(90deg, #000, #fff, #000); */
   background-repeat: no-repeat;
   background-size: 80%;
-  /* animation: animate 15s linear infinite;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: #0f0f8a93;
-  @keyframes animate {
-    0% {
-      background-position: -500%;
-    }
-    100% {
-      background-position: 500%;
-    }
-  } */
 `;
 
 export const Logo = styled.img`
@@ -66,6 +54,12 @@ export const LogoutCont = styled.div`
   flex-direction: row;
   align-items: center;
   color: #bdbdbd;
+  &:hover,
+  &:focus {
+    & > span {
+      color: transparent;
+    }
+  }
 `;
 
 export const BtnLogout = styled.button`
@@ -81,14 +75,20 @@ export const BtnLogout = styled.button`
   border-style: hidden;
   &:hover,
   &:focus {
-    & > svg,
-    & > span {
+    & > svg {
       color: #4a56e2;
     }
   }
   ${respondTo.sm`
         border-left: 1px #bdbdbd solid;
         padding-left: 12px;
+         &:hover,
+  &:focus {
+    & > svg,
+    & > span {
+      color: #4a56e2;
+    }
+  }
         
     `}
 `;
@@ -114,6 +114,12 @@ export const LogoutExitNameCircle = styled.div`
 export const LogoutExit = styled.span`
   position: absolute;
   color: transparent;
+  &:hover,
+  &:focus {
+    & > svg {
+      color: transparent;
+    }
+  }
   ${respondTo.sm`
         color: #bdbdbd;
         padding-top: 3px;
