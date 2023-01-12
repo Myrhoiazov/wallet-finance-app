@@ -13,6 +13,7 @@ import s from './StatisticsPage.module.scss';
 import { transactionsAPI } from '../../services/TransactionsApi';
 import { selectTransactions } from 'redux/Transaction/transactionsSelectors';
 import { selectTransactionCategories } from 'redux/Categories/categoriesSelectors';
+import Currency from 'shared/components/Currency';
 
 const months = [
   'January',
@@ -141,7 +142,11 @@ const StatisticsPage = () => {
                 {!isMobile && <Balance />}
               </div>
             </div>
-            {!isMobile && <div className={s.currencyInfo}>Currency</div>}
+            {!isMobile && (
+              <div className={s.currencyInfo}>
+                <Currency />
+              </div>
+            )}
           </div>
           {yearsList && (
             <div className={s.dataWrapper}>
