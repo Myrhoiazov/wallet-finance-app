@@ -64,6 +64,10 @@
   @include media(tablet-only) {
     width: 336px;
   }
+
+  @include media(tablet-only) {
+    width: 280px;
+  }
 }
 
 .currencyInfo {
