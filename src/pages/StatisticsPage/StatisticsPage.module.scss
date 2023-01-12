@@ -47,10 +47,10 @@
 }
 
 .inner {
-  margin-top: 120px;
+  margin-top: 112px;
 
   @include media(mobile-only) {
-    margin-top: 72px;
+    margin-top: 75px;
   }
 }
 
@@ -72,7 +72,7 @@
 
 .currencyInfo {
   @include media(tablet-only) {
-    margin-top: 114px;
+    margin-top: 112px;
   }
 }
 

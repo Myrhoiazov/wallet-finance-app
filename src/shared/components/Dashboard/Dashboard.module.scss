@@ -17,10 +17,10 @@
 }
 
 .inner {
-  margin-top: 132px;
+  margin-top: 112px;
 
   @include media(mobile-only) {
-    margin: 132px auto 0 auto;
+    margin: 75px auto 0 auto;
   }
 
   @include media(tablet-only) {
