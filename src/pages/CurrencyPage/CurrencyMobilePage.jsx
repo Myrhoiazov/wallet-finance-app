@@ -10,13 +10,14 @@ const CurrencyMobilePage = () => {
       <div className={s.HeaderDiv}>
         <Header />
       </div>
-      <div className={s.NavDiv}>
+      <div className={s.WrapDiv}      >
+              <div className={s.NavDiv}>
         <Navigation />
       </div>
       <div className={s.CurrencyDiv}>
         <Currency />
       </div>
-      
+</div>
     </>
   );
 };

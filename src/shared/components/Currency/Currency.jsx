@@ -3,13 +3,13 @@ import axios from 'axios';
 // import Loader from '../Loader';
 import { CurrencyField } from './CurrencyField';
 import s from './Currency.module.scss';
+import Loader from '../Loader';
 
 
   const Currency = () => {
   const [rateUsd, setRateUsd] = useState(null);
   const [rateEur, setRateEur] = useState(null);
- 
-    // const [isLoading, setIsLoading] = useState(false);
+ const [isLoading, setIsLoading] = useState(false);
 
   const saveRates = data => {
     data.forEach(el => {
@@ -42,12 +42,14 @@ import s from './Currency.module.scss';
         .get('https://api.monobank.ua/bank/currency')
         .then(res => res.data)
         .then(res => {
+             setIsLoading(true);
           const currencyRates = {
             updatedDate: new Date().getTime(),
             res,
           };
           localStorage.setItem('currencyRates', JSON.stringify(currencyRates));
           saveRates(res);
+            setIsLoading(false);
         })
         .catch(error => console.log(error));
       return;
@@ -58,8 +60,9 @@ import s from './Currency.module.scss';
 
   return (
     <>
-       {/* {isLoading && <Loader />} */}
-      < div className={s.CurrencyContainer}>
+     {isLoading ? (
+        <Loader />
+      ) :( < div className={s.CurrencyContainer}>
         <div className={s.Head}>
           <div className={s.TitleList}>
             <div className={s.TitleItem}>
@@ -73,7 +76,6 @@ import s from './Currency.module.scss';
             </div>
           </div>
         </div>
-          
         {rateUsd?.rateBuy && (
           <div>
             <ul>
@@ -92,9 +94,12 @@ import s from './Currency.module.scss';
           </div>
         )}
         < div className={s.CurrencyBg}></div>
-      </div>
+      </div>)}
     </>
   );
 };
 
 export default Currency;
+
+
+ 

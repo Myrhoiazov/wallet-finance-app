@@ -20,9 +20,9 @@
     @include media(mobile-only) {
         width: 280px;
         height: 174px;
-        margin-top: 32px;
-        margin-left: auto;
-        margin-right: auto;
+        // margin-top: 28px;
+        margin-left: 20px;
+        margin-right: 20px;
     }
 
     @include media(tablet-only) {

@@ -2,11 +2,27 @@
 @import '../../shared/styles/mixin';
 @import '../../shared/styles/fonts';
 
-.HeaderDiv {
-    @include media(mobile-only) {
-        position: absolute;
-        width: 320px;
-        height: 60px;
+// .HeaderDiv {
+//     @include media(mobile-only) {
+//         // position: absolute;
+//         width: 320px;
+//         height: 60px;
 
-    }
+//     }
+// }
+
+
+.NavDiv {
+    display: flex;
+    flex-direction: row;
+    padding-top: 72px;
+
+
+
+
 }
+
+// .WrapDiv {
+//     margin-top: 100px;
+
+// }
