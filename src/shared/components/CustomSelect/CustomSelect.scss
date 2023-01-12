@@ -1,3 +1,6 @@
+@import 'src/shared/styles/variables.scss';
+@import 'src/shared/styles/mixin.scss';
+
 .mainWrapper {
   position: relative;
   display: flex;
@@ -9,6 +12,14 @@
   height: 50px;
   border-radius: 25px;
   padding: 0 20px;
+
+  @include media(tablet-only) {
+    width: 160px;
+  }
+
+  @include media(mobile-only) {
+    width: 280px;
+  }
 }
 
 .icon {

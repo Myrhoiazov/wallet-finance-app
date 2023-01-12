@@ -8,7 +8,7 @@ import moment from 'moment';
 import { useToggle } from '../../../hooks/modalAddTransaction';
 
 import { selectTransactionCategories } from 'redux/Categories/categoriesSelectors';
-import { fetchCategories } from 'redux/Categories/categoriesOperations';
+
 import {  updateTransaction } from 'redux/Transaction/transactionsOperations';
 
 import css from './ModalAddTransaction.module.scss';
@@ -33,10 +33,6 @@ export const ModalAddTransaction = ({ closeModal }) => {
   const [categoryId, setCategoryId] = useState(null);
   const [categoryTitle, setCategoryTitle] = useState('');
   const [isShowSelectList, setIsShowSelectList] = useState('false');
-
-  useEffect(() => {
-    dispatch(fetchCategories());
-  }, [dispatch]);
 
   useEffect(() => {
     const closeByEscape = ({ code }) => {
@@ -199,9 +195,7 @@ export const ModalAddTransaction = ({ closeModal }) => {
                   <span className={css.track}></span>
                 </label>
               </div>
-              <span
-                className={!isShowSelect ? css.spanText : css.spanTextActive}
-              >
+              <span className={!isShowSelect ? css.spanText : css.spanTextActive}>
                 expense
               </span>
             </div>
@@ -289,18 +283,10 @@ export const ModalAddTransaction = ({ closeModal }) => {
             </label>
 
             <div className={cssForm.btnWraper}>
-              <button
-                className={cssForm.btnAdd}
-                onClick={handleSubmit}
-                type="submit"
-              >
+              <button className={cssForm.btnAdd} onClick={handleSubmit} type="submit">
                 ADD
               </button>
-              <button
-                className={cssForm.btnCancel}
-                onClick={closeModal}
-                type="button"
-              >
+              <button className={cssForm.btnCancel} onClick={closeModal} type="button">
                 CANCEL
               </button>
               <button
