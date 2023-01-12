@@ -2,11 +2,17 @@
 @import '../../shared/styles/mixin';
 @import '../../shared/styles/fonts';
 
+.WrapDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .NavDiv {
     @include media(mobile-only) {
         display: flex;
         flex-direction: row;
-        padding-top: 72px;
+        padding-top: 75px;
         justify-content: space-evenly;
     }
 }
