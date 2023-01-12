@@ -6,12 +6,13 @@
     display: flex;
     flex-direction: row;
     padding: 0 42px;
+
   }
 
   margin-bottom: 28px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  // gap: 12px;
 }
 
 .link {
@@ -43,7 +44,7 @@
 
 .link:not(:last-child) {
   @include media(mobile-only) {
-    margin-right: 32px;
+    margin-right: 30px;
   }
 }
 
