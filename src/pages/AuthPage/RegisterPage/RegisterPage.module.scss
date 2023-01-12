@@ -1,62 +1,59 @@
 @import '../../../shared/styles/mixin';
 @import '../../../shared/styles/variables';
-.section_register_page{
-background-color: var(--secondary-bg-color);
-height: 100vh;
-@include media(tablet){
-  background-color:inherit;
 
-}
-
-&_wrapper1{
- 
+.section_register_page {
   height: 100vh;
-  position: absolute;
-width: 731px;
-// height: 720px;
-left: 549px;
-top: 0px;
-  background-image: url(../../../assets//images//desktop/1x/bg1x.png);
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-
-&_title{
-font-family: 'Poppins';
-font-weight: 400;
-font-size: 30px;
-line-height: 45px;
-display: flex;
-align-items: center;
-text-align: center;
-color:var(--title-black-color);
-position: absolute;
-right: 151px;
-top: 163px;
-z-index: 1;
-
-@include media(desktop){
-  position: absolute;
-  left: 200px;
-  top: 581px;
-}
-}
-}
-.inner_images_bp768px{
- 
-  &__girlLogo{
-
- background-image: url(../../../assets/images/tablet/1x/girlLogo1x.png);
- background-repeat: no-repeat;
- background-size: contain;
- position: absolute;
- margin-right: 265px;
- width: 250px;
- height: 260.26px;
- top: 60px;
- left: 114px;
+  background-color: var(--secondary-bg-color);
+  @include media(tablet) {
+    background-color: inherit;
   }
-  &__ellipsePingLogo{
+
+  &_wrapper1 {
+    position: absolute;
+    width: 55%;
+    height: 100%;
+    right: 0;
+    bottom: 0;
+
+    background-image: url(../../../assets//images//desktop/1x/bg1x.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  &_title {
+    font-family: 'Poppins';
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 45px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: var(--title-black-color);
+    position: absolute;
+    right: 151px;
+    top: 163px;
+    z-index: 1;
+
+    @include media(desktop) {
+      position: absolute;
+      left: 200px;
+      top: 581px;
+    }
+  }
+}
+.inner_images_bp768px {
+  &__girlLogo {
+    background-image: url(../../../assets/images/tablet/1x/girlLogo1x.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    margin-right: 265px;
+    width: 250px;
+    height: 260.26px;
+    top: 60px;
+    left: 114px;
+  }
+  &__ellipsePingLogo {
     position: absolute;
     background-image: url(../../../assets//images/tablet/1x/ellipsePingLogo1x.png);
     background-repeat: no-repeat;
@@ -64,51 +61,53 @@ z-index: 1;
     margin-right: 265px;
     width: 618px;
     height: 547px;
-    left: 49%;
+    right: -350px;
     top: -13%;
     transform: rotate(-0.06deg);
   }
-  &__ellipseLogo{
+  &__ellipseLogo {
     position: absolute;
     background-image: url(../../../assets//images/tablet/1x/ellipseLogo1x.png);
     background-repeat: no-repeat;
     background-size: contain;
+    background-position: bottom;
     width: 618px;
     height: 547px;
     left: -136px;
-    top: 702px;
+    bottom: -400px;
     transform: rotate(-0.14deg);
   }
 }
-.inner_images_bp1280px{
+.inner_images_bp1280px {
   display: flex;
   justify-content: flex-start;
-  &__girlLogo{
-     background-image: url(../../../assets/images/desktop/1x/girlLogo1x.png);
-     background-repeat: no-repeat;
-     background-size: contain;
-     position: absolute;
-    
-     width: 435px;
-     height: 419px;
-     position: absolute;
-     left: 7%;
-     right: 0%;
-     top: 16%;
-     bottom: 0%;
-     z-index: 1;
-  
-      }
-    
-      &__ellipseLogo{
-        position: absolute;
-        background-image: url(../../../assets//images/tablet/1x/ellipseLogo1x.png);
-        background-repeat: no-repeat;
-        background-size: contain;
-        width: 618px;
-        height: 547px;
-        left: -111.33px;
-        top: 348px;
-        transform: rotate(-3.14deg);
-}
+  &__girlLogo {
+    background-image: url(../../../assets/images/desktop/1x/girlLogo1x.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+
+    width: 435px;
+    height: 419px;
+    position: absolute;
+    left: 7%;
+    right: 0%;
+    top: 16%;
+    bottom: 0%;
+    z-index: 1;
+  }
+
+  &__ellipseLogo {
+    position: absolute;
+    background-image: url(../../../assets//images/tablet/1x/ellipseLogo1x.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: bottom;
+
+    width: 618px;
+    height: 547px;
+    left: -111.33px;
+    bottom: -50px;
+    transform: rotate(-3.14deg);
+  }
 }
