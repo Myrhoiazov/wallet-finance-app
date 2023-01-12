@@ -20,10 +20,7 @@ const LoginPage = () => {
         <LoginForm></LoginForm>
         <div className={s.inner_images_bp768px}>
           <div className={s.inner_images_bp768px__boyLogo}></div>
-          <div
-            width="618px"
-            className={s.inner_images_bp768px__ellipsePingLogo}
-          ></div>
+          <div width="618px" className={s.inner_images_bp768px__ellipsePingLogo}></div>
           <div className={s.inner_images_bp768px__ellipseLogo}></div>
         </div>
       </MediaQuery.Tablet>
