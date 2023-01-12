@@ -12,6 +12,8 @@ import { authActions } from 'redux/Auth/AuthSlice';
 import userOperations from 'redux/User/OperationsUser';
 import { fetchCategories } from 'redux/Categories/categoriesOperations';
 
+import CurrencyMobilePage from 'pages/CurrencyPage/CurrencyMobilePage';
+
 const DashboardPage = lazy(() => import('pages/DashboardPage'));
 const NotFoundPage = lazy(() => import('pages/NotFoundPage'));
 const StatisticsPage = lazy(() => import('pages/StatisticsPage/StatisticsPage'));
@@ -54,6 +56,10 @@ const App = () => {
 
           <Route path="/diagram" element={<PrivateRoute redirectTo="/login" />}>
             <Route index element={<StatisticsPage />} />
+          </Route>
+
+          <Route path="/currency" element={<PrivateRoute redirectTo="/login" />}>
+            <Route index element={<CurrencyMobilePage />} />
           </Route>
 
           <Route path="*" element={<NotFoundPage />} />
