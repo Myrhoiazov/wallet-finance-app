@@ -65,7 +65,7 @@
     width: 336px;
   }
 
-  @include media(tablet-only) {
+  @include media(mobile-only) {
     width: 280px;
   }
 }
