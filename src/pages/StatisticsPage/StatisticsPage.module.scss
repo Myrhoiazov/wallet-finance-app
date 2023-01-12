@@ -66,6 +66,12 @@
   }
 }
 
+.currencyInfo {
+  @include media(tablet-only) {
+    margin-top: 114px;
+  }
+}
+
 .dataWrapper {
   display: flex;
   flex-direction: row;
