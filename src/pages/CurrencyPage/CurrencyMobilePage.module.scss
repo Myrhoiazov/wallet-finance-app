@@ -1,0 +1,12 @@
+@import '../../shared/styles/variables';
+@import '../../shared/styles/mixin';
+@import '../../shared/styles/fonts';
+
+.HeaderDiv {
+    @include media(mobile-only) {
+        position: absolute;
+        width: 320px;
+        height: 60px;
+
+    }
+}
