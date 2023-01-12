@@ -7,9 +7,7 @@
     // position: absolute;
     width: 393px;
     height: 331px;
-    // left: 18px;
-    // top: 326px;
-
+ 
     background: var(--main-currency-bg-color);
     border-radius: 30px;
 
@@ -64,17 +62,6 @@
 
 }
 
-
-// .TitleItem :nth-child(1) {
-//     margin-left: 44px;
-// }
-// :nth-child(2) {
-//     margin-left: 40px;
-// }
-// :nth-child(3) {
-//     margin-left: 72px;
-// }
-
 .Title {
     font-family: var(--main-font);
     font-style: normal;
@@ -86,13 +73,7 @@
 
 .FieldWrap {
     margin-top: 24px;
-
 }
-
-// :first-child {
-//     margin-top: 20px;
-
-// }
 
 .FieldContainer {
     display: flex;
@@ -108,17 +89,6 @@
     color: var(--text-white-color);
 
 }
-
-// :first-child {
-//     margin-left: 20px;
-
-// }
-
-// :last-child {
-//     margin-right: 20px;
-
-// }
-
 
 .CurrencyBg {
     position: absolute;
