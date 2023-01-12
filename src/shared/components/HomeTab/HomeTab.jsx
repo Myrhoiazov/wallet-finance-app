@@ -13,7 +13,7 @@ const HomeTab = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchTransactions());
+    dispatch(fetchTransactions({page:1, limit:10}));
   }, [dispatch]);
 
   return (
@@ -69,7 +69,7 @@ const HomeTab = () => {
                   ))
               ) : (
                 <div className={s.noContent}>
-                  We hove no information about your transaction yet. Please add
+                  We have no information about your transaction yet. Please add
                   a new one.
                 </div>
               )}
@@ -119,7 +119,7 @@ const HomeTab = () => {
                       ))
                   ) : (
                     <div className={s.noContent}>
-                      We hove no information about your transactions yet. Please
+                      We have no information about your transactions yet. Please
                       add a new one.
                     </div>
                   )}
