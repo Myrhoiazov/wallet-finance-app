@@ -9,13 +9,14 @@ import { useToggle } from '../../../hooks/modalAddTransaction';
 
 import { selectTransactionCategories } from 'redux/Categories/categoriesSelectors';
 import { fetchCategories } from 'redux/Categories/categoriesOperations';
-import { fetchTransactions, updateTransaction } from 'redux/Transaction/transactionsOperations';
+import {  updateTransaction } from 'redux/Transaction/transactionsOperations';
 
 import css from './ModalAddTransaction.module.scss';
 import cssForm from './FormAddTransaction.module.scss';
 
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-datetime/css/react-datetime.css';
+import userOperations from 'redux/User/OperationsUser';
 
 export const ModalAddTransaction = ({ closeModal }) => {
   const dispatch = useDispatch();
@@ -47,7 +48,7 @@ export const ModalAddTransaction = ({ closeModal }) => {
 
     return () => {
       window.removeEventListener('keydown', closeByEscape);
-      dispatch(fetchTransactions());
+      dispatch(userOperations.getUserInfo());
     };
   }, [closeModal, dispatch]);
 
