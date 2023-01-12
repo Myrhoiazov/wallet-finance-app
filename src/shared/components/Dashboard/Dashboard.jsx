@@ -15,9 +15,8 @@ const Dashboard = () => {
         <div className={s.dashboardInfo}>
           <Navigation />
           <Balance />
-          <Currency />
         </div>
-        {!isMobile && <div className={s.currencyInfo}> Currency</div>}
+        {!isMobile && <div className={s.currencyInfo}>  <Currency /></div>}
       </div>
 
       <div className={s.content}>

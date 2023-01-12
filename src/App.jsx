@@ -12,16 +12,16 @@ import { authActions } from 'redux/Auth/AuthSlice';
 import userOperations from 'redux/User/OperationsUser';
 
 import StatisticsPage from 'pages/StatisticsPage/StatisticsPage';
+import CurrencyMobilePage from 'pages/CurrencyPage/CurrencyMobilePage';
 
 // const AuthPage = lazy(() => import('./pages/AuthPage'));
 const DashboardPage = lazy(() => import('pages/DashboardPage'));
 const NotFoundPage = lazy(() => import('pages/NotFoundPage'));
 
-
 const App = () => {
   const dispatch = useDispatch();
   const token = useSelector(authSelectors.getToken);
-  console.log('token',token);
+  console.log('token', token);
   const [searchParams] = useSearchParams();
   const tokenGoogle = searchParams.get('token');
   useEffect(() => {
@@ -39,30 +39,31 @@ const App = () => {
   return (
     <>
       <Suspense fallback={null}>
-          <Routes>
-            <Route path="/" element={<Navigate to="/home" />}></Route>
+        <Routes>
+          <Route path="/" element={<Navigate to="/home" />}></Route>
 
-            <Route path="/login" element={<PublicRoute restricted />}>
-              <Route index element={<LoginPage />} />
-            </Route>
+          <Route path="/login" element={<PublicRoute restricted />}>
+            <Route index element={<LoginPage />} />
+          </Route>
 
-            <Route path="/register" element={<PublicRoute restricted />}>
-              <Route index element={<RegisterPage />} />
-            </Route>
+          <Route path="/register" element={<PublicRoute restricted />}>
+            <Route index element={<RegisterPage />} />
+          </Route>
 
-            <Route path="/home" element={<PrivateRoute redirectTo="/login" />}>
-              <Route index element={<DashboardPage />} />
-            </Route>
+          <Route path="/home" element={<PrivateRoute redirectTo="/login" />}>
+            <Route index element={<DashboardPage />} />
+          </Route>
 
-            <Route
-              path="/diagram"
-              element={<PrivateRoute redirectTo="/login" />}
-            >
-              <Route index element={<StatisticsPage />} />
-            </Route>
+          <Route path="/diagram" element={<PrivateRoute redirectTo="/login" />}>
+            <Route index element={<StatisticsPage />} />
+          </Route>
 
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
+          <Route path="/currency" element={<PrivateRoute redirectTo="/login" />}>
+            <Route index element={<CurrencyMobilePage />} />
+          </Route>
+
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
       </Suspense>
     </>
   );
