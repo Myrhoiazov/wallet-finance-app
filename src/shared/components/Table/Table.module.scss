@@ -1,9 +1,20 @@
+@import 'src/shared/styles/variables.scss';
+@import 'src/shared/styles/mixin.scss';
+
 .table {
   width: 395px;
   max-height: 606px;
   font-size: 16px;
   font-weight: 400;
   line-height: 1.5;
+
+  @include media(tablet-only) {
+    width: 336px;
+  }
+  
+  @include media(mobile-only) {
+    width: 280px;
+  }
 
   &Header {
     display: flex;

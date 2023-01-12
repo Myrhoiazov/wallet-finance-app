@@ -14,6 +14,7 @@
   }
 
   max-width: 395px;
+  min-height: 80px;
   margin-bottom: 32px;
   padding-left: 40px;
   padding-top: 8px;
@@ -33,14 +34,11 @@
 
 .balance {
 
-  margin-top: 12px;
   font-family: var(--title-font);
   font-style: normal;
   font-weight: 600;
   font-size: 30px;
   line-height: 1.5;
-
-
 }
 
 .symbol {

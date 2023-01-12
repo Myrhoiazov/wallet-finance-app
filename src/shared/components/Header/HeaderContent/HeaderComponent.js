@@ -44,6 +44,7 @@ export const LogoText = styled.span`
 
   font-size: 30px;
   font-weight: 700;
+  line-height: 1;
   ${respondTo.sm`
         font-size: 36px;
     `}
