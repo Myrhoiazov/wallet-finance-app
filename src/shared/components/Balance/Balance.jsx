@@ -11,7 +11,7 @@ const Balance = () => {
   return (
     <div className={s.wrapper}>
       <p className={s.title}>Your balance</p>
-      <p className={s.balance}><span className={s.symbol}>&#8372;</span> { transactions?.[0]?.actualBalance}</p>
+      <p className={s.balance}><span className={s.symbol}>&#8372;</span> { transactions?.[0]?.actualBalance || 0}</p>
     </div>
   );
 };

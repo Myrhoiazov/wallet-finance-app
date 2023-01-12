@@ -1,8 +1,10 @@
 import { privateAPI } from './http';
 
 //(defaults - page:1, limit:5)
-const getTransactions = async () => {
-  const { data } = await privateAPI.get('/transactions');
+const getTransactions = async (page = 1, limit = 5) => {
+  const { data } = await privateAPI.get(
+    `/transactions?page=${page}&limit=${limit}`
+  );
   return data;
 };
 
@@ -12,9 +14,7 @@ const getTransactionsTimes = async () => {
 };
 
 const getTransactionsByDate = async (month, year) => {
-  const { data } = await privateAPI.get(
-    `/transactions/${month}/${year}`
-  );
+  const { data } = await privateAPI.get(`/transactions/${month}/${year}`);
   return data;
 };
 
