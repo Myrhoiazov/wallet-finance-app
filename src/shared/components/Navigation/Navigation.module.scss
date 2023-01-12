@@ -15,7 +15,6 @@
 }
 
 .link {
-
   @include media(mobile-only) {
     max-width: 44px;
     max-height: 44px;
@@ -38,7 +37,6 @@
   &:hover {
     transform: scale(1.03);
   }
-
 }
 
 .link:not(:last-child) {
