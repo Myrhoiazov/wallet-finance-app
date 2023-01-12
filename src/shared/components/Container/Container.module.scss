@@ -4,6 +4,8 @@
 .container {
   margin: 0 auto;
   max-width: 100%;
+  display: flex;
+  justify-content: center;
 
   @include media(mobile-only) {
     max-width: var(--mobile);

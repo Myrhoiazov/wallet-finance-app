@@ -112,8 +112,7 @@ const StatisticsPage = () => {
         expenseByCategories.push({
           category: item.category,
           amount: +item.amount,
-          color: categories.find(category => category.value === item.category)
-            .color,
+          color: categories.find(category => category.value === item.category).color,
         });
       }
     });
@@ -129,16 +128,20 @@ const StatisticsPage = () => {
       <Header />
       <Container>
         <div className={s.mainWrapper}>
+          {!isMobile && (
+            <>
+              <div className={s.images__pink}></div>
+              <div className={s.images__purple}></div>
+            </>
+          )}
           <div className={s.dashboardWrapper}>
             <div className={s.inner}>
               <div className={s.dashboardInfo}>
                 <Navigation />
-                <Balance />
+                {!isMobile && <Balance />}
               </div>
             </div>
-            {!isMobile && (
-              <div className={s.currencyInfo}> Temporary Currency</div>
-            )}
+            {!isMobile && <div className={s.currencyInfo}>Currency</div>}
           </div>
           {yearsList && (
             <div className={s.dataWrapper}>

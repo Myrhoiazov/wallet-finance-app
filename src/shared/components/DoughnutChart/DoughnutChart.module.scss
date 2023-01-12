@@ -1,9 +1,22 @@
+@import 'src/shared/styles/variables.scss';
+@import 'src/shared/styles/mixin.scss';
+
 .wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 288px;
   height: 288px;
+
+  @include media(tablet-only) {
+    width: 336px;
+    height: 336px;
+  }
+
+  @include media(mobile-only) {
+    width: 280px;
+    height: 280px;
+  }
 }
 
 .wrapper p {
@@ -14,6 +27,4 @@
 
 .doughnutChart {
   position: absolute;
-  width: 288px;
-  height: 288px;
 }

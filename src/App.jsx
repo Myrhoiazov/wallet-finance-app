@@ -10,11 +10,11 @@ import PublicRoute from 'shared/components/PublicRoute';
 import authSelectors from 'redux/Auth/SelectorAuth';
 import { authActions } from 'redux/Auth/AuthSlice';
 import userOperations from 'redux/User/OperationsUser';
+import { fetchCategories } from 'redux/Categories/categoriesOperations';
 
 const DashboardPage = lazy(() => import('pages/DashboardPage'));
 const NotFoundPage = lazy(() => import('pages/NotFoundPage'));
 const StatisticsPage = lazy(() => import('pages/StatisticsPage/StatisticsPage'));
-
 
 const App = () => {
   const dispatch = useDispatch();
@@ -24,6 +24,7 @@ const App = () => {
   useEffect(() => {
     if (token) {
       dispatch(userOperations.getUserInfo());
+      dispatch(fetchCategories());
     }
   }, [dispatch, token]);
 
@@ -36,30 +37,27 @@ const App = () => {
   return (
     <>
       <Suspense fallback={null}>
-          <Routes>
-            <Route path="/" element={<Navigate to="/home" />}></Route>
+        <Routes>
+          <Route path="/" element={<Navigate to="/home" />}></Route>
 
-            <Route path="/login" element={<PublicRoute restricted />}>
-              <Route index element={<LoginPage />} />
-            </Route>
+          <Route path="/login" element={<PublicRoute restricted />}>
+            <Route index element={<LoginPage />} />
+          </Route>
 
-            <Route path="/register" element={<PublicRoute restricted />}>
-              <Route index element={<RegisterPage />} />
-            </Route>
+          <Route path="/register" element={<PublicRoute restricted />}>
+            <Route index element={<RegisterPage />} />
+          </Route>
 
-            <Route path="/home" element={<PrivateRoute redirectTo="/login" />}>
-              <Route index element={<DashboardPage />} />
-            </Route>
+          <Route path="/home" element={<PrivateRoute redirectTo="/login" />}>
+            <Route index element={<DashboardPage />} />
+          </Route>
 
-            <Route
-              path="/diagram"
-              element={<PrivateRoute redirectTo="/login" />}
-            >
-              <Route index element={<StatisticsPage />} />
-            </Route>
+          <Route path="/diagram" element={<PrivateRoute redirectTo="/login" />}>
+            <Route index element={<StatisticsPage />} />
+          </Route>
 
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
       </Suspense>
     </>
   );
