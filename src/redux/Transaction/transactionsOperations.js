@@ -3,9 +3,9 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 export const fetchTransactions = createAsyncThunk(
   'transactions/fetchAll',
-  async (_, { rejectWithValue }) => {
+  async ({ page, limit }, { rejectWithValue }) => {
     try {
-      const { data } = await transactionsAPI.getTransactions();
+      const { data } = await transactionsAPI.getTransactions(page, limit);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);

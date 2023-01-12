@@ -10,7 +10,7 @@
 }
 
 .scrollTableBody {
-  height: 60vh;
+  height: 50vh;
   overflow-x: auto;
   margin-top: 0px;
   margin-bottom: 20px;
@@ -32,20 +32,10 @@
     width: 60px;
   }
 
-  // tr > td:nth-child(3) {
-  //   width: 140px;
-  // }
   tr>td:nth-child(4) {
     width: 160px;
     overflow: overlay;
   }
-
-  // tr > td:nth-child(5) {
-  //   width: 120px;
-  // }
-  // tr > td:last-child {
-  //   width: 60px;
-  // }
 }
 
 .scrollTable table {
@@ -86,9 +76,6 @@
       width: 160px;
     }
 
-    // &:nth-child(5) {
-    //   width: 120px;
-    // }
   }
 
   td {
@@ -121,14 +108,17 @@
 /* Стили для скролла */
 ::-webkit-scrollbar {
   width: 3px;
+  // background-color: aqua;
 }
 
 ::-webkit-scrollbar-track {
   box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3);
+  background: #f1f1f1;
 }
 
 ::-webkit-scrollbar-thumb {
   box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3);
+  background: var(--earnings-green-color);
 }
 
 .tableWrapMob {
