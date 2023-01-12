@@ -58,11 +58,13 @@
     background-image: url(../../../assets//images/tablet/1x/ellipsePingLogo1x.png);
     background-repeat: no-repeat;
     background-size: contain;
-    margin-right: 265px;
-    width: 618px;
+    background-position: right;
+
+    margin-right: 300px;
+    width: 418px;
     height: 547px;
-    right: -350px;
-    top: -13%;
+    right: -300px;
+    top: -12%;
     transform: rotate(-0.06deg);
   }
   &__ellipseLogo {
