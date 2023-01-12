@@ -1,15 +1,16 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-// import Loader from '../Loader';
 import { CurrencyField } from './CurrencyField';
 import s from './Currency.module.scss';
 import Loader from '../Loader';
+import { selectIsLoading } from 'redux/Transaction/transactionsSelectors';
+import { useSelector } from 'react-redux';
 
 
   const Currency = () => {
   const [rateUsd, setRateUsd] = useState(null);
   const [rateEur, setRateEur] = useState(null);
- const [isLoading, setIsLoading] = useState(false);
+const isLoading = useSelector(selectIsLoading);
 
   const saveRates = data => {
     data.forEach(el => {
@@ -42,14 +43,14 @@ import Loader from '../Loader';
         .get('https://api.monobank.ua/bank/currency')
         .then(res => res.data)
         .then(res => {
-             setIsLoading(true);
+           
           const currencyRates = {
             updatedDate: new Date().getTime(),
             res,
           };
           localStorage.setItem('currencyRates', JSON.stringify(currencyRates));
           saveRates(res);
-            setIsLoading(false);
+          
         })
         .catch(error => console.log(error));
       return;
@@ -60,9 +61,7 @@ import Loader from '../Loader';
 
   return (
     <>
-     {isLoading ? (
-        <Loader />
-      ) :( < div className={s.CurrencyContainer}>
+     < div className={s.CurrencyContainer}>
         <div className={s.Head}>
           <div className={s.TitleList}>
             <div className={s.TitleItem}>
@@ -79,6 +78,7 @@ import Loader from '../Loader';
         {rateUsd?.rateBuy && (
           <div>
             <ul>
+            
               <CurrencyField
                 currency="USD"
                 purchaseValue={rateUsd?.rateBuy}
@@ -94,12 +94,11 @@ import Loader from '../Loader';
           </div>
         )}
         < div className={s.CurrencyBg}></div>
-      </div>)}
+           {isLoading && <Loader/>}
+      </div>
+      
     </>
   );
 };
 
 export default Currency;
-
-
- 
