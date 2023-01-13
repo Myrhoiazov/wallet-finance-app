@@ -27,7 +27,7 @@ const authSlice = createSlice({
     extraReducers: {
         [authOperations.register.pending]: setPending,
         [authOperations.register.fulfilled]: (state, { payload }) => {
-            state.token = payload.data.token;
+            // state.token = payload.data.token;
             state.isLoading = false;
         },
         [authOperations.register.rejected]: setError,
