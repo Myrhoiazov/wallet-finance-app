@@ -8,7 +8,7 @@ import { ReactComponent as EmailIcon } from '../../../../assets/icons/email.svg'
 import { ReactComponent as PasswordIcon } from '../../../../assets/icons/password.svg';
 import authOperations from 'redux/Auth/OperationsAuth';
 import { useDispatch } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 
 const validationSchema = yup.object({
   email: yup
@@ -24,7 +24,6 @@ const validationSchema = yup.object({
 
 const LoginForm = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -36,7 +35,6 @@ const LoginForm = () => {
         .unwrap()
         .then(() => {
           toast.success('Glad to see you again!');
-          navigate('/home', { replace: true });
         })
         .catch(error => {
           let message = '';

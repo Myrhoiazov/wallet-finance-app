@@ -7,7 +7,9 @@ const register = createAsyncThunk(
   async (credentials, { rejectWithValue, dispatch }) => {
     try {
       const data = await authAPI.registerUser(credentials);
-      await dispatch(authOperations.login({email:credentials.email,password:credentials.password}))
+      if(data){
+        await dispatch(authOperations.login({email:credentials.email,password:credentials.password}))
+      }
       return data;
     } catch (error) {
       return rejectWithValue({
