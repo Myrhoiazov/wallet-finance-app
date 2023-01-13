@@ -26,18 +26,22 @@ const CustomSelect = ({ options, changeHandler, name }) => {
 
   return (
     <div className="mainWrapper" onClick={openToggle}>
-      <p>{selectedOption}</p>
+      <p>{selectedOption || 'No transactions'}</p>
       <span id={'selectIcon' + name} className="icon"></span>
       <div id={'dropOptions' + name} className="dropOptions">
-        {options.map(option => (
-          <p
-            onClick={optionHandle}
-            key={option}
-            className={options.length > 1 ? 'multiple' : 'single'}
-          >
-            {option}
-          </p>
-        ))}
+        {options.length > 0 ? (
+          options.map(option => (
+            <p
+              onClick={optionHandle}
+              key={option}
+              className={options.length > 1 ? 'multiple' : 'single'}
+            >
+              {option}
+            </p>
+          ))
+        ) : (
+          <p className={options.length > 1 ? 'multiple' : 'single'}>No transactions</p>
+        )}
       </div>
     </div>
   );
