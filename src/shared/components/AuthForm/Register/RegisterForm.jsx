@@ -7,8 +7,6 @@ import { ReactComponent as GroupLogoIcon } from '../../../../assets/icons/groupL
 import { ReactComponent as EmailIcon } from '../../../../assets/icons/email.svg';
 import { ReactComponent as PasswordIcon } from '../../../../assets/icons/password.svg';
 import { ReactComponent as NameIcon } from '../../../../assets/icons/name.svg';
-// import { ReactComponent as GoogleIcon } from '../../../../assets/icons/google.svg';
-// import authSelectors from 'redux/Auth/SelectorAuth';
 import authOperations from 'redux/Auth/OperationsAuth';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
@@ -22,14 +20,13 @@ const validationSchema = Yup.object().shape({
   password: Yup.string('Required password: 1 character, 1 capital letter')
     .min(6, 'Too Short!')
     .max(12, 'Too Long!')
-    .required('Required password: char.:6-16, at least: 1 capital letter, 1 small letter, 1 number, 1 symbol'),
+    .required(
+      'Required password: char.:6-16, at least: 1 capital letter, 1 small letter, 1 number, 1 symbol'
+    ),
   confirmPassword: Yup.string('Confirm password is must mutch with password')
     .label('confirm password')
     .required()
     .oneOf([Yup.ref('password'), null], 'Passwords must match'),
-  // confirmPassword: Yup.string().when('password', (password, field) =>
-  //   password ? field.required().oneOf([Yup.ref('password')]) : field
-  // ),
 });
 
 const protectionLine = password => {
@@ -47,10 +44,8 @@ const protectionLine = password => {
 };
 
 const RegisterForm = () => {
-  // const buttonRef = useRef();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // const isLoading = useSelector(authSelectors.getIsLoading);
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -60,7 +55,6 @@ const RegisterForm = () => {
     },
     validationSchema,
     onSubmit: values => {
-      // buttonRef.current = 'login';
       dispatch(authOperations.login(values))
         .unwrap()
         .catch(error =>
@@ -75,7 +69,6 @@ const RegisterForm = () => {
   const handleRegister = () => {
     const { name, email, password } = formik.values;
     const body = { name, email, password };
-    // buttonRef.current = 'register';
     dispatch(authOperations.register(body))
       .unwrap()
       .then(() => {
@@ -85,11 +78,10 @@ const RegisterForm = () => {
       .catch(error => {
         let message = '';
         if (typeof error.message === 'string') {
-          message = error.message
-        }
-        else {
-          const keyWord =error.message[0].path[0]
-          message = `"${keyWord}" does not meet requirements`
+          message = error.message;
+        } else {
+          const keyWord = error.message[0].path[0];
+          message = `"${keyWord}" does not meet requirements`;
         }
         toast.error(
           // eslint-disable-next-line no-useless-concat
@@ -122,7 +114,6 @@ const RegisterForm = () => {
         <label className={s.auth_form_label}>
           <span className={s.auth_form_span}>
             <PasswordIcon />
-            {/* password */}
             <input
               className={s.auth_form_input}
               name="password"
@@ -132,14 +123,11 @@ const RegisterForm = () => {
               placeholder="Password"
             />
           </span>
-          <span className={s.auth_form_validation}>
-            {formik.errors.password}
-          </span>
+          <span className={s.auth_form_validation}>{formik.errors.password}</span>
         </label>
         <label className={s.auth_form_label}>
           <span className={s.auth_form_span}>
             <PasswordIcon />
-            {/* confirm password */}
             <input
               className={s.auth_form_input}
               name="confirmPassword"
@@ -149,9 +137,7 @@ const RegisterForm = () => {
               placeholder="Confirm password"
             />
           </span>
-          <span className={s.auth_form_validation}>
-            {formik.errors.confirmPassword}
-          </span>
+          <span className={s.auth_form_validation}>{formik.errors.confirmPassword}</span>
         </label>
         <div className={protectionLine(formik.values.password)}></div>
         <label className={s.auth_form_label}>
@@ -169,13 +155,9 @@ const RegisterForm = () => {
           </span>
         </label>
         <ul className={s.auth_form_inner_btn}>
-         
           <li className={s.item}>
             <button
               className={s.auth_form_btn_register}
-              // isLoading={
-              //     isLoading && buttonRef.current === 'register'
-              // }
               type="button"
               onClick={handleRegister}
             >
@@ -188,14 +170,6 @@ const RegisterForm = () => {
             </Link>
           </li>
         </ul>
-        {/* <a
-                    href="https://wallet-api-kaqj.onrender.com/api-docs/auth/google"
-                    className={s.auth_form_google_button}
-                    aria-label="google button"
-                >
-                    <GoogleIcon className={s.auth_form_icon_google} />
-                    Google
-                </a> */}
       </form>
     </>
   );

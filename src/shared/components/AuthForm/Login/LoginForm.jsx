@@ -7,7 +7,6 @@ import { ReactComponent as GroupLogoIcon } from '../../../../assets/icons/groupL
 import { ReactComponent as EmailIcon } from '../../../../assets/icons/email.svg';
 import { ReactComponent as PasswordIcon } from '../../../../assets/icons/password.svg';
 import { ReactComponent as GoogleIcon } from '../../../../assets/icons/google.svg';
-// import authSelectors from 'redux/Auth/SelectorAuth';
 import authOperations from 'redux/Auth/OperationsAuth';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
@@ -25,10 +24,8 @@ const validationSchema = yup.object({
 });
 
 const LoginForm = () => {
-  // const buttonRef = useRef();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // const isLoading = useSelector(authSelectors.getIsLoading);
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -36,7 +33,6 @@ const LoginForm = () => {
     },
     validationSchema,
     onSubmit: values => {
-      // buttonRef.current = 'login';
       dispatch(authOperations.login(values))
         .unwrap()
         .then(() => {
@@ -44,14 +40,13 @@ const LoginForm = () => {
           navigate('/home', { replace: true });
         })
         .catch(error => {
-            let message = '';
-            if (typeof error.message === 'string') {
-              message = error.message
-            }
-            else {
-              const keyWord =error.message[0].path[0]
-              message = `"${keyWord}" does not meet requirements`
-            }
+          let message = '';
+          if (typeof error.message === 'string') {
+            message = error.message;
+          } else {
+            const keyWord = error.message[0].path[0];
+            message = `"${keyWord}" does not meet requirements`;
+          }
           toast.error(
             // eslint-disable-next-line no-useless-concat
             `Login is failed with message: ${message}`
@@ -94,19 +89,11 @@ const LoginForm = () => {
               placeholder="Password"
             />
           </span>
-          <span className={s.auth_form_validation}>
-            {formik.errors.password}
-          </span>
+          <span className={s.auth_form_validation}>{formik.errors.password}</span>
         </label>
         <ul className={s.auth_form_inner_btn}>
           <li className={s.item}>
-            <button
-              className={s.auth_form_btn_login}
-              // isLoading={
-              //     isLoading && buttonRef.current === 'login'
-              // }
-              type="submit"
-            >
+            <button className={s.auth_form_btn_login} type="submit">
               Log in
             </button>
           </li>
