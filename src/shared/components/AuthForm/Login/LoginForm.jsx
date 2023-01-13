@@ -6,8 +6,6 @@ import { toast } from 'react-toastify';
 import { ReactComponent as GroupLogoIcon } from '../../../../assets/icons/groupLogo.svg';
 import { ReactComponent as EmailIcon } from '../../../../assets/icons/email.svg';
 import { ReactComponent as PasswordIcon } from '../../../../assets/icons/password.svg';
-import { ReactComponent as GoogleIcon } from '../../../../assets/icons/google.svg';
-// import authSelectors from 'redux/Auth/SelectorAuth';
 import authOperations from 'redux/Auth/OperationsAuth';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
@@ -25,18 +23,15 @@ const validationSchema = yup.object({
 });
 
 const LoginForm = () => {
-  // const buttonRef = useRef();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // const isLoading = useSelector(authSelectors.getIsLoading);
   const formik = useFormik({
     initialValues: {
       email: '',
       password: '',
     },
     validationSchema,
-    onSubmit: values => {
-      // buttonRef.current = 'login';
+      onSubmit: values => {
       dispatch(authOperations.login(values))
         .unwrap()
         .then(() => {
@@ -44,30 +39,31 @@ const LoginForm = () => {
           navigate('/home', { replace: true });
         })
         .catch(error => {
-            let message = '';
-            if (typeof error.message === 'string') {
-              message = error.message
-            }
-            else {
-              const keyWord =error.message[0].path[0]
-              message = `"${keyWord}" does not meet requirements`
-            }
+          let message = '';
+          if (typeof error.message === 'string') {
+            message = error.message;
+          } else {
+            const keyWord = error.message[0].path[0];
+            message = `"${keyWord}" does not meet requirements`;
+          }
           toast.error(
             // eslint-disable-next-line no-useless-concat
             `Login is failed with message: ${message}`
           );
         });
-    },
+      },
+     
   });
+    const isDisabled = formik.values.email && formik.values.password;
   return (
     <>
-      <form onSubmit={formik.handleSubmit} className={s.auth_form}>
+      <form onSubmit={formik.handleSubmit} className={s.auth_form} autoComplete="off">
         <div className={s.auth_form_inner_logo}>
           <GroupLogoIcon className={s.auth_form_logo} />
           <h1 className={s.auth_form_title}>Wallet</h1>
         </div>
         <label className={s.auth_form_label}>
-          <span className={s.auth_form_span}>
+        
             <EmailIcon />
 
             <input
@@ -76,13 +72,16 @@ const LoginForm = () => {
               type="text"
               onChange={formik.handleChange}
               value={formik.values.email}
-              placeholder="E-Mail"
+                      placeholder="E-Mail"
+                      required
             />
-          </span>
-          <span className={s.auth_form_validation}>{formik.errors.email}</span>
+       
+                  <span className={s.auth_form_validation}>
+                      {formik.errors.email}
+                  </span>
         </label>
         <label className={s.auth_form_label}>
-          <span className={s.auth_form_span}>
+       
             <PasswordIcon />
 
             <input
@@ -91,22 +90,17 @@ const LoginForm = () => {
               type="password"
               onChange={formik.handleChange}
               value={formik.values.password}
-              placeholder="Password"
+                      placeholder="Password"
+                      required
             />
-          </span>
-          <span className={s.auth_form_validation}>
-            {formik.errors.password}
-          </span>
+     
+                  <span className={s.auth_form_validation}>
+                      {formik.errors.password}
+                  </span>
         </label>
         <ul className={s.auth_form_inner_btn}>
           <li className={s.item}>
-            <button
-              className={s.auth_form_btn_login}
-              // isLoading={
-              //     isLoading && buttonRef.current === 'login'
-              // }
-              type="submit"
-            >
+            <button className={s.auth_form_btn_login} type="submit" disabled={!isDisabled}>
               Log in
             </button>
           </li>
@@ -116,14 +110,14 @@ const LoginForm = () => {
             </Link>
           </li>
         </ul>
-        <a
+        {/* <a
           href="https://wallet-api-kaqj.onrender.com/api-docs/auth/google"
           className={s.auth_form_google_button}
           aria-label="google button"
         >
           <GoogleIcon className={s.auth_form_icon_google} />
           Google
-        </a>
+        </a> */}
       </form>
     </>
   );
