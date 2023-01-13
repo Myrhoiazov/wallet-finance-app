@@ -4,9 +4,10 @@ import { token } from '../../services/http';
 
 const register = createAsyncThunk(
   'auth/register',
-  async (credentials, { rejectWithValue }) => {
+  async (credentials, { rejectWithValue, dispatch }) => {
     try {
       const data = await authAPI.registerUser(credentials);
+      await dispatch(authOperations.login({email:credentials.email,password:credentials.password}))
       return data;
     } catch (error) {
       return rejectWithValue({

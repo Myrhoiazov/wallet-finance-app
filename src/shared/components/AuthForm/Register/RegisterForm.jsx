@@ -11,17 +11,18 @@ import authOperations from 'redux/Auth/OperationsAuth';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
+
 const validationSchema = Yup.object().shape({
   email: Yup.string('Enter email').required('Email is required').email(),
   name: Yup.string('Enter your first name')
     .min(1, 'Too Short!')
     .max(12, 'Too Long!')
-    .required('Enter your first name'),
+    .required('name is required'),
   password: Yup.string('Required password: 1 character, 1 capital letter')
     .min(6, 'Too Short!')
     .max(12, 'Too Long!')
     .required(
-      'Required password: char.:6-16, at least: 1 capital letter, 1 small letter, 1 number, 1 symbol'
+      '1 capital letter, 1 small letter, 1 number, 1 symbol'
     ),
   confirmPassword: Yup.string('Confirm password is must mutch with password')
     .label('confirm password')
@@ -46,6 +47,7 @@ const protectionLine = password => {
 const RegisterForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+ 
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -65,40 +67,51 @@ const RegisterForm = () => {
         );
     },
   });
+  
 
   const handleRegister = () => {
     const { name, email, password } = formik.values;
     const body = { name, email, password };
-    dispatch(authOperations.register(body))
-      .unwrap()
-      .then(() => {
-        toast.success('You have successfully registered');
-        navigate('/login', { replace: true });
-      })
-      .catch(error => {
-        let message = '';
-        if (typeof error.message === 'string') {
-          message = error.message;
-        } else {
-          const keyWord = error.message[0].path[0];
-          message = `"${keyWord}" does not meet requirements`;
-        }
-        toast.error(
-          // eslint-disable-next-line no-useless-concat
-          `Register is failed with message: ${message}`
-        );
-      });
+    if (body.name && body.email && body.password) {
+      dispatch(authOperations.register(body))
+        .unwrap()
+        .then(() => {
+          toast.success('You have successfully registered');
+          navigate('/home', { replace: true });
+          
+        })
+        .catch(error => {
+          let message = '';
+          if (typeof error.message === 'string') {
+            message = error.message;
+          } else {
+            const keyWord = error.message[0].path[0];
+            message = `"${keyWord}" does not meet requirements`;
+          }
+          toast.error(
+            // eslint-disable-next-line no-useless-concat
+            `Register is failed with message: ${message}`
+          );
+        });
+    } else {
+      toast.error(
+      `Please fill in all fields`
+      )
+    }
   };
+  const isDisabled = (formik.values.name && formik.values.email && formik.values.password && formik.values.confirmPassword);
+  
   return (
+    
     <>
-      <form onSubmit={formik.handleSubmit} className={s.auth_form}>
+      <form onSubmit={handleRegister} className={s.auth_form}>
         <div className={s.auth_form_inner_logo}>
           <GroupLogoIcon className={s.auth_form_logo} />
           <h1 className={s.auth_form_title}>Wallet</h1>
         </div>
         <label className={s.auth_form_label}>
-          <span className={s.auth_form_span}>
-            <EmailIcon />
+       
+          <EmailIcon width={24} height={24 } />
 
             <input
               className={s.auth_form_input}
@@ -106,43 +119,46 @@ const RegisterForm = () => {
               type="text"
               onChange={formik.handleChange}
               value={formik.values.email}
-              placeholder="E-Mail"
+            placeholder="E-Mail"
+            required
             />
-          </span>
+     
           <span className={s.auth_form_validation}>{formik.errors.email}</span>
         </label>
         <label className={s.auth_form_label}>
-          <span className={s.auth_form_span}>
-            <PasswordIcon />
+         
+            <PasswordIcon width={24} height={24 }/>
             <input
               className={s.auth_form_input}
               name="password"
               type="password"
               onChange={formik.handleChange}
               value={formik.values.password}
-              placeholder="Password"
+            placeholder="Password"
+            required
             />
-          </span>
+         
           <span className={s.auth_form_validation}>{formik.errors.password}</span>
         </label>
         <label className={s.auth_form_label}>
-          <span className={s.auth_form_span}>
-            <PasswordIcon />
+        
+            <PasswordIcon width={24} height={24 }/>
             <input
               className={s.auth_form_input}
               name="confirmPassword"
               type="password"
               onChange={formik.handleChange}
               value={formik.values.confirmPassword}
-              placeholder="Confirm password"
+            placeholder="Confirm password"
+            required
             />
-          </span>
+      
           <span className={s.auth_form_validation}>{formik.errors.confirmPassword}</span>
         </label>
         <div className={protectionLine(formik.values.password)}></div>
         <label className={s.auth_form_label}>
-          <span className={s.auth_form_span}>
-            <NameIcon />
+        
+            <NameIcon width={24} height={24 }/>
 
             <input
               className={s.auth_form_input}
@@ -150,9 +166,10 @@ const RegisterForm = () => {
               type="text"
               onChange={formik.handleChange}
               value={formik.values.name}
-              placeholder="First Name"
+            placeholder="First Name"
+            required
             />
-          </span>
+        
         </label>
         <ul className={s.auth_form_inner_btn}>
           <li className={s.item}>
@@ -160,6 +177,7 @@ const RegisterForm = () => {
               className={s.auth_form_btn_register}
               type="button"
               onClick={handleRegister}
+              disabled={!isDisabled}
             >
               Register
             </button>
