@@ -9,7 +9,7 @@ import { ReactComponent as PasswordIcon } from '../../../../assets/icons/passwor
 import { ReactComponent as NameIcon } from '../../../../assets/icons/name.svg';
 import authOperations from 'redux/Auth/OperationsAuth';
 import { useDispatch } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string('Enter email').required('Email is required').email(),
@@ -43,8 +43,11 @@ const protectionLine = password => {
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
+<<<<<<< HEAD
   const navigate = useNavigate();
 
+=======
+>>>>>>> 939cd6ab5198be96f19ef2562a5900d862da4cff
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -54,16 +57,35 @@ const RegisterForm = () => {
     },
     validationSchema,
     onSubmit: values => {
-      dispatch(authOperations.login(values))
-        .unwrap()
-        .catch(error =>
-          toast.error(
-            // eslint-disable-next-line no-useless-concat
-            `Login is failed with message:` + ' ' + error.message
-          )
-        );
+      const { name, email, password } = values;
+    const body = { name, email, password };
+      if (body.name && body.email && body.password) {
+        dispatch(authOperations.register(body))
+          .unwrap()
+          .then(() => {
+            toast.success('You have successfully registered');
+          })
+          .catch(error => {
+            let message = '';
+            if (typeof error.message === 'string') {
+              message = error.message;
+            } else {
+              const keyWord = error.message[0].path[0];
+              message = `"${keyWord}" does not meet requirements`;
+            }
+            toast.error(
+              // eslint-disable-next-line no-useless-concat
+              `Register is failed with message: ${message}`
+            );
+          });
+      } else {
+        toast.error(
+        `Please fill in all fields`
+        )
+      }
     },
   });
+<<<<<<< HEAD
 
   const handleRegister = () => {
     const { name, email, password } = formik.values;
@@ -98,9 +120,14 @@ const RegisterForm = () => {
     formik.values.password &&
     formik.values.confirmPassword;
 
+=======
+  
+  const isDisabled = (formik.values.name && formik.values.email && formik.values.password && formik.values.confirmPassword);
+  
+>>>>>>> 939cd6ab5198be96f19ef2562a5900d862da4cff
   return (
     <>
-      <form onSubmit={handleRegister} className={s.auth_form}>
+      <form onSubmit={formik.handleSubmit} className={s.auth_form}>
         <div className={s.auth_form_inner_logo}>
           <GroupLogoIcon className={s.auth_form_logo} />
           <h1 className={s.auth_form_title}>Wallet</h1>
@@ -166,8 +193,8 @@ const RegisterForm = () => {
           <li className={s.item}>
             <button
               className={s.auth_form_btn_register}
-              type="button"
-              onClick={handleRegister}
+              type="submit"
+              // onClick={handleRegister}
               disabled={!isDisabled}
             >
               Register
