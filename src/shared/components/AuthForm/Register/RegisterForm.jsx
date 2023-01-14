@@ -11,7 +11,6 @@ import authOperations from 'redux/Auth/OperationsAuth';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
-
 const validationSchema = Yup.object().shape({
   email: Yup.string('Enter email').required('Email is required').email(),
   name: Yup.string('Enter your first name')
@@ -21,9 +20,7 @@ const validationSchema = Yup.object().shape({
   password: Yup.string('Required password: 1 character, 1 capital letter')
     .min(6, 'Too Short!')
     .max(12, 'Too Long!')
-    .required(
-      '1 capital letter, 1 small letter, 1 number, 1 symbol'
-    ),
+    .required('1 capital letter, 1 small letter, 1 number, 1 symbol'),
   confirmPassword: Yup.string('Confirm password is must mutch with password')
     .label('confirm password')
     .required()
@@ -47,7 +44,7 @@ const protectionLine = password => {
 const RegisterForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
- 
+
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -67,7 +64,6 @@ const RegisterForm = () => {
         );
     },
   });
-  
 
   const handleRegister = () => {
     const { name, email, password } = formik.values;
@@ -78,7 +74,6 @@ const RegisterForm = () => {
         .then(() => {
           toast.success('You have successfully registered');
           navigate('/home', { replace: true });
-          
         })
         .catch(error => {
           let message = '';
@@ -94,15 +89,16 @@ const RegisterForm = () => {
           );
         });
     } else {
-      toast.error(
-      `Please fill in all fields`
-      )
+      toast.error(`Please fill in all fields`);
     }
   };
-  const isDisabled = (formik.values.name && formik.values.email && formik.values.password && formik.values.confirmPassword);
-  
+  const isDisabled =
+    formik.values.name &&
+    formik.values.email &&
+    formik.values.password &&
+    formik.values.confirmPassword;
+
   return (
-    
     <>
       <form onSubmit={handleRegister} className={s.auth_form}>
         <div className={s.auth_form_inner_logo}>
@@ -110,66 +106,61 @@ const RegisterForm = () => {
           <h1 className={s.auth_form_title}>Wallet</h1>
         </div>
         <label className={s.auth_form_label}>
-       
-          <EmailIcon width={24} height={24 } />
+          <EmailIcon width={24} height={24} className={s.icon} />
 
-            <input
-              className={s.auth_form_input}
-              name="email"
-              type="text"
-              onChange={formik.handleChange}
-              value={formik.values.email}
+          <input
+            className={s.auth_form_input}
+            name="email"
+            type="text"
+            onChange={formik.handleChange}
+            value={formik.values.email}
             placeholder="E-Mail"
             required
-            />
-     
+          />
+
           <span className={s.auth_form_validation}>{formik.errors.email}</span>
         </label>
         <label className={s.auth_form_label}>
-         
-            <PasswordIcon width={24} height={24 }/>
-            <input
-              className={s.auth_form_input}
-              name="password"
-              type="password"
-              onChange={formik.handleChange}
-              value={formik.values.password}
+          <PasswordIcon width={24} height={24} className={s.icon} />
+          <input
+            className={s.auth_form_input}
+            name="password"
+            type="password"
+            onChange={formik.handleChange}
+            value={formik.values.password}
             placeholder="Password"
             required
-            />
-         
+          />
+
           <span className={s.auth_form_validation}>{formik.errors.password}</span>
         </label>
         <label className={s.auth_form_label}>
-        
-            <PasswordIcon width={24} height={24 }/>
-            <input
-              className={s.auth_form_input}
-              name="confirmPassword"
-              type="password"
-              onChange={formik.handleChange}
-              value={formik.values.confirmPassword}
+          <PasswordIcon width={24} height={24} className={s.icon} />
+          <input
+            className={s.auth_form_input}
+            name="confirmPassword"
+            type="password"
+            onChange={formik.handleChange}
+            value={formik.values.confirmPassword}
             placeholder="Confirm password"
             required
-            />
-      
+          />
+
           <span className={s.auth_form_validation}>{formik.errors.confirmPassword}</span>
         </label>
         <div className={protectionLine(formik.values.password)}></div>
         <label className={s.auth_form_label}>
-        
-            <NameIcon width={24} height={24 }/>
+          <NameIcon width={24} height={24} className={s.icon} />
 
-            <input
-              className={s.auth_form_input}
-              name="name"
-              type="text"
-              onChange={formik.handleChange}
-              value={formik.values.name}
+          <input
+            className={s.auth_form_input}
+            name="name"
+            type="text"
+            onChange={formik.handleChange}
+            value={formik.values.name}
             placeholder="First Name"
             required
-            />
-        
+          />
         </label>
         <ul className={s.auth_form_inner_btn}>
           <li className={s.item}>

@@ -31,7 +31,7 @@ const LoginForm = () => {
       password: '',
     },
     validationSchema,
-      onSubmit: values => {
+    onSubmit: values => {
       dispatch(authOperations.login(values))
         .unwrap()
         .then(() => {
@@ -51,10 +51,9 @@ const LoginForm = () => {
             `Login is failed with message: ${message}`
           );
         });
-      },
-     
+    },
   });
-    const isDisabled = formik.values.email && formik.values.password;
+  const isDisabled = formik.values.email && formik.values.password;
   return (
     <>
       <form onSubmit={formik.handleSubmit} className={s.auth_form} autoComplete="off">
@@ -63,44 +62,42 @@ const LoginForm = () => {
           <h1 className={s.auth_form_title}>Wallet</h1>
         </div>
         <label className={s.auth_form_label}>
-        
-            <EmailIcon />
+          <EmailIcon className={s.icon} />
 
-            <input
-              className={s.auth_form_input}
-              name="email"
-              type="text"
-              onChange={formik.handleChange}
-              value={formik.values.email}
-                      placeholder="E-Mail"
-                      required
-            />
-       
-                  <span className={s.auth_form_validation}>
-                      {formik.errors.email}
-                  </span>
+          <input
+            className={s.auth_form_input}
+            name="email"
+            type="text"
+            onChange={formik.handleChange}
+            value={formik.values.email}
+            placeholder="E-Mail"
+            required
+          />
+
+          <span className={s.auth_form_validation}>{formik.errors.email}</span>
         </label>
         <label className={s.auth_form_label}>
-       
-            <PasswordIcon />
+          <PasswordIcon className={s.icon} />
 
-            <input
-              className={s.auth_form_input}
-              name="password"
-              type="password"
-              onChange={formik.handleChange}
-              value={formik.values.password}
-                      placeholder="Password"
-                      required
-            />
-     
-                  <span className={s.auth_form_validation}>
-                      {formik.errors.password}
-                  </span>
+          <input
+            className={s.auth_form_input}
+            name="password"
+            type="password"
+            onChange={formik.handleChange}
+            value={formik.values.password}
+            placeholder="Password"
+            required
+          />
+
+          <span className={s.auth_form_validation}>{formik.errors.password}</span>
         </label>
         <ul className={s.auth_form_inner_btn}>
           <li className={s.item}>
-            <button className={s.auth_form_btn_login} type="submit" disabled={!isDisabled}>
+            <button
+              className={s.auth_form_btn_login}
+              type="submit"
+              disabled={!isDisabled}
+            >
               Log in
             </button>
           </li>
