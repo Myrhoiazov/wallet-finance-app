@@ -9,7 +9,7 @@ import { ReactComponent as PasswordIcon } from '../../../../assets/icons/passwor
 import { ReactComponent as NameIcon } from '../../../../assets/icons/name.svg';
 import authOperations from 'redux/Auth/OperationsAuth';
 import { useDispatch } from 'react-redux';
-import { Link} from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string('Enter email').required('Email is required').email(),
@@ -43,11 +43,8 @@ const protectionLine = password => {
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
-<<<<<<< HEAD
   const navigate = useNavigate();
 
-=======
->>>>>>> 939cd6ab5198be96f19ef2562a5900d862da4cff
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -85,7 +82,6 @@ const RegisterForm = () => {
       }
     },
   });
-<<<<<<< HEAD
 
   const handleRegister = () => {
     const { name, email, password } = formik.values;
@@ -119,12 +115,6 @@ const RegisterForm = () => {
     formik.values.email &&
     formik.values.password &&
     formik.values.confirmPassword;
-
-=======
-  
-  const isDisabled = (formik.values.name && formik.values.email && formik.values.password && formik.values.confirmPassword);
-  
->>>>>>> 939cd6ab5198be96f19ef2562a5900d862da4cff
   return (
     <>
       <form onSubmit={formik.handleSubmit} className={s.auth_form}>
@@ -194,7 +184,7 @@ const RegisterForm = () => {
             <button
               className={s.auth_form_btn_register}
               type="submit"
-              // onClick={handleRegister}
+              onClick={handleRegister}
               disabled={!isDisabled}
             >
               Register
